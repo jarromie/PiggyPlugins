@@ -1,0 +1,34 @@
+name: 'Split repo'
+
+on:
+  push:
+    branches:
+      - master
+      - '*.x'
+    tags:
+      - 'v*'
+
+jobs:
+  split:
+    runs-on: ubuntu-latest
+
+    strategy:
+      fail-fast: false
+      matrix:
+        package: [ 'EthansApi', 'PiggyUtils' ]
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+      - name: Split package ${{ matrix.package }}
+        uses: "claudiodekker/splitsh-action@v1.0.0"
+        env:
+          GITHUB_TOKEN: ${{ secrets.MONOREPO_SPLITTER_PERSONAL_ACCESS_TOKEN }}
+        with:
+          prefix: "${{ matrix.package }}"
+          remote: "https://github.com/jarromie/subsplit-of-${{ matrix.package }}.git"
+          reference: "${{ github.ref_name }}"
+          as_tag: "${{ startsWith(github.ref, 'refs/tags/') }}"
