@@ -1,0 +1,28 @@
+# .github/workflows/example.yml
+
+name: Sync fork from upstream (0Hutch/PiggyPlugins)
+on:
+  schedule:
+     # actually, ~5 minutes is the highest
+     # effective frequency you will get
+    - cron:  '* * * * *'
+jobs:
+  merge:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Merge upstream
+        run: |
+          git config --global user.name 'fork-update'
+          git config --global user.email 'jarromie@users.noreply.github.com'
+          git pull --unshallow 
+          git remote add upstream https://github.com/0Hutch/PiggyPlugins.git
+          git fetch upstream
+          git checkout -b feature/x origin/feature/x
+          git merge --no-edit upstream/feature/x
+          git push origin feature/x
+
+          git checkout master
+          git merge --no-edit upstream/master
+          git push origin master
+          # etc
