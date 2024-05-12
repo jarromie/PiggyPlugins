@@ -5,10 +5,12 @@ on:
      # effective frequency you will get
     - cron:  '* * * * *'
 jobs:
-  merge:
+  sync:
     runs-on: ubuntu-latest
     steps:
       - uses: tgymnich/fork-sync@v1.2.1
-      - name: Fork sync
         with:
+          owner: 0Hutch
+          base: master
+          head: master
           pr_title: Merge from upstream (sync fork)
