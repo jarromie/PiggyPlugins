@@ -10,6 +10,7 @@ jobs:
     steps:
       - uses: tgymnich/fork-sync@v1.2.1
         with:
+          github_token: ${{ github.token }}
           owner: 0Hutch
           base: master
           head: master
