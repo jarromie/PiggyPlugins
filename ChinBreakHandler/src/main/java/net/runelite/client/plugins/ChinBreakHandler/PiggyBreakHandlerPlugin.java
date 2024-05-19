@@ -31,7 +31,7 @@ import net.runelite.client.eventbus.Subscribe;
 import net.runelite.client.events.ConfigChanged;
 import net.runelite.client.game.WorldService;
 import net.runelite.client.plugins.ChinBreakHandler.util.IntRandomNumberGenerator;
-import net.runelite.client.plugins.ChinBreakHandler.ui.ChinBreakHandlerPanel;
+import net.runelite.client.plugins.ChinBreakHandler.ui.PiggyBreakHandlerPanel;
 import net.runelite.client.plugins.ChinBreakHandler.ui.LoginMode;
 import net.runelite.client.plugins.Plugin;
 import net.runelite.client.plugins.PluginDescriptor;
@@ -65,7 +65,7 @@ import java.util.concurrent.TimeUnit;
 
 
 @PluginDescriptor(
-        name = "<html><font color=\"#FF9DF9\">[PP]</font> Chin Break Handler</html>",
+        name = "<html><font color=\"#FF9DF9\">[PP]</font> Piggy Break Handler</html>",
         description = "Owain's Chin Break Handler ported to RuneLite & Extended",
         tags = {"ethan", "piggy", "break", "chin"}
 )
@@ -114,7 +114,7 @@ public class PiggyBreakHandlerPlugin extends Plugin {
     public static String data;
 
     private NavigationButton navButton;
-    private ChinBreakHandlerPanel panel;
+    private PiggyBreakHandlerPanel panel;
     private boolean logout;
     private int delay = -1;
 
@@ -137,12 +137,12 @@ public class PiggyBreakHandlerPlugin extends Plugin {
     protected void startUp() {
         executorService = Executors.newSingleThreadExecutor();
 
-        panel = injector.getInstance(ChinBreakHandlerPanel.class);
+        panel = injector.getInstance(PiggyBreakHandlerPanel.class);
 
 
 
         navButton = NavigationButton.builder()
-                .tooltip("Chin break handler")
+                .tooltip("Piggy break handler")
                 .icon(icon)
                 .priority(4)
                 .panel(panel)
