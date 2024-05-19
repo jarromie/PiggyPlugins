@@ -4,7 +4,7 @@ import com.example.EthanApiPlugin.Collections.Bank;
 import com.example.EthanApiPlugin.Collections.BankInventory;
 import com.example.EthanApiPlugin.Collections.NPCs;
 import com.example.EthanApiPlugin.Collections.TileObjects;
-import com.example.EthanApiPlugin.EthansApiPlugin;
+import com.example.EthanApiPlugin.PiggyApiPlugin;
 import com.example.InteractionApi.BankInteraction;
 import com.example.InteractionApi.NPCInteraction;
 import com.example.InteractionApi.TileObjectInteraction;
@@ -74,7 +74,7 @@ public class SuperGlassMakerPlugin extends Plugin {
                 return;
             } else {
                 client.addChatMessage(ChatMessageType.GAMEMESSAGE, "", "couldn't find bank or banker", null);
-                EthansApiPlugin.stopPlugin(this);
+                PiggyApiPlugin.stopPlugin(this);
                 return;
             }
         }
@@ -98,7 +98,7 @@ public class SuperGlassMakerPlugin extends Plugin {
             }
             timesFailed++;
             if (timesFailed > 2) {
-                EthansApiPlugin.stopPlugin(this);
+                PiggyApiPlugin.stopPlugin(this);
             } else {
                 if (banker.isPresent()) {
                     NPCInteraction.interact(banker.get(), "Bank");
@@ -106,7 +106,7 @@ public class SuperGlassMakerPlugin extends Plugin {
                     TileObjectInteraction.interact(bank.get(), "Bank");
                 } else {
                     client.addChatMessage(ChatMessageType.GAMEMESSAGE, "", "couldn't find bank or banker", null);
-                    EthansApiPlugin.stopPlugin(this);
+                    PiggyApiPlugin.stopPlugin(this);
                     return;
                 }
             }
@@ -123,7 +123,7 @@ public class SuperGlassMakerPlugin extends Plugin {
         boolean secondaryWithdrawn = handleSecondary();
         if (!secondaryWithdrawn) {
             client.addChatMessage(ChatMessageType.GAMEMESSAGE, "", "no secondary stop plugin", null);
-            EthansApiPlugin.stopPlugin(this);
+            PiggyApiPlugin.stopPlugin(this);
             return;
         }
         if (banker.isPresent()) {
@@ -132,7 +132,7 @@ public class SuperGlassMakerPlugin extends Plugin {
             TileObjectInteraction.interact(bank.get(), "Bank");
         } else {
             client.addChatMessage(ChatMessageType.GAMEMESSAGE, "", "couldn't find bank or banker try 2", null);
-            EthansApiPlugin.stopPlugin(this);
+            PiggyApiPlugin.stopPlugin(this);
             return;
         }
         MousePackets.queueClickPacket();

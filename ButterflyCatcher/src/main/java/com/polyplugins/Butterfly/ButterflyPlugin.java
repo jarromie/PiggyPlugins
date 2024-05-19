@@ -3,7 +3,7 @@ package com.polyplugins.Butterfly;
 
 import com.example.EthanApiPlugin.Collections.Inventory;
 import com.example.EthanApiPlugin.Collections.NPCs;
-import com.example.EthanApiPlugin.EthansApiPlugin;
+import com.example.EthanApiPlugin.PiggyApiPlugin;
 import com.example.Packets.*;
 import com.google.inject.Inject;
 import com.google.inject.Provides;
@@ -89,7 +89,7 @@ public class ButterflyPlugin extends Plugin {
             });
         }
 
-        if (EthansApiPlugin.isMoving()) return;
+        if (PiggyApiPlugin.isMoving()) return;
 
         if (client.getLocalPlayer().getInteracting() == null && emptyJar.isPresent()) {
             if (butterfly.isPresent()) {

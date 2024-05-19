@@ -4,7 +4,7 @@ import com.example.EthanApiPlugin.Collections.Inventory;
 import com.example.EthanApiPlugin.Collections.TileObjects;
 import com.example.EthanApiPlugin.Collections.Widgets;
 import com.example.EthanApiPlugin.Collections.query.ItemQuery;
-import com.example.EthanApiPlugin.EthansApiPlugin;
+import com.example.EthanApiPlugin.PiggyApiPlugin;
 import com.example.InteractionApi.InventoryInteraction;
 import com.example.InteractionApi.TileObjectInteraction;
 import com.example.Packets.MousePackets;
@@ -35,8 +35,8 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import static com.example.EthanApiPlugin.Collections.query.TileObjectQuery.getObjectComposition;
-import static com.example.EthanApiPlugin.EthansApiPlugin.sendClientMessage;
-import static com.example.EthanApiPlugin.EthansApiPlugin.stopPlugin;
+import static com.example.EthanApiPlugin.PiggyApiPlugin.sendClientMessage;
+import static com.example.EthanApiPlugin.PiggyApiPlugin.stopPlugin;
 import static com.example.PacketUtils.PacketReflection.client;
 
 @Slf4j
@@ -383,7 +383,7 @@ public class AutoTitheFarmPlugin extends Plugin {
         dePopulateList(fourthPhaseObjectsToFocus);
 
         // if 5 ticks have passed and no any actions have been made within time limit then something went horribly wrong.
-        final boolean isPlayerMoving = EthansApiPlugin.isMoving() || client.getLocalPlayer().getAnimation() != -1;
+        final boolean isPlayerMoving = PiggyApiPlugin.isMoving() || client.getLocalPlayer().getAnimation() != -1;
         if (actionDelayHandler.getLastActionTimer() > (startingNewRun() ? 2 : 5) && !isPlayerMoving && actionDelayHandler.isWaitForAction()) {
             actionDelayHandler.setWaitForAction(false);
             log.info("Setting action delay to false");
@@ -436,7 +436,7 @@ public class AutoTitheFarmPlugin extends Plugin {
             }
 
             // whether to trigger earlier if running.
-            int runEnergyExtraDeviation = EthansApiPlugin.isMoving() ? runEnergyDeviation + 5 : runEnergyDeviation;
+            int runEnergyExtraDeviation = PiggyApiPlugin.isMoving() ? runEnergyDeviation + 5 : runEnergyDeviation;
             if (runEnergy <= runEnergyExtraDeviation) {
                 needToRestoreRunEnergy = true;
             }
@@ -446,7 +446,7 @@ public class AutoTitheFarmPlugin extends Plugin {
             }
 
             if (defaultStartingPos != null && !client.getLocalPlayer().getWorldLocation().equals(defaultStartingPos)) {
-                if (!EthansApiPlugin.isMoving()) {
+                if (!PiggyApiPlugin.isMoving()) {
                     MousePackets.queueClickPacket();
                     MovementPackets.queueMovement(defaultStartingPos);
                     log.info("Moving to starting position");

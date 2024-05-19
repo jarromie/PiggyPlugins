@@ -2,7 +2,7 @@ package com.piggyplugins.Firemaking;
 
 import com.example.EthanApiPlugin.Collections.*;
 import com.example.EthanApiPlugin.Collections.query.TileObjectQuery;
-import com.example.EthanApiPlugin.EthansApiPlugin;
+import com.example.EthanApiPlugin.PiggyApiPlugin;
 import com.example.InteractionApi.BankInteraction;
 import com.example.Packets.*;
 import com.google.inject.Inject;
@@ -100,7 +100,7 @@ public class FiremakingPlugin extends Plugin {
 
     @Subscribe
     private void onGameTick(GameTick event) {
-        if (client.getGameState() != GameState.LOGGED_IN || !started || EthansApiPlugin.isMoving() || client.getLocalPlayer().getAnimation() != -1) {
+        if (client.getGameState() != GameState.LOGGED_IN || !started || PiggyApiPlugin.isMoving() || client.getLocalPlayer().getAnimation() != -1) {
             return;
         }
 

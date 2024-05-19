@@ -2,7 +2,7 @@ package com.piggyplugins.PowerSkiller;
 
 import com.example.EthanApiPlugin.Collections.*;
 import com.example.EthanApiPlugin.Collections.query.TileObjectQuery;
-import com.example.EthanApiPlugin.EthansApiPlugin;
+import com.example.EthanApiPlugin.PiggyApiPlugin;
 import com.example.InteractionApi.BankInventoryInteraction;
 import com.example.InteractionApi.InventoryInteraction;
 import com.example.InteractionApi.NPCInteraction;
@@ -76,7 +76,7 @@ public class PowerSkillerPlugin extends Plugin {
 
     @Subscribe
     private void onGameTick(GameTick event) {
-        if (!EthansApiPlugin.loggedIn() || !started || breakHandler.isBreakActive(this)) {
+        if (!PiggyApiPlugin.loggedIn() || !started || breakHandler.isBreakActive(this)) {
             // We do an early return if the user isn't logged in
             return;
         }
@@ -97,7 +97,7 @@ public class PowerSkillerPlugin extends Plugin {
                         return;
                     });
                     NPCs.search().withAction("Bank").nearestToPlayer().ifPresent(npc -> {
-                        if (EthansApiPlugin.pathToGoal(npc.getWorldLocation(), new HashSet<>()) != null) {
+                        if (PiggyApiPlugin.pathToGoal(npc.getWorldLocation(), new HashSet<>()) != null) {
                             NPCInteraction.interact(npc, "Bank");
                         }
                         return;
@@ -107,7 +107,7 @@ public class PowerSkillerPlugin extends Plugin {
                         return;
                     });
                     if (TileObjects.search().withAction("Bank").nearestToPlayer().isEmpty() && NPCs.search().withAction("Bank").nearestToPlayer().isEmpty()) {
-                        EthansApiPlugin.sendClientMessage("Bank is not found, move to an area with a bank.");
+                        PiggyApiPlugin.sendClientMessage("Bank is not found, move to an area with a bank.");
                     }
 
                     return;
@@ -140,7 +140,7 @@ public class PowerSkillerPlugin extends Plugin {
 
     private State getNextState() {
         // self-explanatory, we just return a State if the conditions are met.
-        if (EthansApiPlugin.isMoving() || client.getLocalPlayer().getAnimation() != -1) {
+        if (PiggyApiPlugin.isMoving() || client.getLocalPlayer().getAnimation() != -1) {
             // this is to prevent clicks while animating/moving.
             return State.ANIMATING;
         }
@@ -307,7 +307,7 @@ public class PowerSkillerPlugin extends Plugin {
     }
 
     public void toggle() {
-        if (!EthansApiPlugin.loggedIn()) {
+        if (!PiggyApiPlugin.loggedIn()) {
             return;
         }
         started = !started;

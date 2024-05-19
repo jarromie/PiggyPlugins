@@ -5,7 +5,7 @@ import com.example.EthanApiPlugin.Collections.BankInventory;
 import com.example.EthanApiPlugin.Collections.Inventory;
 import com.example.EthanApiPlugin.Collections.NPCs;
 import com.example.EthanApiPlugin.Collections.TileObjects;
-import com.example.EthanApiPlugin.EthansApiPlugin;
+import com.example.EthanApiPlugin.PiggyApiPlugin;
 import com.example.InteractionApi.BankInteraction;
 import com.example.InteractionApi.NPCInteraction;
 import com.example.InteractionApi.TileObjectInteraction;
@@ -88,7 +88,7 @@ public class ItemCombinerPlugin extends Plugin {
     private void onGameTick(GameTick event) {
         if (client.getGameState() != GameState.LOGGED_IN
                 || !started
-                || EthansApiPlugin.isMoving()
+                || PiggyApiPlugin.isMoving()
                 || client.getLocalPlayer().getAnimation() != -1
                 || breakHandler.isBreakActive(this)) {
             afkTicks = 0;
@@ -141,7 +141,7 @@ public class ItemCombinerPlugin extends Plugin {
         }
         if (!chest.isPresent() && !booth.isPresent() && !banker.isPresent()){
             client.addChatMessage(ChatMessageType.GAMEMESSAGE, "", "couldn't find bank or banker", null);
-            EthansApiPlugin.stopPlugin(this);
+            PiggyApiPlugin.stopPlugin(this);
         }
 
         if (!deposit) {
@@ -171,13 +171,13 @@ public class ItemCombinerPlugin extends Plugin {
         Bank.search().withName(config.itemOneName()).first().ifPresentOrElse(item -> {
             BankInteraction.withdrawX(item, config.itemOneAmt());
         }, () -> {
-            EthansApiPlugin.stopPlugin(this);
+            PiggyApiPlugin.stopPlugin(this);
         });
 
         Bank.search().withName(config.itemTwoName()).first().ifPresentOrElse(item -> {
             BankInteraction.withdrawX(item, config.itemTwoAmt());
         }, () -> {
-            EthansApiPlugin.stopPlugin(this);
+            PiggyApiPlugin.stopPlugin(this);
         });
     }
 

@@ -2,7 +2,7 @@ package com.piggyplugins.strategyexample.tasks;
 
 import com.example.EthanApiPlugin.Collections.Bank;
 import com.example.EthanApiPlugin.Collections.Inventory;
-import com.example.EthanApiPlugin.EthansApiPlugin;
+import com.example.EthanApiPlugin.PiggyApiPlugin;
 import com.example.PacketUtils.WidgetInfoExtended;
 import com.example.Packets.MousePackets;
 import com.example.Packets.WidgetPackets;
@@ -46,15 +46,15 @@ public class Banking extends AbstractTask<StrategySmithPlugin, StrategySmithConf
             WidgetPackets.queueWidgetAction(hammer, "Withdraw-1");
         }, () -> {
             if (Inventory.getItemAmount("Hammer") > 0) return;
-            EthansApiPlugin.sendClientMessage("No hammer in bank or inventory");
-            EthansApiPlugin.stopPlugin(plugin);
+            PiggyApiPlugin.sendClientMessage("No hammer in bank or inventory");
+            PiggyApiPlugin.stopPlugin(plugin);
         });
         Bank.search().withName(config.bar().getName()).first().ifPresentOrElse(bar -> {
             MousePackets.queueClickPacket();
             WidgetPackets.queueWidgetAction(bar, "Withdraw-All");
         }, () -> {
-            EthansApiPlugin.sendClientMessage("No bars left");
-            EthansApiPlugin.stopPlugin(plugin);
+            PiggyApiPlugin.sendClientMessage("No bars left");
+            PiggyApiPlugin.stopPlugin(plugin);
         });
         plugin.timeout = config.tickDelay();
     }

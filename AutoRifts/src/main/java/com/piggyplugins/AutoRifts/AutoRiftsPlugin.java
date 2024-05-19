@@ -4,7 +4,7 @@ import com.piggyplugins.AutoRifts.data.Constants;
 import com.piggyplugins.AutoRifts.data.CellMapper;
 import com.example.EthanApiPlugin.Collections.*;
 import com.example.EthanApiPlugin.Collections.query.TileObjectQuery;
-import com.example.EthanApiPlugin.EthansApiPlugin;
+import com.example.EthanApiPlugin.PiggyApiPlugin;
 import com.example.InteractionApi.InventoryInteraction;
 import com.example.InteractionApi.NPCInteraction;
 import com.example.InteractionApi.TileObjectInteraction;
@@ -187,7 +187,7 @@ public class AutoRiftsPlugin extends Plugin {
         AutoRiftsState state = getState();
         overlay.overlayState = state.toString();
 
-        if (EthansApiPlugin.isMoving()) {
+        if (PiggyApiPlugin.isMoving()) {
             //Attempt to put runes in pouch where possible
             getInventoryRunes().ifPresent(widget -> {
                 Optional<Widget> optPouch = getRunePouch();
@@ -544,7 +544,7 @@ public class AutoRiftsPlugin extends Plugin {
     }
 
     private void climbLargeMine() {
-        if (EthansApiPlugin.isMoving()) {
+        if (PiggyApiPlugin.isMoving()) {
             return;
         }
         Optional<TileObject> tileObject = TileObjects.search().withAction("Climb").nearestToPlayer();
@@ -564,7 +564,7 @@ public class AutoRiftsPlugin extends Plugin {
             });
         }
 
-        if (EthansApiPlugin.isMoving()) {
+        if (PiggyApiPlugin.isMoving()) {
             return;
         }
 
@@ -631,7 +631,7 @@ public class AutoRiftsPlugin extends Plugin {
     }
 
     private void gameBusy() {
-        if (EthansApiPlugin.isMoving()) {
+        if (PiggyApiPlugin.isMoving()) {
             return;
         }
 
@@ -764,7 +764,7 @@ public class AutoRiftsPlugin extends Plugin {
     }
 
     private void enterPortal() {
-        if (EthansApiPlugin.isMoving()) {
+        if (PiggyApiPlugin.isMoving()) {
             return;
         }
         Optional<TileObject> tileObject = nameContainsNoCase(Constants.PORTAL).filter(to -> to.getWorldLocation().getY() >= Constants.OUTSIDE_BARRIER_Y).nearestToPlayer();
@@ -781,7 +781,7 @@ public class AutoRiftsPlugin extends Plugin {
 
     private void exitAltar() {
         lastAltar = null;
-        if (EthansApiPlugin.isMoving()) {
+        if (PiggyApiPlugin.isMoving()) {
             return;
         }
         Optional<TileObject> tileObject = TileObjects.search().nameContains(Constants.PORTAL).nearestToPlayer();
@@ -814,7 +814,7 @@ public class AutoRiftsPlugin extends Plugin {
             MousePackets.queueClickPacket();
             WidgetPackets.queueResumePause(14221317, -1);
             MousePackets.queueClickPacket();
-            EthansApiPlugin.invoke(-1, -1, 26, -1, -1, "", "", -1, -1);
+            PiggyApiPlugin.invoke(-1, -1, 26, -1, -1, "", "", -1, -1);
             timeout = 0;
             if (config.usePouches()) {
                 clientThread.invokeLater(() -> pouchManager.refreshPouches());
@@ -847,7 +847,7 @@ public class AutoRiftsPlugin extends Plugin {
     }
 
     private void usePowerCell() {
-        if (EthansApiPlugin.isMoving()) {
+        if (PiggyApiPlugin.isMoving()) {
             return;
         }
 
@@ -975,7 +975,7 @@ public class AutoRiftsPlugin extends Plugin {
             return;
         }
         //This allows us to redirect to a new altar if the state switches
-        if (nextAltar == lastAltar && EthansApiPlugin.isMoving()) {
+        if (nextAltar == lastAltar && PiggyApiPlugin.isMoving()) {
             return;
         }
 

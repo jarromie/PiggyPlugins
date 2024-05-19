@@ -2,7 +2,7 @@ package com.piggyplugins.PiggyUtils.API;
 
 import com.example.EthanApiPlugin.Collections.Inventory;
 import com.example.EthanApiPlugin.Collections.query.ItemQuery;
-import com.example.EthanApiPlugin.EthansApiPlugin;
+import com.example.EthanApiPlugin.PiggyApiPlugin;
 import com.example.Packets.MousePackets;
 import com.example.Packets.WidgetPackets;
 import net.runelite.api.Varbits;
@@ -131,17 +131,17 @@ public class InventoryUtil {
     //Credit to marcojacobsNL
     public static boolean runePouchContains(int id) {
         Set<Integer> runePouchIds = new HashSet<>();
-        if (EthansApiPlugin.getClient().getVarbitValue(Varbits.RUNE_POUCH_RUNE1) != 0) {
-            runePouchIds.add(Runes.getRune(EthansApiPlugin.getClient().getVarbitValue(Varbits.RUNE_POUCH_RUNE1)).getItemId());
+        if (PiggyApiPlugin.getClient().getVarbitValue(Varbits.RUNE_POUCH_RUNE1) != 0) {
+            runePouchIds.add(Runes.getRune(PiggyApiPlugin.getClient().getVarbitValue(Varbits.RUNE_POUCH_RUNE1)).getItemId());
         }
-        if (EthansApiPlugin.getClient().getVarbitValue(Varbits.RUNE_POUCH_RUNE2) != 0) {
-            runePouchIds.add(Runes.getRune(EthansApiPlugin.getClient().getVarbitValue(Varbits.RUNE_POUCH_RUNE2)).getItemId());
+        if (PiggyApiPlugin.getClient().getVarbitValue(Varbits.RUNE_POUCH_RUNE2) != 0) {
+            runePouchIds.add(Runes.getRune(PiggyApiPlugin.getClient().getVarbitValue(Varbits.RUNE_POUCH_RUNE2)).getItemId());
         }
-        if (EthansApiPlugin.getClient().getVarbitValue(Varbits.RUNE_POUCH_RUNE3) != 0) {
-            runePouchIds.add(Runes.getRune(EthansApiPlugin.getClient().getVarbitValue(Varbits.RUNE_POUCH_RUNE3)).getItemId());
+        if (PiggyApiPlugin.getClient().getVarbitValue(Varbits.RUNE_POUCH_RUNE3) != 0) {
+            runePouchIds.add(Runes.getRune(PiggyApiPlugin.getClient().getVarbitValue(Varbits.RUNE_POUCH_RUNE3)).getItemId());
         }
-        if (EthansApiPlugin.getClient().getVarbitValue(Varbits.RUNE_POUCH_RUNE4) != 0) {
-            runePouchIds.add(Runes.getRune(EthansApiPlugin.getClient().getVarbitValue(Varbits.RUNE_POUCH_RUNE4)).getItemId());
+        if (PiggyApiPlugin.getClient().getVarbitValue(Varbits.RUNE_POUCH_RUNE4) != 0) {
+            runePouchIds.add(Runes.getRune(PiggyApiPlugin.getClient().getVarbitValue(Varbits.RUNE_POUCH_RUNE4)).getItemId());
         }
         for (int runePouchId : runePouchIds) {
             if (runePouchId == id) {
@@ -164,17 +164,17 @@ public class InventoryUtil {
     //Credit to marcojacobsNL
     public static int runePouchQuanitity(int id) {
         Map<Integer, Integer> runePouchSlots = new HashMap<>();
-        if (EthansApiPlugin.getClient().getVarbitValue(Varbits.RUNE_POUCH_RUNE1) != 0) {
-            runePouchSlots.put(Runes.getRune(EthansApiPlugin.getClient().getVarbitValue(Varbits.RUNE_POUCH_RUNE1)).getItemId(), EthansApiPlugin.getClient().getVarbitValue(Varbits.RUNE_POUCH_AMOUNT1));
+        if (PiggyApiPlugin.getClient().getVarbitValue(Varbits.RUNE_POUCH_RUNE1) != 0) {
+            runePouchSlots.put(Runes.getRune(PiggyApiPlugin.getClient().getVarbitValue(Varbits.RUNE_POUCH_RUNE1)).getItemId(), PiggyApiPlugin.getClient().getVarbitValue(Varbits.RUNE_POUCH_AMOUNT1));
         }
-        if (EthansApiPlugin.getClient().getVarbitValue(Varbits.RUNE_POUCH_RUNE2) != 0) {
-            runePouchSlots.put(Runes.getRune(EthansApiPlugin.getClient().getVarbitValue(Varbits.RUNE_POUCH_RUNE2)).getItemId(), EthansApiPlugin.getClient().getVarbitValue(Varbits.RUNE_POUCH_AMOUNT2));
+        if (PiggyApiPlugin.getClient().getVarbitValue(Varbits.RUNE_POUCH_RUNE2) != 0) {
+            runePouchSlots.put(Runes.getRune(PiggyApiPlugin.getClient().getVarbitValue(Varbits.RUNE_POUCH_RUNE2)).getItemId(), PiggyApiPlugin.getClient().getVarbitValue(Varbits.RUNE_POUCH_AMOUNT2));
         }
-        if (EthansApiPlugin.getClient().getVarbitValue(Varbits.RUNE_POUCH_RUNE3) != 0) {
-            runePouchSlots.put(Runes.getRune(EthansApiPlugin.getClient().getVarbitValue(Varbits.RUNE_POUCH_RUNE3)).getItemId(), EthansApiPlugin.getClient().getVarbitValue(Varbits.RUNE_POUCH_AMOUNT3));
+        if (PiggyApiPlugin.getClient().getVarbitValue(Varbits.RUNE_POUCH_RUNE3) != 0) {
+            runePouchSlots.put(Runes.getRune(PiggyApiPlugin.getClient().getVarbitValue(Varbits.RUNE_POUCH_RUNE3)).getItemId(), PiggyApiPlugin.getClient().getVarbitValue(Varbits.RUNE_POUCH_AMOUNT3));
         }
-        if (EthansApiPlugin.getClient().getVarbitValue(Varbits.RUNE_POUCH_RUNE4) != 0) {
-            runePouchSlots.put(Runes.getRune(EthansApiPlugin.getClient().getVarbitValue(Varbits.RUNE_POUCH_RUNE4)).getItemId(), EthansApiPlugin.getClient().getVarbitValue(Varbits.RUNE_POUCH_AMOUNT4));
+        if (PiggyApiPlugin.getClient().getVarbitValue(Varbits.RUNE_POUCH_RUNE4) != 0) {
+            runePouchSlots.put(Runes.getRune(PiggyApiPlugin.getClient().getVarbitValue(Varbits.RUNE_POUCH_RUNE4)).getItemId(), PiggyApiPlugin.getClient().getVarbitValue(Varbits.RUNE_POUCH_AMOUNT4));
         }
         if (runePouchSlots.containsKey(id)) {
             return runePouchSlots.get(id);

@@ -1,6 +1,6 @@
 package com.piggyplugins.PiggyUtils.API;
 
-import com.example.EthanApiPlugin.EthansApiPlugin;
+import com.example.EthanApiPlugin.PiggyApiPlugin;
 import com.example.PacketUtils.WidgetInfoExtended;
 import com.example.Packets.MousePackets;
 import com.example.Packets.WidgetPackets;
@@ -47,7 +47,7 @@ public class PrayerUtil {
     }
 
     public static boolean isPrayerActive(Prayer prayer) {
-        return EthansApiPlugin.getClient().isPrayerActive(prayer);
+        return PiggyApiPlugin.getClient().isPrayerActive(prayer);
     }
 
     public static void togglePrayer(Prayer prayer) {

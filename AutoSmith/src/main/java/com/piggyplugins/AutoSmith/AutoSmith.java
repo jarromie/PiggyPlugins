@@ -1,7 +1,7 @@
 package com.piggyplugins.AutoSmith;
 
 import com.example.EthanApiPlugin.Collections.*;
-import com.example.EthanApiPlugin.EthansApiPlugin;
+import com.example.EthanApiPlugin.PiggyApiPlugin;
 import com.example.InteractionApi.NPCInteraction;
 import com.example.InteractionApi.TileObjectInteraction;
 import com.example.Packets.MousePackets;
@@ -153,7 +153,7 @@ public class AutoSmith extends Plugin {
                 timeout = config.tickDelay() == 0 ? 1 : config.tickDelay();
             } else {
                 client.addChatMessage(ChatMessageType.GAMEMESSAGE, "", "Couldn't find bank or banker", null);
-                EthansApiPlugin.stopPlugin(this);
+                PiggyApiPlugin.stopPlugin(this);
             }
         }
     }
@@ -173,22 +173,22 @@ public class AutoSmith extends Plugin {
 //            BankInteraction.withdrawX(hammer, 1);
         }, () -> {
             if (Inventory.getItemAmount("Hammer") > 0) return;
-            EthansApiPlugin.sendClientMessage("No hammer in bank or inventory");
-            EthansApiPlugin.stopPlugin(this);
+            PiggyApiPlugin.sendClientMessage("No hammer in bank or inventory");
+            PiggyApiPlugin.stopPlugin(this);
         });
         Bank.search().withName(config.bar().getName()).first().ifPresentOrElse(bar -> {
 //            BankInteraction.withdrawX(bar, 27);
             MousePackets.queueClickPacket();
             WidgetPackets.queueWidgetAction(bar, "Withdraw-All");
         }, () -> {
-            EthansApiPlugin.sendClientMessage("No bars left");
-            EthansApiPlugin.stopPlugin(this);
+            PiggyApiPlugin.sendClientMessage("No bars left");
+            PiggyApiPlugin.stopPlugin(this);
         });
         timeout = config.tickDelay();
     }
 
     private boolean runIsOff() {
-        return EthansApiPlugin.getClient().getVarpValue(173) == 0;
+        return PiggyApiPlugin.getClient().getVarpValue(173) == 0;
     }
 
     private void checkRunEnergy() {

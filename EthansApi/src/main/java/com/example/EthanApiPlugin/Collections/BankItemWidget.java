@@ -1,6 +1,6 @@
 package com.example.EthanApiPlugin.Collections;
 
-import com.example.EthanApiPlugin.EthansApiPlugin;
+import com.example.EthanApiPlugin.PiggyApiPlugin;
 import net.runelite.api.FontTypeFace;
 import net.runelite.api.Point;
 import net.runelite.api.widgets.Widget;
@@ -434,7 +434,7 @@ public class BankItemWidget implements Widget {
     public String[] getActions() {
         String[] actions = new String[10];
         //0
-        switch (EthansApiPlugin.getClient().getVarbitValue(6590)) {
+        switch (PiggyApiPlugin.getClient().getVarbitValue(6590)) {
             case 0:
                 actions[0] = "Withdraw-1";
                 break;
@@ -445,7 +445,7 @@ public class BankItemWidget implements Widget {
                 actions[0] = "Withdraw-10";
                 break;
             case 3:
-                actions[0] = "Withdraw-" + EthansApiPlugin.getClient().getVarbitValue(3960);
+                actions[0] = "Withdraw-" + PiggyApiPlugin.getClient().getVarbitValue(3960);
                 break;
             case 4:
                 actions[0] = "Withdraw-All";
@@ -453,7 +453,7 @@ public class BankItemWidget implements Widget {
         }
 
         //1
-        if (EthansApiPlugin.getClient().getVarbitValue(6590) != 0) {
+        if (PiggyApiPlugin.getClient().getVarbitValue(6590) != 0) {
             actions[1] = "Withdraw-1";
         }
 
@@ -462,8 +462,8 @@ public class BankItemWidget implements Widget {
         actions[3] = "Withdraw-10";
 
         //4
-        if (EthansApiPlugin.getClient().getVarbitValue(3960) > 0) {
-            actions[4] = "Withdraw-" + EthansApiPlugin.getClient().getVarbitValue(3960);
+        if (PiggyApiPlugin.getClient().getVarbitValue(3960) > 0) {
+            actions[4] = "Withdraw-" + PiggyApiPlugin.getClient().getVarbitValue(3960);
         }
 
         //5-7
@@ -472,7 +472,7 @@ public class BankItemWidget implements Widget {
         actions[7] = "Withdraw-All-but-1";
 
         //8
-        if (EthansApiPlugin.getClient().getVarbitValue(3755) == 0) {
+        if (PiggyApiPlugin.getClient().getVarbitValue(3755) == 0) {
             actions[8] = "Placeholder";
         }
         //9

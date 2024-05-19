@@ -3,7 +3,7 @@ package com.piggyplugins.strategyexample.tasks;
 import com.example.EthanApiPlugin.Collections.Bank;
 import com.example.EthanApiPlugin.Collections.NPCs;
 import com.example.EthanApiPlugin.Collections.TileObjects;
-import com.example.EthanApiPlugin.EthansApiPlugin;
+import com.example.EthanApiPlugin.PiggyApiPlugin;
 import com.piggyplugins.PiggyUtils.strategy.AbstractTask;
 import com.piggyplugins.strategyexample.StrategySmithConfig;
 import com.piggyplugins.strategyexample.StrategySmithPlugin;
@@ -44,8 +44,8 @@ public class OpenBank extends AbstractTask<StrategySmithPlugin, StrategySmithCon
                 interactObject(bank.get(), "Bank");
                 plugin.timeout = config.tickDelay() == 0 ? 1 : config.tickDelay();
             } else {
-                EthansApiPlugin.sendClientMessage("Couldn't find bank or banker");
-                EthansApiPlugin.stopPlugin(plugin);
+                PiggyApiPlugin.sendClientMessage("Couldn't find bank or banker");
+                PiggyApiPlugin.stopPlugin(plugin);
             }
         }
     }

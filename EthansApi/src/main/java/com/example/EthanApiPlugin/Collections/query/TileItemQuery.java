@@ -1,7 +1,7 @@
 package com.example.EthanApiPlugin.Collections.query;
 
 import com.example.EthanApiPlugin.Collections.ETileItem;
-import com.example.EthanApiPlugin.EthansApiPlugin;
+import com.example.EthanApiPlugin.PiggyApiPlugin;
 import com.example.EthanApiPlugin.PathFinding.GlobalCollisionMap;
 import lombok.SneakyThrows;
 import net.runelite.api.Client;
@@ -39,7 +39,7 @@ public class TileItemQuery {
         tileItems = tileItems.stream().filter(tileItem ->
         {
             try {
-                return EthansApiPlugin.itemDefs.get(tileItem.tileItem.getId()).getName().equals(name);
+                return PiggyApiPlugin.itemDefs.get(tileItem.tileItem.getId()).getName().equals(name);
             } catch (ExecutionException e) {
                 throw new RuntimeException(e);
             }
@@ -51,7 +51,7 @@ public class TileItemQuery {
         tileItems = tileItems.stream().filter(tileItem ->
         {
             try {
-                return EthansApiPlugin.itemDefs.get(tileItem.tileItem.getId()).getName().contains(name);
+                return PiggyApiPlugin.itemDefs.get(tileItem.tileItem.getId()).getName().contains(name);
             } catch (ExecutionException e) {
                 throw new RuntimeException(e);
             }
@@ -81,7 +81,7 @@ public class TileItemQuery {
                         {
                             try {
                                 return WildcardMatcher.matches(input.toLowerCase(),
-                                        Text.removeTags(EthansApiPlugin.itemDefs.get(item.tileItem.getId()).getName().toLowerCase()));
+                                        Text.removeTags(PiggyApiPlugin.itemDefs.get(item.tileItem.getId()).getName().toLowerCase()));
                             } catch (ExecutionException e) {
                                 throw new RuntimeException(e);
                             }
@@ -108,7 +108,7 @@ public class TileItemQuery {
                         {
                             try {
                                 return !WildcardMatcher.matches(input.toLowerCase(),
-                                        Text.removeTags(EthansApiPlugin.itemDefs.get(item.tileItem.getId()).getName().toLowerCase()));
+                                        Text.removeTags(PiggyApiPlugin.itemDefs.get(item.tileItem.getId()).getName().toLowerCase()));
                             } catch (ExecutionException e) {
                                 throw new RuntimeException(e);
                             }
@@ -125,7 +125,7 @@ public class TileItemQuery {
                     {
                         try {
                             return WildcardMatcher.matches(s.toLowerCase(),
-                                    Text.removeTags(EthansApiPlugin.itemDefs.get(item.tileItem.getId()).getName().toLowerCase()));
+                                    Text.removeTags(PiggyApiPlugin.itemDefs.get(item.tileItem.getId()).getName().toLowerCase()));
                         } catch (ExecutionException e) {
                             throw new RuntimeException(e);
                         }
@@ -144,7 +144,7 @@ public class TileItemQuery {
                     {
                         try {
                             return WildcardMatcher.matches(s.toLowerCase(),
-                                    Text.removeTags(EthansApiPlugin.itemDefs.get(item.tileItem.getId()).getName().toLowerCase()));
+                                    Text.removeTags(PiggyApiPlugin.itemDefs.get(item.tileItem.getId()).getName().toLowerCase()));
                         } catch (ExecutionException e) {
                             throw new RuntimeException(e);
                         }
@@ -198,7 +198,7 @@ public class TileItemQuery {
 
     @SneakyThrows
     public boolean isNoted(ETileItem item) {
-        ItemComposition itemComposition = EthansApiPlugin.itemDefs.get(item.tileItem.getId());
+        ItemComposition itemComposition = PiggyApiPlugin.itemDefs.get(item.tileItem.getId());
         return itemComposition.getNote() != -1;
     }
 

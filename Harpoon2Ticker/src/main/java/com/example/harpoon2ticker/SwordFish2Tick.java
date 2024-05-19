@@ -2,7 +2,7 @@ package com.example.harpoon2ticker;
 
 import com.example.EthanApiPlugin.Collections.Inventory;
 import com.example.EthanApiPlugin.Collections.NPCs;
-import com.example.EthanApiPlugin.EthansApiPlugin;
+import com.example.EthanApiPlugin.PiggyApiPlugin;
 import com.example.Packets.MousePackets;
 import com.example.Packets.MovementPackets;
 import com.example.Packets.NPCPackets;
@@ -85,7 +85,7 @@ public class SwordFish2Tick extends Plugin {
         } else {
             if (client.getTickCount() - lastHitsplat != 2) {
                 notifier.notify("2 tick fisher failed somehow");
-                EthansApiPlugin.stopPlugin(this);
+                PiggyApiPlugin.stopPlugin(this);
                 return;
             }
             lastHitsplat = client.getTickCount();

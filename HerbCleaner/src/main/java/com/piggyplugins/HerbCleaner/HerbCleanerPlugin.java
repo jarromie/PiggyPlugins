@@ -4,7 +4,7 @@ import com.example.EthanApiPlugin.Collections.Bank;
 import com.example.EthanApiPlugin.Collections.Inventory;
 import com.example.EthanApiPlugin.Collections.NPCs;
 import com.example.EthanApiPlugin.Collections.TileObjects;
-import com.example.EthanApiPlugin.EthansApiPlugin;
+import com.example.EthanApiPlugin.PiggyApiPlugin;
 import com.example.InteractionApi.BankInteraction;
 import com.example.InteractionApi.InventoryInteraction;
 import com.example.InteractionApi.NPCInteraction;
@@ -150,7 +150,7 @@ public class HerbCleanerPlugin extends Plugin {
         }
         if (!chest.isPresent() && !booth.isPresent() && !banker.isPresent()){
             client.addChatMessage(ChatMessageType.GAMEMESSAGE, "", "couldn't find bank or banker", null);
-            EthansApiPlugin.stopPlugin(this);
+            PiggyApiPlugin.stopPlugin(this);
         }
     }
 

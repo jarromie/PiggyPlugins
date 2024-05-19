@@ -4,7 +4,7 @@ package com.polyplugins.Trapper;
 import com.example.EthanApiPlugin.Collections.Inventory;
 import com.example.EthanApiPlugin.Collections.TileItems;
 import com.example.EthanApiPlugin.Collections.TileObjects;
-import com.example.EthanApiPlugin.EthansApiPlugin;
+import com.example.EthanApiPlugin.PiggyApiPlugin;
 import com.example.InteractionApi.InventoryInteraction;
 import com.example.InteractionApi.TileObjectInteraction;
 import com.example.Packets.*;
@@ -90,7 +90,7 @@ public class AutoTrapperPlugin extends Plugin {
     public void onGameStateChanged(GameStateChanged event) {
         GameState state = event.getGameState();
         if (state == GameState.HOPPING || state == GameState.LOGGED_IN) return;
-        EthansApiPlugin.stopPlugin(this);
+        PiggyApiPlugin.stopPlugin(this);
     }
 
     @Subscribe
@@ -108,8 +108,8 @@ public class AutoTrapperPlugin extends Plugin {
             return;
         }
         if (ticksNotInRegion >= 20) {
-            EthansApiPlugin.sendClientMessage("Not in correct region, stopping plugin");
-            EthansApiPlugin.stopPlugin(this);
+            PiggyApiPlugin.sendClientMessage("Not in correct region, stopping plugin");
+            PiggyApiPlugin.stopPlugin(this);
         }
         if (timeout > 0) {
             timeout--;
@@ -132,7 +132,7 @@ public class AutoTrapperPlugin extends Plugin {
         //this will eventually cause lost ropes and nets if another player is setting traps
         //maybe do something ab this eventually
         if (helper.getSetTraps() + helper.getCaughtTraps() >= maxTraps) {
-                if (EthansApiPlugin.playerPosition().distanceTo(startTile) > 0 && !EthansApiPlugin.isMoving()) {
+                if (PiggyApiPlugin.playerPosition().distanceTo(startTile) > 0 && !PiggyApiPlugin.isMoving()) {
                     MousePackets.queueClickPacket();
                     MovementPackets.queueMovement(startTile);
                 }

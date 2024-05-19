@@ -2,7 +2,7 @@ package com.piggyplugins.strategyexample;
 
 
 import com.example.EthanApiPlugin.Collections.Inventory;
-import com.example.EthanApiPlugin.EthansApiPlugin;
+import com.example.EthanApiPlugin.PiggyApiPlugin;
 import com.example.Packets.*;
 import com.google.inject.Inject;
 import com.google.inject.Provides;
@@ -144,7 +144,7 @@ public class StrategySmithPlugin extends Plugin {
     }
 
     private boolean runIsOff() {
-        return EthansApiPlugin.getClient().getVarpValue(173) == 0;
+        return PiggyApiPlugin.getClient().getVarpValue(173) == 0;
     }
 
     private final HotkeyListener toggle = new HotkeyListener(() -> config.toggle()) {

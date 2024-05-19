@@ -3,7 +3,7 @@ package com.example.gauntletFlicker;
 import com.example.EthanApiPlugin.Collections.Equipment;
 import com.example.EthanApiPlugin.Collections.Inventory;
 import com.example.EthanApiPlugin.Collections.query.QuickPrayer;
-import com.example.EthanApiPlugin.EthansApiPlugin;
+import com.example.EthanApiPlugin.PiggyApiPlugin;
 import com.example.InteractionApi.InteractionHelper;
 import com.example.InteractionApi.InventoryInteraction;
 import com.example.Packets.MousePackets;
@@ -71,7 +71,7 @@ public class gauntletFlicker extends Plugin {
         }
         NPC hunllef = client.getNpcs().stream().filter(x -> HUNLLEF_IDS.contains(x.getId())).findFirst().orElse(null);
         if(hunllef!=null&&(hunllef.isDead()||hunllef.getHealthRatio()==0)){
-            if(EthansApiPlugin.isQuickPrayerEnabled()){
+            if(PiggyApiPlugin.isQuickPrayerEnabled()){
                 InteractionHelper.togglePrayer();
                 return;
             }
@@ -95,15 +95,15 @@ public class gauntletFlicker extends Plugin {
             WidgetPackets.queueWidgetAction(client.getWidget(WidgetInfo.MINIMAP_QUICK_PRAYER_ORB), "Setup");
             forceTab = true;
         }
-        if (isRange && !EthansApiPlugin.isQuickPrayerActive(QuickPrayer.PROTECT_FROM_MISSILES)) {
+        if (isRange && !PiggyApiPlugin.isQuickPrayerActive(QuickPrayer.PROTECT_FROM_MISSILES)) {
             MousePackets.queueClickPacket();
             WidgetPackets.queueWidgetActionPacket(1, 5046276, -1, 13); //quickPrayer range
-        } else if (!isRange && !EthansApiPlugin.isQuickPrayerActive(QuickPrayer.PROTECT_FROM_MAGIC)) {
+        } else if (!isRange && !PiggyApiPlugin.isQuickPrayerActive(QuickPrayer.PROTECT_FROM_MAGIC)) {
             MousePackets.queueClickPacket();
             WidgetPackets.queueWidgetActionPacket(1, 5046276, -1, 12); //quickPrayer magic
         }
         if (hunllef != null) {
-            if (EthansApiPlugin.getHeadIcon(hunllef) == HeadIcon.MAGIC && (!name.contains("bow") && !name.contains("halberd"))) {
+            if (PiggyApiPlugin.getHeadIcon(hunllef) == HeadIcon.MAGIC && (!name.contains("bow") && !name.contains("halberd"))) {
                 Optional<Widget> bow = Inventory.search().matchesWildCardNoCase("*bow*").first();
                 Optional<Widget> halberd = Inventory.search().matchesWildCardNoCase("*halberd*").first();
                 if (bow.isPresent()) {
@@ -114,7 +114,7 @@ public class gauntletFlicker extends Plugin {
                     updatedWeapon = "halberd";
                 }
             }
-            if (EthansApiPlugin.getHeadIcon(hunllef) == HeadIcon.RANGED && (!name.contains("staff") && !name.contains("halberd"))) {
+            if (PiggyApiPlugin.getHeadIcon(hunllef) == HeadIcon.RANGED && (!name.contains("staff") && !name.contains("halberd"))) {
                 Optional<Widget> staff = Inventory.search().matchesWildCardNoCase("*staff*").first();
                 Optional<Widget> halberd = Inventory.search().matchesWildCardNoCase("*halberd*").first();
                 if (staff.isPresent()) {
@@ -125,7 +125,7 @@ public class gauntletFlicker extends Plugin {
                     updatedWeapon = "halberd";
                 }
             }
-            if (EthansApiPlugin.getHeadIcon(hunllef) == HeadIcon.MELEE && (!name.contains("staff") && !name.contains("bow"))) {
+            if (PiggyApiPlugin.getHeadIcon(hunllef) == HeadIcon.MELEE && (!name.contains("staff") && !name.contains("bow"))) {
                 Optional<Widget> staff = Inventory.search().matchesWildCardNoCase("*staff*").first();
                 Optional<Widget> bow = Inventory.search().matchesWildCardNoCase("*bow*").first();
                 if (staff.isPresent()) {
@@ -138,39 +138,39 @@ public class gauntletFlicker extends Plugin {
             }
             String weaponTesting = updatedWeapon.isEmpty() ? name : updatedWeapon;
             if (weaponTesting.contains("bow")) {
-                if (rigourUnlocked() && !EthansApiPlugin.isQuickPrayerActive(QuickPrayer.RIGOUR)) {
+                if (rigourUnlocked() && !PiggyApiPlugin.isQuickPrayerActive(QuickPrayer.RIGOUR)) {
                     MousePackets.queueClickPacket();
                     WidgetPackets.queueWidgetActionPacket(1, 5046276, -1, 24); //quickPrayer rigour
-                } else if (!rigourUnlocked() && !EthansApiPlugin.isQuickPrayerActive(QuickPrayer.EAGLE_EYE)) {
+                } else if (!rigourUnlocked() && !PiggyApiPlugin.isQuickPrayerActive(QuickPrayer.EAGLE_EYE)) {
                     MousePackets.queueClickPacket();
                     WidgetPackets.queueWidgetActionPacket(1, 5046276, -1, 22); //quickPrayer eagle eye
                 }
             } else if (weaponTesting.contains("staff")) {
-                if (auguryUnlucked() && !EthansApiPlugin.isQuickPrayerActive(QuickPrayer.AUGURY)) {
+                if (auguryUnlucked() && !PiggyApiPlugin.isQuickPrayerActive(QuickPrayer.AUGURY)) {
                     MousePackets.queueClickPacket();
                     WidgetPackets.queueWidgetActionPacket(1, 5046276, -1, 27); //quickPrayer augury
-                } else if (!auguryUnlucked() && !EthansApiPlugin.isQuickPrayerActive(QuickPrayer.MYSTIC_MIGHT)) {
+                } else if (!auguryUnlucked() && !PiggyApiPlugin.isQuickPrayerActive(QuickPrayer.MYSTIC_MIGHT)) {
                     MousePackets.queueClickPacket();
                     WidgetPackets.queueWidgetActionPacket(1, 5046276, -1, 23); //quickPrayer mystic might
                 }
             } else if (weaponTesting.contains("halberd")) {
-                if (pietyUnlocked() && !EthansApiPlugin.isQuickPrayerActive(QuickPrayer.PIETY)) {
+                if (pietyUnlocked() && !PiggyApiPlugin.isQuickPrayerActive(QuickPrayer.PIETY)) {
                     MousePackets.queueClickPacket();
                     WidgetPackets.queueWidgetActionPacket(1, 5046276, -1, 26);
-                } else if (!pietyUnlocked() && !EthansApiPlugin.isQuickPrayerActive(QuickPrayer.ULTIMATE_STRENGTH)) {
+                } else if (!pietyUnlocked() && !PiggyApiPlugin.isQuickPrayerActive(QuickPrayer.ULTIMATE_STRENGTH)) {
                     MousePackets.queueClickPacket();
                     WidgetPackets.queueWidgetActionPacket(1, 5046276, -1, 10);
-                    if (!EthansApiPlugin.isQuickPrayerActive(QuickPrayer.INCREDIBLE_REFLEXES)) {
+                    if (!PiggyApiPlugin.isQuickPrayerActive(QuickPrayer.INCREDIBLE_REFLEXES)) {
                         MousePackets.queueClickPacket();
                         WidgetPackets.queueWidgetActionPacket(1, 5046276, -1, 11);
                     }
-                } else if (!pietyUnlocked() && !EthansApiPlugin.isQuickPrayerActive(QuickPrayer.STEEL_SKIN)) {
+                } else if (!pietyUnlocked() && !PiggyApiPlugin.isQuickPrayerActive(QuickPrayer.STEEL_SKIN)) {
                     MousePackets.queueClickPacket();
                     WidgetPackets.queueWidgetActionPacket(1, 5046276, -1, QuickPrayer.STEEL_SKIN.getIndex());
                 }
             }
         }
-        if (EthansApiPlugin.isQuickPrayerEnabled()) {
+        if (PiggyApiPlugin.isQuickPrayerEnabled()) {
             InteractionHelper.togglePrayer();
         }
         InteractionHelper.togglePrayer();

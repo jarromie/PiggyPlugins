@@ -7,7 +7,7 @@ import com.example.EthanApiPlugin.Collections.NPCs;
 import com.example.EthanApiPlugin.Collections.TileObjects;
 import com.example.EthanApiPlugin.Collections.query.ItemQuery;
 import com.example.EthanApiPlugin.Collections.query.NPCQuery;
-import com.example.EthanApiPlugin.EthansApiPlugin;
+import com.example.EthanApiPlugin.PiggyApiPlugin;
 import com.example.InteractionApi.TileObjectInteraction;
 import com.example.Packets.*;
 import com.google.inject.Inject;
@@ -113,8 +113,8 @@ public class AutoChompyPlugin extends Plugin {
             }).first().ifPresentOrElse(item -> {
                 ammoId = item.getEquipmentItemId();
             }, () -> {
-                EthansApiPlugin.sendClientMessage("No Ogre arrows or Brutal arrows found");
-                EthansApiPlugin.stopPlugin(this);
+                PiggyApiPlugin.sendClientMessage("No Ogre arrows or Brutal arrows found");
+                PiggyApiPlugin.stopPlugin(this);
             });
         }
         swampToads = NPCs.search().nameContains("wamp toad").withAction("Inflate");
@@ -129,8 +129,8 @@ public class AutoChompyPlugin extends Plugin {
         log.info("Ammo id: " + ammoId);
 //        log.info(getNearestFreeTile().toString());
         if (Equipment.search().withId(ammoId).empty()) {
-            EthansApiPlugin.sendClientMessage("No Ogre arrows or Brutal arrows left");
-            EthansApiPlugin.stopPlugin(this);
+            PiggyApiPlugin.sendClientMessage("No Ogre arrows or Brutal arrows left");
+            PiggyApiPlugin.stopPlugin(this);
         }
         switch (state) {
             case KILL_BIRD:
@@ -237,12 +237,12 @@ public class AutoChompyPlugin extends Plugin {
     }
 
     private boolean runIsOff() {
-        return EthansApiPlugin.getClient().getVarpValue(173) == 0;
+        return PiggyApiPlugin.getClient().getVarpValue(173) == 0;
     }
 
     private boolean isMovingOrInteracting() {
         //a-1026 fill toad & bellow
-        return EthansApiPlugin.isMoving() || client.getLocalPlayer().getAnimation() == 1026 || client.getLocalPlayer().getInteracting() != null;
+        return PiggyApiPlugin.isMoving() || client.getLocalPlayer().getAnimation() == 1026 || client.getLocalPlayer().getInteracting() != null;
     }
 
     private final HotkeyListener toggle = new HotkeyListener(() -> config.toggle()) {

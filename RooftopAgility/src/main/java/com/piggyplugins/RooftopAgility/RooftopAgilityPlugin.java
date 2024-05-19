@@ -6,7 +6,7 @@ import com.piggyplugins.PiggyUtils.API.BankUtil;
 import com.piggyplugins.PiggyUtils.API.InventoryUtil;
 import com.piggyplugins.PiggyUtils.BreakHandler.ReflectBreakHandler;
 import com.example.EthanApiPlugin.Collections.query.TileObjectQuery;
-import com.example.EthanApiPlugin.EthansApiPlugin;
+import com.example.EthanApiPlugin.PiggyApiPlugin;
 import com.example.InteractionApi.BankInteraction;
 import com.example.InteractionApi.InventoryInteraction;
 import com.example.InteractionApi.TileObjectInteraction;
@@ -111,7 +111,7 @@ public class RooftopAgilityPlugin extends Plugin {
     }
 
     private boolean runIsOff() {
-        return EthansApiPlugin.getClient().getVarpValue(173) == 0;
+        return PiggyApiPlugin.getClient().getVarpValue(173) == 0;
     }
 
     private State getCurrentState() {
@@ -147,7 +147,7 @@ public class RooftopAgilityPlugin extends Plugin {
             return State.CAST_CAMELOT_TELEPORT;
         }
 
-        if (EthansApiPlugin.isMoving()) {
+        if (PiggyApiPlugin.isMoving()) {
             timeout = tickDelay();
             return State.MOVING;
         }
@@ -188,7 +188,7 @@ public class RooftopAgilityPlugin extends Plugin {
                 }
             }
         }
-        if (!EthansApiPlugin.isMoving()) {
+        if (!PiggyApiPlugin.isMoving()) {
             return State.FIND_OBSTACLE;
         }
         return State.ANIMATING;
@@ -418,8 +418,8 @@ public class RooftopAgilityPlugin extends Plugin {
                 WidgetPackets.queueWidgetActionPacket(1, 10485787, -1, -1);
                 break;
             case OUT_OF_SUMMER_PIES:
-                EthansApiPlugin.sendClientMessage("[RooftopAgility] Out of summer pies!  Stopping plugin");
-                EthansApiPlugin.stopPlugin(this);
+                PiggyApiPlugin.sendClientMessage("[RooftopAgility] Out of summer pies!  Stopping plugin");
+                PiggyApiPlugin.stopPlugin(this);
                 break;
             case HIGH_ALCH:
                 String[] itemsToAlch = config.highAlch().replace(", ", ",").split(",");
@@ -438,7 +438,7 @@ public class RooftopAgilityPlugin extends Plugin {
 
     @SneakyThrows
     private boolean isStackable(Widget item) {
-        ItemComposition itemComposition = EthansApiPlugin.itemDefs.get(item.getItemId());
+        ItemComposition itemComposition = PiggyApiPlugin.itemDefs.get(item.getItemId());
         return itemComposition.isStackable();
     }
 

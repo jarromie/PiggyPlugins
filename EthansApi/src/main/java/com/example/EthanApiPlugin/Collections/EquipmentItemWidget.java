@@ -1,6 +1,6 @@
 package com.example.EthanApiPlugin.Collections;
 
-import com.example.EthanApiPlugin.EthansApiPlugin;
+import com.example.EthanApiPlugin.PiggyApiPlugin;
 import com.example.Packets.MousePackets;
 import com.example.Packets.WidgetPackets;
 import net.runelite.api.FontTypeFace;
@@ -29,7 +29,7 @@ public class EquipmentItemWidget implements Widget {
 
     public void interact(String... actions) {
         MousePackets.queueClickPacket();
-        WidgetPackets.queueWidgetAction(EthansApiPlugin.getClient().getWidget(packedId), actions);
+        WidgetPackets.queueWidgetAction(PiggyApiPlugin.getClient().getWidget(packedId), actions);
     }
 
     public int getEquipmentItemId() {

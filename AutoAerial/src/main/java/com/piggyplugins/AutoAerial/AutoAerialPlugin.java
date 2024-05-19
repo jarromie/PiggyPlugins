@@ -1,7 +1,7 @@
 package com.piggyplugins.AutoAerial;
 
 import com.example.EthanApiPlugin.Collections.*;
-import com.example.EthanApiPlugin.EthansApiPlugin;
+import com.example.EthanApiPlugin.PiggyApiPlugin;
 import com.example.Packets.MousePackets;
 import com.example.Packets.NPCPackets;
 import com.example.Packets.WidgetPackets;
@@ -63,7 +63,7 @@ public class AutoAerialPlugin extends Plugin {
     public void onGameTick(GameTick event) {
         Player player = client.getLocalPlayer();
 
-        if (!started || EthansApiPlugin.isMoving()) return;
+        if (!started || PiggyApiPlugin.isMoving()) return;
 
 
         if (timeout > 0) {
@@ -128,7 +128,7 @@ public class AutoAerialPlugin extends Plugin {
     }
 
     private boolean runIsOff() {
-        return EthansApiPlugin.getClient().getVarpValue(173) == 0;
+        return PiggyApiPlugin.getClient().getVarpValue(173) == 0;
     }
 
     private void checkRunEnergy() {

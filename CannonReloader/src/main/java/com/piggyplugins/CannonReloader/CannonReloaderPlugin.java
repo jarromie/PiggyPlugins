@@ -2,7 +2,7 @@ package com.piggyplugins.CannonReloader;
 
 import com.example.EthanApiPlugin.Collections.Inventory;
 import com.example.EthanApiPlugin.Collections.TileObjects;
-import com.example.EthanApiPlugin.EthansApiPlugin;
+import com.example.EthanApiPlugin.PiggyApiPlugin;
 import com.example.InteractionApi.InventoryInteraction;
 import com.example.InteractionApi.TileObjectInteraction;
 import com.example.Packets.MousePackets;
@@ -69,7 +69,7 @@ public class CannonReloaderPlugin extends Plugin {
     protected void startUp() throws Exception {
         if (client.getGameState() != GameState.LOGGED_IN) {
             clientThread.invoke(() -> {
-                EthansApiPlugin.stopPlugin(this);
+                PiggyApiPlugin.stopPlugin(this);
             });
             return;
         }
@@ -78,8 +78,8 @@ public class CannonReloaderPlugin extends Plugin {
         remainingCannonballs = 0;
         timeout = 0;
         clientThread.invokeLater(() -> {
-            EthansApiPlugin.sendClientMessage("[Cannon Reloader] Make sure you set your cannon and safespot locations!");
-            EthansApiPlugin.sendClientMessage("[Cannon Reloader] Right click the cannon and the safe spot to set your desired locations.");
+            PiggyApiPlugin.sendClientMessage("[Cannon Reloader] Make sure you set your cannon and safespot locations!");
+            PiggyApiPlugin.sendClientMessage("[Cannon Reloader] Right click the cannon and the safe spot to set your desired locations.");
         });
     }
 
@@ -162,7 +162,7 @@ public class CannonReloaderPlugin extends Plugin {
     }
 
     private void handleSafespot() {
-        if (safespotTile != null && !EthansApiPlugin.isMoving()) {
+        if (safespotTile != null && !PiggyApiPlugin.isMoving()) {
             MousePackets.queueClickPacket();
             MovementPackets.queueMovement(safespotTile);
             timeout = 3;

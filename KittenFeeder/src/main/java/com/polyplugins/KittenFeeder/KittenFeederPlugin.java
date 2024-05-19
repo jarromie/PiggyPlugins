@@ -4,7 +4,7 @@ package com.polyplugins.KittenFeeder;
 import com.example.EthanApiPlugin.Collections.Inventory;
 import com.example.EthanApiPlugin.Collections.NPCs;
 import com.example.EthanApiPlugin.Collections.Widgets;
-import com.example.EthanApiPlugin.EthansApiPlugin;
+import com.example.EthanApiPlugin.PiggyApiPlugin;
 import com.example.Packets.*;
 import com.google.inject.Inject;
 import com.google.inject.Provides;
@@ -52,8 +52,8 @@ public class KittenFeederPlugin extends Plugin {
     protected void startUp() throws Exception {
         clientThread.invokeLater(() -> {
             timeout = minutesToGameTicks(config.frequency());
-            EthansApiPlugin.sendClientMessage("Kitten Feeder started");
-            EthansApiPlugin.sendClientMessage("ONLY FEEDS EVERY `X` MINUTES - DONT BLAME ME IF YOUR CAT DIES");
+            PiggyApiPlugin.sendClientMessage("Kitten Feeder started");
+            PiggyApiPlugin.sendClientMessage("ONLY FEEDS EVERY `X` MINUTES - DONT BLAME ME IF YOUR CAT DIES");
         });
     }
 
@@ -69,8 +69,8 @@ public class KittenFeederPlugin extends Plugin {
             return;
         }
         if (!hasFollower()) {
-            EthansApiPlugin.sendClientMessage("NO FOLLOWER, STOPPING");
-            EthansApiPlugin.stopPlugin(this);
+            PiggyApiPlugin.sendClientMessage("NO FOLLOWER, STOPPING");
+            PiggyApiPlugin.stopPlugin(this);
         }
         log.info("timeout: " + timeout);
         if (timeout > 0) {
@@ -110,8 +110,8 @@ public class KittenFeederPlugin extends Plugin {
                 }
                 timeout = interactNext ? 3 : minutesToGameTicks(config.frequency());
             }, () -> {
-                EthansApiPlugin.sendClientMessage(String.format("NO %s FOUND, STOPPING", config.food()));
-                EthansApiPlugin.stopPlugin(this);
+                PiggyApiPlugin.sendClientMessage(String.format("NO %s FOUND, STOPPING", config.food()));
+                PiggyApiPlugin.stopPlugin(this);
             });
         });
 
