@@ -2,7 +2,7 @@ package net.runelite.client.plugins.ChinBreakHandler.ui;
 
 import net.runelite.client.config.ConfigManager;
 import net.runelite.client.config.Units;
-import net.runelite.client.plugins.ChinBreakHandler.ChinBreakHandlerPlugin;
+import net.runelite.client.plugins.ChinBreakHandler.PiggyBreakHandlerPlugin;
 import net.runelite.client.plugins.ChinBreakHandler.util.JMultilineLabel;
 import net.runelite.client.plugins.ChinBreakHandler.util.OnOffToggleButton;
 import net.runelite.client.plugins.ChinBreakHandler.util.UnitFormatterFactory;
@@ -26,9 +26,9 @@ public class ChinBreakHandlerPluginPanel extends JPanel
         return new Dimension(PluginPanel.PANEL_WIDTH, super.getPreferredSize().height);
     }
 
-    ChinBreakHandlerPluginPanel(ChinBreakHandlerPlugin chinBreakHandlerPluginPlugin, Plugin plugin, boolean configurable)
+    ChinBreakHandlerPluginPanel(PiggyBreakHandlerPlugin piggyBreakHandlerPluginPlugin, Plugin plugin, boolean configurable)
     {
-        this.configManager = chinBreakHandlerPluginPlugin.getConfigManager();
+        this.configManager = piggyBreakHandlerPluginPlugin.getConfigManager();
         this.plugin = plugin;
         this.configurable = configurable;
 
@@ -65,7 +65,7 @@ public class ChinBreakHandlerPluginPanel extends JPanel
 
         if (configurable)
         {
-            String pluginName = ChinBreakHandlerPlugin.sanitizedName(plugin);
+            String pluginName = PiggyBreakHandlerPlugin.sanitizedName(plugin);
 
             JToggleButton onOffToggle = new OnOffToggleButton();
 
@@ -122,7 +122,7 @@ public class ChinBreakHandlerPluginPanel extends JPanel
 
     private JPanel breakPanel()
     {
-        String pluginName = ChinBreakHandlerPlugin.sanitizedName(plugin);
+        String pluginName = PiggyBreakHandlerPlugin.sanitizedName(plugin);
 
         JPanel contentPanel = new JPanel(new GridBagLayout());
         contentPanel.setBackground(ChinBreakHandlerPanel.BACKGROUND_COLOR);
@@ -227,7 +227,7 @@ public class ChinBreakHandlerPluginPanel extends JPanel
 
     private JPanel typePanel()
     {
-        String pluginName = ChinBreakHandlerPlugin.sanitizedName(plugin);
+        String pluginName = PiggyBreakHandlerPlugin.sanitizedName(plugin);
 
         JPanel contentPanel = new JPanel(new GridLayout(0, 2));
         contentPanel.setBackground(ChinBreakHandlerPanel.BACKGROUND_COLOR);
@@ -260,15 +260,15 @@ public class ChinBreakHandlerPluginPanel extends JPanel
 
     private void setupDefaults()
     {
-        String pluginName = ChinBreakHandlerPlugin.sanitizedName(plugin);
+        String pluginName = PiggyBreakHandlerPlugin.sanitizedName(plugin);
 
-        String enabled = configManager.getConfiguration("piggyBreakHandler", ChinBreakHandlerPlugin.sanitizedName(plugin) + "-thresholdfrom");
-        String logout = configManager.getConfiguration("piggyBreakHandler", ChinBreakHandlerPlugin.sanitizedName(plugin) + "-logout");
+        String enabled = configManager.getConfiguration("piggyBreakHandler", PiggyBreakHandlerPlugin.sanitizedName(plugin) + "-thresholdfrom");
+        String logout = configManager.getConfiguration("piggyBreakHandler", PiggyBreakHandlerPlugin.sanitizedName(plugin) + "-logout");
 
-        String thresholdfrom = configManager.getConfiguration("piggyBreakHandler", ChinBreakHandlerPlugin.sanitizedName(plugin) + "-thresholdfrom");
-        String thresholdto = configManager.getConfiguration("piggyBreakHandler", ChinBreakHandlerPlugin.sanitizedName(plugin) + "-thresholdto");
-        String breakfrom = configManager.getConfiguration("piggyBreakHandler", ChinBreakHandlerPlugin.sanitizedName(plugin) + "-breakfrom");
-        String breakto = configManager.getConfiguration("piggyBreakHandler", ChinBreakHandlerPlugin.sanitizedName(plugin) + "-breakto");
+        String thresholdfrom = configManager.getConfiguration("piggyBreakHandler", PiggyBreakHandlerPlugin.sanitizedName(plugin) + "-thresholdfrom");
+        String thresholdto = configManager.getConfiguration("piggyBreakHandler", PiggyBreakHandlerPlugin.sanitizedName(plugin) + "-thresholdto");
+        String breakfrom = configManager.getConfiguration("piggyBreakHandler", PiggyBreakHandlerPlugin.sanitizedName(plugin) + "-breakfrom");
+        String breakto = configManager.getConfiguration("piggyBreakHandler", PiggyBreakHandlerPlugin.sanitizedName(plugin) + "-breakto");
 
         if (enabled == null)
         {
@@ -280,22 +280,22 @@ public class ChinBreakHandlerPluginPanel extends JPanel
             configManager.setConfiguration("piggyBreakHandler", pluginName + "-logout", true);
         }
 
-        if (!ChinBreakHandlerPlugin.isNumeric(thresholdfrom) || (ChinBreakHandlerPlugin.isNumeric(thresholdfrom) && Integer.parseInt(thresholdfrom) < 0))
+        if (!PiggyBreakHandlerPlugin.isNumeric(thresholdfrom) || (PiggyBreakHandlerPlugin.isNumeric(thresholdfrom) && Integer.parseInt(thresholdfrom) < 0))
         {
             configManager.setConfiguration("piggyBreakHandler", pluginName + "-thresholdfrom", 60);
         }
 
-        if (!ChinBreakHandlerPlugin.isNumeric(thresholdto) || (ChinBreakHandlerPlugin.isNumeric(thresholdto) && Integer.parseInt(thresholdto) < 0))
+        if (!PiggyBreakHandlerPlugin.isNumeric(thresholdto) || (PiggyBreakHandlerPlugin.isNumeric(thresholdto) && Integer.parseInt(thresholdto) < 0))
         {
             configManager.setConfiguration("piggyBreakHandler", pluginName + "-thresholdto", 120);
         }
 
-        if (!ChinBreakHandlerPlugin.isNumeric(breakfrom) || (ChinBreakHandlerPlugin.isNumeric(breakfrom) && Integer.parseInt(breakfrom) < 0))
+        if (!PiggyBreakHandlerPlugin.isNumeric(breakfrom) || (PiggyBreakHandlerPlugin.isNumeric(breakfrom) && Integer.parseInt(breakfrom) < 0))
         {
             configManager.setConfiguration("piggyBreakHandler", pluginName + "-breakfrom", 10);
         }
 
-        if (!ChinBreakHandlerPlugin.isNumeric(breakto) || (ChinBreakHandlerPlugin.isNumeric(breakto) && Integer.parseInt(breakto) < 0))
+        if (!PiggyBreakHandlerPlugin.isNumeric(breakto) || (PiggyBreakHandlerPlugin.isNumeric(breakto) && Integer.parseInt(breakto) < 0))
         {
             configManager.setConfiguration("piggyBreakHandler", pluginName + "-breakto", 15);
         }

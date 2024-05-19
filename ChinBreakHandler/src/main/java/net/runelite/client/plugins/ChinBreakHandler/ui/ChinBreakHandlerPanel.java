@@ -3,8 +3,8 @@ package net.runelite.client.plugins.ChinBreakHandler.ui;
 import com.google.inject.Inject;
 import io.reactivex.rxjava3.annotations.NonNull;
 import io.reactivex.rxjava3.disposables.Disposable;
-import net.runelite.client.plugins.ChinBreakHandler.ChinBreakHandler;
-import net.runelite.client.plugins.ChinBreakHandler.ChinBreakHandlerPlugin;
+import net.runelite.client.plugins.ChinBreakHandler.PiggyBreakHandler;
+import net.runelite.client.plugins.ChinBreakHandler.PiggyBreakHandlerPlugin;
 import net.runelite.client.plugins.ChinBreakHandler.util.ConfigPanel;
 import net.runelite.client.plugins.ChinBreakHandler.util.JMultilineLabel;
 import net.runelite.client.plugins.ChinBreakHandler.util.SwingUtilExtended;
@@ -41,14 +41,14 @@ public class ChinBreakHandlerPanel extends PluginPanel {
     {
         final BufferedImage helpIcon =
                 ImageUtil.recolorImage(
-                        ImageUtil.loadImageResource(ChinBreakHandlerPlugin.class, "help.png"), ColorScheme.BRAND_ORANGE
+                        ImageUtil.loadImageResource(PiggyBreakHandlerPlugin.class, "help.png"), ColorScheme.BRAND_ORANGE
                 );
         HELP_ICON = new ImageIcon(helpIcon);
         HELP_HOVER_ICON = new ImageIcon(ImageUtil.alphaOffset(helpIcon, 0.53f));
     }
 
-    private final ChinBreakHandlerPlugin chinBreakHandlerPluginPlugin;
-    private final ChinBreakHandler chinBreakHandler;
+    private final PiggyBreakHandlerPlugin piggyBreakHandlerPluginPlugin;
+    private final PiggyBreakHandler piggyBreakHandler;
     private final ConfigPanel configPanel;
 
     public @NonNull Disposable pluginDisposable;
@@ -61,39 +61,39 @@ public class ChinBreakHandlerPanel extends PluginPanel {
     private final JPanel breakTimingsPanel = new JPanel(new GridLayout(0, 1));
 
     @Inject
-    private ChinBreakHandlerPanel(ChinBreakHandlerPlugin chinBreakHandlerPluginPlugin, ChinBreakHandler chinBreakHandler, ConfigPanel configPanel)
+    private ChinBreakHandlerPanel(PiggyBreakHandlerPlugin piggyBreakHandlerPluginPlugin, PiggyBreakHandler piggyBreakHandler, ConfigPanel configPanel)
     {
         super(false);
 
-        configPanel.init(chinBreakHandlerPluginPlugin.getOptionsConfig());
+        configPanel.init(piggyBreakHandlerPluginPlugin.getOptionsConfig());
 
-        this.chinBreakHandlerPluginPlugin = chinBreakHandlerPluginPlugin;
-        this.chinBreakHandler = chinBreakHandler;
+        this.piggyBreakHandlerPluginPlugin = piggyBreakHandlerPluginPlugin;
+        this.piggyBreakHandler = piggyBreakHandler;
         this.configPanel = configPanel;
 
-        pluginDisposable = chinBreakHandler
+        pluginDisposable = piggyBreakHandler
                 .getPluginObservable()
                 .subscribe((Map<Plugin, Boolean> plugins) ->
                         SwingUtilExtended.syncExec(() ->
                                 buildPanel(plugins)));
 
-        activeDisposable = chinBreakHandler
+        activeDisposable = piggyBreakHandler
                 .getActiveObservable()
                 .subscribe(
                         (ignored) ->
                                 SwingUtilExtended.syncExec(() ->
-                                        buildPanel(chinBreakHandler.getPlugins()))
+                                        buildPanel(piggyBreakHandler.getPlugins()))
                 );
 
-        currentDisposable = chinBreakHandler
+        currentDisposable = piggyBreakHandler
                 .getActiveBreaksObservable()
                 .subscribe(
                         (ignored) ->
                                 SwingUtilExtended.syncExec(() ->
-                                        buildPanel(chinBreakHandler.getPlugins()))
+                                        buildPanel(piggyBreakHandler.getPlugins()))
                 );
 
-        startDisposable = chinBreakHandler
+        startDisposable = piggyBreakHandler
                 .getActiveObservable()
                 .subscribe(
                         (ignored) ->
@@ -108,7 +108,7 @@ public class ChinBreakHandlerPanel extends PluginPanel {
                                 })
                 );
 
-        configDisposable = chinBreakHandler
+        configDisposable = piggyBreakHandler
                 .configChanged
                 .subscribe(
                         (ignored) ->
@@ -122,7 +122,7 @@ public class ChinBreakHandlerPanel extends PluginPanel {
         this.setBackground(PANEL_BACKGROUND_COLOR);
         this.setLayout(new BorderLayout());
 
-        buildPanel(chinBreakHandler.getPlugins());
+        buildPanel(piggyBreakHandler.getPlugins());
     }
 
     void buildPanel(Map<Plugin, Boolean> plugins)
@@ -132,7 +132,7 @@ public class ChinBreakHandlerPanel extends PluginPanel {
         if (plugins.isEmpty())
         {
             PluginErrorPanel errorPanel = new PluginErrorPanel();
-            errorPanel.setContent("Chin break handler", "There were no plugins that registered themselves with the break handler.");
+            errorPanel.setContent("Piggy Break Handler", "There were no plugins that registered themselves with the break handler.");
 
             add(errorPanel, BorderLayout.NORTH);
         }
@@ -159,7 +159,7 @@ public class ChinBreakHandlerPanel extends PluginPanel {
         JLabel title = new JLabel();
         JLabel help = new JLabel(HELP_ICON);
 
-        title.setText("Chin Break Handler");
+        title.setText("Piggy Break Handler");
         title.setForeground(Color.WHITE);
 
         help.setToolTipText("Info");
@@ -169,10 +169,13 @@ public class ChinBreakHandlerPanel extends PluginPanel {
             public void mousePressed(MouseEvent mouseEvent)
             {
                 JOptionPane.showMessageDialog(
-                        chinBreakHandlerPluginPlugin.getFrame(),
+                        piggyBreakHandlerPluginPlugin.getFrame(),
                         "<html><center>The configs in this panel can be used to <b>schedule</b> breaks.<br>" +
-                                "When the timer hits zero a break is scheduled. This does not mean that the break will be taken immediately!<br>" +
-                                "Plugins decide what the best time is for a break, for example a NMZ dream will be finished instead of interrupted.</center></html>",
+                                "When the timer hits zero, a break is scheduled. This does not mean that the break will be taken immediately!<br>" +
+                                "The break handler informs the plugins that it is time for a break, and the plugins are responsible for deciding<br>" +
+                                "when to start the break. A plugin would finish your current task before logging out and beginning your break, <br>" +
+                                "as opposed to interrupting your current task. For help implementing Open Break Handler into your plugins,<br>" +
+                                "check out the jampack Discord server or look at examples in the GitHub repository. Happy cheating!<br><br></center></html>",
                         "Chin break handler",
                         JOptionPane.QUESTION_MESSAGE
                 );
@@ -200,11 +203,11 @@ public class ChinBreakHandlerPanel extends PluginPanel {
 
     private boolean unlockAccountsPanel()
     {
-        Set<Plugin> activePlugins = chinBreakHandler.getActivePlugins();
+        Set<Plugin> activePlugins = piggyBreakHandler.getActivePlugins();
 
-        LoginMode loginMode = LoginMode.parse(chinBreakHandlerPluginPlugin.getConfigManager().getConfiguration("piggyBreakHandler", "accountselection"));
+        LoginMode loginMode = LoginMode.parse(piggyBreakHandlerPluginPlugin.getConfigManager().getConfiguration("piggyBreakHandler", "accountselection"));
 
-        String data = ChinBreakHandlerPlugin.data;
+        String data = PiggyBreakHandlerPlugin.data;
 
         if (activePlugins.isEmpty() || loginMode != LoginMode.PROFILES || (data != null && !data.trim().isEmpty()))
         {
@@ -218,7 +221,7 @@ public class ChinBreakHandlerPanel extends PluginPanel {
     {
         breakTimingsPanel.removeAll();
 
-        Set<Plugin> pluginStream = chinBreakHandler.getActivePlugins().stream().filter(e -> !chinBreakHandlerPluginPlugin.isValidBreak(e)).collect(Collectors.toSet());
+        Set<Plugin> pluginStream = piggyBreakHandler.getActivePlugins().stream().filter(e -> !piggyBreakHandlerPluginPlugin.isValidBreak(e)).collect(Collectors.toSet());
 
         if (pluginStream.isEmpty())
         {
@@ -271,7 +274,7 @@ public class ChinBreakHandlerPanel extends PluginPanel {
 
     private JPanel statusPanel()
     {
-        Set<Plugin> activePlugins = chinBreakHandler.getActivePlugins();
+        Set<Plugin> activePlugins = piggyBreakHandler.getActivePlugins();
 
         JPanel contentPanel = new JPanel(new GridBagLayout());
         GridBagConstraints c = new GridBagConstraints();
@@ -300,7 +303,7 @@ public class ChinBreakHandlerPanel extends PluginPanel {
 
         for (Plugin plugin : activePlugins)
         {
-            ChinBreakHandlerStatusPanel statusPanel = new ChinBreakHandlerStatusPanel(chinBreakHandlerPluginPlugin, chinBreakHandler, plugin);
+            ChinBreakHandlerStatusPanel statusPanel = new ChinBreakHandlerStatusPanel(piggyBreakHandlerPluginPlugin, piggyBreakHandler, plugin);
 
             c.fill = GridBagConstraints.HORIZONTAL;
             c.weightx = 1.0;
@@ -310,14 +313,14 @@ public class ChinBreakHandlerPanel extends PluginPanel {
             contentPanel.add(statusPanel, c);
         }
 
-        JButton scheduleBreakButton = new JButton("Schedule break now");
+        JButton scheduleBreakButton = new JButton("Start Break Now");
 
         if (activePlugins.size() > 0)
         {
             scheduleBreakButton.addActionListener(e -> activePlugins.forEach(plugin -> {
-                if (!chinBreakHandler.isBreakActive(plugin))
+                if (!piggyBreakHandler.isBreakActive(plugin))
                 {
-                    chinBreakHandler.planBreak(plugin, Instant.now());
+                    piggyBreakHandler.planBreak(plugin, Instant.now());
                 }
             }));
 
@@ -337,7 +340,7 @@ public class ChinBreakHandlerPanel extends PluginPanel {
         JTabbedPane mainTabPane = new JTabbedPane();
 
         JScrollPane pluginPanel = wrapContainer(contentPane(plugins));
-        JScrollPane repositoryPanel = wrapContainer(new ChinBreakHandlerAccountPanel(chinBreakHandlerPluginPlugin, chinBreakHandler));
+        JScrollPane repositoryPanel = wrapContainer(new ChinBreakHandlerAccountPanel(piggyBreakHandlerPluginPlugin, piggyBreakHandler));
         JScrollPane optionsPanel = wrapContainer(configPanel);
 
         mainTabPane.add("Plugins", pluginPanel);
@@ -352,14 +355,14 @@ public class ChinBreakHandlerPanel extends PluginPanel {
         JPanel contentPanel = new JPanel(new GridBagLayout());
         GridBagConstraints c = new GridBagConstraints();
 
-        if (chinBreakHandler.getPlugins().isEmpty())
+        if (piggyBreakHandler.getPlugins().isEmpty())
         {
             return contentPanel;
         }
 
         for (Map.Entry<Plugin, Boolean> plugin : plugins.entrySet())
         {
-            ChinBreakHandlerPluginPanel panel = new ChinBreakHandlerPluginPanel(chinBreakHandlerPluginPlugin, plugin.getKey(), plugin.getValue());
+            ChinBreakHandlerPluginPanel panel = new ChinBreakHandlerPluginPanel(piggyBreakHandlerPluginPlugin, plugin.getKey(), plugin.getValue());
 
             c.fill = GridBagConstraints.HORIZONTAL;
             c.weightx = 1.0;

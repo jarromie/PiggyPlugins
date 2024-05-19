@@ -1,6 +1,6 @@
 package net.runelite.client.plugins.ChinBreakHandler.util;
 
-import net.runelite.client.plugins.ChinBreakHandler.ChinBreakHandlerPlugin;
+import net.runelite.client.plugins.ChinBreakHandler.PiggyBreakHandlerPlugin;
 import net.runelite.client.ui.ColorScheme;
 import net.runelite.client.util.ImageUtil;
 import net.runelite.client.util.SwingUtil;
@@ -16,7 +16,7 @@ public class OnOffToggleButton extends JToggleButton
 
     static
     {
-        BufferedImage onSwitcher = ImageUtil.loadImageResource(ChinBreakHandlerPlugin.class, "switcher_on.png");
+        BufferedImage onSwitcher = ImageUtil.loadImageResource(PiggyBreakHandlerPlugin.class, "switcher_on.png");
         ON_SWITCHER = new ImageIcon(ImageUtil.recolorImage(onSwitcher, ColorScheme.BRAND_ORANGE));
         OFF_SWITCHER = new ImageIcon(ImageUtil.flipImage(
                 ImageUtil.luminanceScale(

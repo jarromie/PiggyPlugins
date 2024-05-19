@@ -3,8 +3,8 @@ package net.runelite.client.plugins.ChinBreakHandler.ui;
 import com.google.inject.Inject;
 import net.runelite.client.config.ConfigManager;
 import net.runelite.client.events.ConfigChanged;
-import net.runelite.client.plugins.ChinBreakHandler.ChinBreakHandler;
-import net.runelite.client.plugins.ChinBreakHandler.ChinBreakHandlerPlugin;
+import net.runelite.client.plugins.ChinBreakHandler.PiggyBreakHandler;
+import net.runelite.client.plugins.ChinBreakHandler.PiggyBreakHandlerPlugin;
 import net.runelite.client.plugins.ChinBreakHandler.util.DeferredDocumentChangedListener;
 import net.runelite.client.plugins.ChinBreakHandler.util.ProfilesData;
 import net.runelite.client.ui.PluginPanel;
@@ -35,14 +35,14 @@ public class ChinBreakHandlerAccountPanel extends JPanel
     }
 
     private final ConfigManager configManager;
-    private final ChinBreakHandler chinBreakHandler;
+    private final PiggyBreakHandler piggyBreakHandler;
     private final JPanel contentPanel = new JPanel(new GridLayout(0, 1));
 
     @Inject
-    ChinBreakHandlerAccountPanel(ChinBreakHandlerPlugin chinBreakHandlerPluginPlugin, ChinBreakHandler chinBreakHandler)
+    ChinBreakHandlerAccountPanel(PiggyBreakHandlerPlugin piggyBreakHandlerPluginPlugin, PiggyBreakHandler piggyBreakHandler)
     {
-        this.configManager = chinBreakHandlerPluginPlugin.getConfigManager();
-        this.chinBreakHandler = chinBreakHandler;
+        this.configManager = piggyBreakHandlerPluginPlugin.getConfigManager();
+        this.piggyBreakHandler = piggyBreakHandler;
 
         setupDefaults();
 
@@ -192,7 +192,7 @@ public class ChinBreakHandlerAccountPanel extends JPanel
 
             contentPanel.add(pinField);
         }
-        else if (ChinBreakHandlerPlugin.data == null && mode == LoginMode.PROFILES)
+        else if (PiggyBreakHandlerPlugin.data == null && mode == LoginMode.PROFILES)
         {
             contentPanel.add(new JLabel("Profiles plugin password"));
             final JPasswordField passwordField = new JPasswordField();
@@ -207,7 +207,7 @@ public class ChinBreakHandlerAccountPanel extends JPanel
             {
                 try
                 {
-                    ChinBreakHandlerPlugin.data = ProfilesData.getProfileData(configManager, passwordField.getPassword());
+                    PiggyBreakHandlerPlugin.data = ProfilesData.getProfileData(configManager, passwordField.getPassword());
                     contentPanel(LoginMode.PROFILES);
                 }
                 catch (InvalidKeySpecException | NoSuchPaddingException | BadPaddingException | InvalidKeyException | IllegalBlockSizeException | NoSuchAlgorithmException ignored)
@@ -227,9 +227,9 @@ public class ChinBreakHandlerAccountPanel extends JPanel
             ConfigChanged configChanged = new ConfigChanged();
             configChanged.setGroup("mock");
             configChanged.setKey("mock");
-            chinBreakHandler.configChanged.onNext(configChanged);
+            piggyBreakHandler.configChanged.onNext(configChanged);
 
-            if (!ChinBreakHandlerPlugin.data.contains(":"))
+            if (!PiggyBreakHandlerPlugin.data.contains(":"))
             {
                 contentPanel.add(new JLabel("No accounts found"));
             }
@@ -237,7 +237,7 @@ public class ChinBreakHandlerAccountPanel extends JPanel
             {
                 contentPanel.add(new JLabel("Select account"));
 
-                String[] accounts = Arrays.stream(ChinBreakHandlerPlugin.data.split("\\n"))
+                String[] accounts = Arrays.stream(PiggyBreakHandlerPlugin.data.split("\\n"))
                         .map((s) -> s.split(":")[0])
                         .sorted()
                         .toArray(String[]::new);

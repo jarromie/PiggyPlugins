@@ -5,8 +5,8 @@ import io.reactivex.rxjava3.disposables.Disposable;
 import lombok.extern.slf4j.Slf4j;
 import net.runelite.client.config.ConfigManager;
 import net.runelite.client.events.ConfigChanged;
-import net.runelite.client.plugins.ChinBreakHandler.ChinBreakHandler;
-import net.runelite.client.plugins.ChinBreakHandler.ChinBreakHandlerPlugin;
+import net.runelite.client.plugins.ChinBreakHandler.PiggyBreakHandler;
+import net.runelite.client.plugins.ChinBreakHandler.PiggyBreakHandlerPlugin;
 import net.runelite.client.plugins.ChinBreakHandler.util.SwingUtilExtended;
 import net.runelite.client.plugins.Plugin;
 import net.runelite.client.ui.PluginPanel;
@@ -24,8 +24,8 @@ import java.util.concurrent.TimeUnit;
 public class ChinBreakHandlerStatusPanel extends JPanel
 {
     private final ConfigManager configManager;
-    private final ChinBreakHandlerPlugin chinBreakHandlerPluginPlugin;
-    private final ChinBreakHandler chinBreakHandler;
+    private final PiggyBreakHandlerPlugin piggyBreakHandlerPluginPlugin;
+    private final PiggyBreakHandler piggyBreakHandler;
     private final Plugin plugin;
 
     private final JPanel contentPanel = new JPanel(new GridBagLayout());
@@ -43,23 +43,23 @@ public class ChinBreakHandlerStatusPanel extends JPanel
     }
 
     @SuppressWarnings("ResultOfMethodCallIgnored")
-    ChinBreakHandlerStatusPanel(ChinBreakHandlerPlugin ChinBreakHandlerPlugin, ChinBreakHandler ChinBreakHandler, Plugin plugin)
+    ChinBreakHandlerStatusPanel(PiggyBreakHandlerPlugin piggyBreakHandlerPlugin, PiggyBreakHandler piggyBreakHandler, Plugin plugin)
     {
-        this.configManager = ChinBreakHandlerPlugin.getConfigManager();
-        this.chinBreakHandlerPluginPlugin = ChinBreakHandlerPlugin;
-        this.chinBreakHandler = ChinBreakHandler;
+        this.configManager = piggyBreakHandlerPlugin.getConfigManager();
+        this.piggyBreakHandlerPluginPlugin = piggyBreakHandlerPlugin;
+        this.piggyBreakHandler = piggyBreakHandler;
         this.plugin = plugin;
 
         setLayout(new BorderLayout());
         setBackground(ChinBreakHandlerPanel.BACKGROUND_COLOR);
 
-        ChinBreakHandler
+        piggyBreakHandler
                 .configChanged
                 .subscribe(this::onConfigChanged);
 
-        if (ChinBreakHandlerPlugin.disposables.containsKey(plugin))
+        if (piggyBreakHandlerPlugin.disposables.containsKey(plugin))
         {
-            Disposable seconds = ChinBreakHandlerPlugin.disposables.get(plugin);
+            Disposable seconds = piggyBreakHandlerPlugin.disposables.get(plugin);
 
             if (!seconds.isDisposed())
             {
@@ -71,13 +71,13 @@ public class ChinBreakHandlerStatusPanel extends JPanel
                 .interval(500, TimeUnit.MILLISECONDS)
                 .subscribe(this::milliseconds);
 
-        ChinBreakHandlerPlugin.disposables.put(plugin, secondsDisposable);
+        piggyBreakHandlerPlugin.disposables.put(plugin, secondsDisposable);
 
-        Disposable extraDataDisposable = ChinBreakHandler
+        Disposable extraDataDisposable = piggyBreakHandler
                 .getExtraDataObservable()
                 .subscribe((data) -> SwingUtilExtended.syncExec(() -> this.extraData(data)));
 
-        ChinBreakHandlerPlugin.disposables.put(plugin, extraDataDisposable);
+        piggyBreakHandlerPlugin.disposables.put(plugin, extraDataDisposable);
 
         init();
     }
@@ -98,30 +98,30 @@ public class ChinBreakHandlerStatusPanel extends JPanel
     {
         Instant now = Instant.now();
 
-        Map<Plugin, Instant> startTimes = chinBreakHandler.getStartTimes();
+        Map<Plugin, Instant> startTimes = piggyBreakHandler.getStartTimes();
 
         if (startTimes.containsKey(plugin))
         {
-            Duration duration = Duration.between(chinBreakHandler.getStartTimes().get(plugin), now);
+            Duration duration = Duration.between(piggyBreakHandler.getStartTimes().get(plugin), now);
             runtimeLabel.setText(formatDuration(duration));
         }
 
-        Map<Plugin, Integer> breaks = chinBreakHandler.getAmountOfBreaks();
+        Map<Plugin, Integer> breaks = piggyBreakHandler.getAmountOfBreaks();
 
         if (breaks.containsKey(plugin))
         {
-            breaksLabel.setText(String.valueOf(chinBreakHandler.getAmountOfBreaks().get(plugin)));
+            breaksLabel.setText(String.valueOf(piggyBreakHandler.getAmountOfBreaks().get(plugin)));
         }
 
-        if (!chinBreakHandler.isBreakPlanned(plugin) && !chinBreakHandler.isBreakActive(plugin))
+        if (!piggyBreakHandler.isBreakPlanned(plugin) && !piggyBreakHandler.isBreakActive(plugin))
         {
             timeLabel.setText("00:00:00");
             return;
         }
 
-        if (chinBreakHandler.isBreakPlanned(plugin))
+        if (piggyBreakHandler.isBreakPlanned(plugin))
         {
-            Instant breaktime = chinBreakHandler.getPlannedBreak(plugin);
+            Instant breaktime = piggyBreakHandler.getPlannedBreak(plugin);
 
             if (now.isAfter(breaktime))
             {
@@ -133,9 +133,9 @@ public class ChinBreakHandlerStatusPanel extends JPanel
                 timeLabel.setText(formatDuration(duration));
             }
         }
-        else if (chinBreakHandler.isBreakActive(plugin))
+        else if (piggyBreakHandler.isBreakActive(plugin))
         {
-            Instant breaktime = chinBreakHandler.getActiveBreak(plugin);
+            Instant breaktime = piggyBreakHandler.getActiveBreak(plugin);
 
             if (now.isAfter(breaktime))
             {
@@ -152,11 +152,11 @@ public class ChinBreakHandlerStatusPanel extends JPanel
             timeLabel.setText("-");
         }
 
-        boolean enabled = Boolean.parseBoolean(configManager.getConfiguration("piggyBreakHandler", ChinBreakHandlerPlugin.sanitizedName(plugin) + "-enabled"));
+        boolean enabled = Boolean.parseBoolean(configManager.getConfiguration("piggyBreakHandler", PiggyBreakHandlerPlugin.sanitizedName(plugin) + "-enabled"));
 
-        if (enabled && chinBreakHandler.getPlugins().get(plugin) && chinBreakHandlerPluginPlugin.isValidBreak(plugin) && !chinBreakHandler.isBreakPlanned(plugin) && !chinBreakHandler.isBreakActive(plugin))
+        if (enabled && piggyBreakHandler.getPlugins().get(plugin) && piggyBreakHandlerPluginPlugin.isValidBreak(plugin) && !piggyBreakHandler.isBreakPlanned(plugin) && !piggyBreakHandler.isBreakActive(plugin))
         {
-            chinBreakHandlerPluginPlugin.scheduleBreak(plugin);
+            piggyBreakHandlerPluginPlugin.scheduleBreak(plugin);
         }
     }
 
@@ -246,14 +246,14 @@ public class ChinBreakHandlerStatusPanel extends JPanel
 
     private void onConfigChanged(ConfigChanged configChanged)
     {
-        if (configChanged == null || !configChanged.getGroup().equals("piggyBreakHandler") || !configChanged.getKey().contains(ChinBreakHandlerPlugin.sanitizedName(plugin)))
+        if (configChanged == null || !configChanged.getGroup().equals("piggyBreakHandler") || !configChanged.getKey().contains(PiggyBreakHandlerPlugin.sanitizedName(plugin)))
         {
             return;
         }
 
         if (configChanged.getKey().contains("enabled") && configChanged.getNewValue().equals("false"))
         {
-            chinBreakHandler.removePlannedBreak(plugin);
+            piggyBreakHandler.removePlannedBreak(plugin);
         }
 
         statusPanel();
@@ -318,7 +318,7 @@ public class ChinBreakHandlerStatusPanel extends JPanel
 
         GridBagConstraints c = new GridBagConstraints();
 
-        if (!chinBreakHandler.getPlugins().get(plugin) && !chinBreakHandler.isBreakActive(plugin))
+        if (!piggyBreakHandler.getPlugins().get(plugin) && !piggyBreakHandler.isBreakActive(plugin))
         {
             c.insets = new Insets(2, 0, 2, 0);
             c.weightx = 0;
@@ -329,9 +329,9 @@ public class ChinBreakHandlerStatusPanel extends JPanel
             return;
         }
 
-        if (chinBreakHandler.getPlugins().get(plugin))
+        if (piggyBreakHandler.getPlugins().get(plugin))
         {
-            boolean enabled = Boolean.parseBoolean(configManager.getConfiguration("piggyBreakHandler", ChinBreakHandlerPlugin.sanitizedName(plugin) + "-enabled"));
+            boolean enabled = Boolean.parseBoolean(configManager.getConfiguration("piggyBreakHandler", PiggyBreakHandlerPlugin.sanitizedName(plugin) + "-enabled"));
 
             if (!enabled)
             {
@@ -344,19 +344,19 @@ public class ChinBreakHandlerStatusPanel extends JPanel
                 return;
             }
 
-            if (chinBreakHandler.getPlugins().get(plugin) && chinBreakHandlerPluginPlugin.isValidBreak(plugin) && !chinBreakHandler.isBreakPlanned(plugin) && !chinBreakHandler.isBreakActive(plugin))
+            if (piggyBreakHandler.getPlugins().get(plugin) && piggyBreakHandlerPluginPlugin.isValidBreak(plugin) && !piggyBreakHandler.isBreakPlanned(plugin) && !piggyBreakHandler.isBreakActive(plugin))
             {
-                chinBreakHandlerPluginPlugin.scheduleBreak(plugin);
+                piggyBreakHandlerPluginPlugin.scheduleBreak(plugin);
             }
         }
 
         JLabel breaking = new JLabel();
 
-        if (chinBreakHandler.isBreakPlanned(plugin))
+        if (piggyBreakHandler.isBreakPlanned(plugin))
         {
             breaking.setText("Scheduled break in:");
         }
-        else if (chinBreakHandler.isBreakActive(plugin))
+        else if (piggyBreakHandler.isBreakActive(plugin))
         {
             breaking.setText("Taking a break for:");
         }

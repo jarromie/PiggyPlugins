@@ -28,7 +28,7 @@ import java.util.TreeMap;
 
 @SuppressWarnings("unused")
 @Singleton
-public class ChinBreakHandler {
+public class PiggyBreakHandler {
     private final ConfigManager configManager;
 
     private final Map<Plugin, Boolean> plugins = new TreeMap<>((o1, o2) -> o1.getName().compareToIgnoreCase(o2.getName()));
@@ -56,7 +56,7 @@ public class ChinBreakHandler {
     private final PublishSubject<Map<Plugin, Map<String, String>>> extraDataSubject = PublishSubject.create();
 
     @Inject
-    ChinBreakHandler(ConfigManager configManager)
+    PiggyBreakHandler(ConfigManager configManager)
     {
         this.configManager = configManager;
     }
@@ -180,11 +180,11 @@ public class ChinBreakHandler {
         if (loginMode == LoginMode.PROFILES) {
             String account = configManager.getConfiguration("piggyBreakHandler", "accountselection-profiles-account");
 
-            if (ChinBreakHandlerPlugin.data == null) {
+            if (PiggyBreakHandlerPlugin.data == null) {
                 return null;
             }
 
-            Optional<String> accountData = Arrays.stream(ChinBreakHandlerPlugin.data.split("\\n"))
+            Optional<String> accountData = Arrays.stream(PiggyBreakHandlerPlugin.data.split("\\n"))
                     .filter(s -> s.startsWith(account))
                     .findFirst();
 
@@ -210,14 +210,14 @@ public class ChinBreakHandler {
     }
 
     public static int getOrDefaultFrom(Plugin plugin, ConfigManager configManager) {
-        String s = configManager.getConfiguration("piggyBreakHandler", ChinBreakHandlerPlugin.sanitizedName(plugin) + "-breakfrom");
+        String s = configManager.getConfiguration("piggyBreakHandler", PiggyBreakHandlerPlugin.sanitizedName(plugin) + "-breakfrom");
         if (s == null || s.isEmpty()) {
             return 60 * 60;
         }
         return Integer.parseInt(s) * 60;
     }
     public static int getOrDefaultTo(Plugin plugin, ConfigManager configManager) {
-        String s = configManager.getConfiguration("piggyBreakHandler", ChinBreakHandlerPlugin.sanitizedName(plugin) + "-breakto");
+        String s = configManager.getConfiguration("piggyBreakHandler", PiggyBreakHandlerPlugin.sanitizedName(plugin) + "-breakto");
         if (s == null || s.isEmpty()) {
             return 60 * 60;
         }

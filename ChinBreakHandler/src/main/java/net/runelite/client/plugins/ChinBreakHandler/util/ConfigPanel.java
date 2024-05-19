@@ -17,7 +17,7 @@ import net.runelite.client.config.ConfigSection;
 import net.runelite.client.config.ConfigSectionDescriptor;
 import net.runelite.client.config.Range;
 import net.runelite.client.config.Units;
-import net.runelite.client.plugins.ChinBreakHandler.ChinBreakHandlerPlugin;
+import net.runelite.client.plugins.ChinBreakHandler.PiggyBreakHandlerPlugin;
 import net.runelite.client.plugins.ChinBreakHandler.ui.ChinBreakHandlerPanel;
 import net.runelite.client.ui.ColorScheme;
 import net.runelite.client.ui.DynamicGridLayout;
@@ -65,9 +65,9 @@ public class ConfigPanel extends FixedWidthPanel
     private final TitleCaseListCellRenderer listCellRenderer = new TitleCaseListCellRenderer();
 
     @Inject
-    ConfigPanel(ChinBreakHandlerPlugin chinBreakHandlerPlugin)
+    ConfigPanel(PiggyBreakHandlerPlugin piggyBreakHandlerPlugin)
     {
-        this.configManager = chinBreakHandlerPlugin.getConfigManager();
+        this.configManager = piggyBreakHandlerPlugin.getConfigManager();
 
         setBackground(ChinBreakHandlerPanel.PANEL_BACKGROUND_COLOR);
         setBorder(new EmptyBorder(5, 10, 0, 10));
