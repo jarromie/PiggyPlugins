@@ -16,9 +16,10 @@ base repository are automatically pulled using [GitHub Actions](https://github.c
 * renamed `BetterProfilesPlugin` -> `PiggyProfilesPlugin`
 * renamed `ChinBreakHandlerPlugin` -> `PiggyBreakHandlerPlugin`
 * added build settings and  config for `AutoCombatv2` - info [here](https://github.com/0Hutch/PiggyPlugins/pull/56)
-* changed RuneLite version from `1.10.22`
+* changed RuneLite version from `1.10.22` to `latest.release`
+* changed PiggyPlugins version from `1.1.8` to `1.1.8-patch`
 
-The version number has also been modified to include `-patch` at the end (`1.1.8-patch` as of writing).
+For a full list of changes made to this fork, check out the [commit history](https://github.com/jarromie/PiggyPlugins/commits/master/) or [compare branches](https://github.com/0Hutch/PiggyPlugins/compare/master...jarromie:PiggyPlugins:master).
 
 ## Support
 If you need help, feel free to add me on Discord (`jarromie`).
