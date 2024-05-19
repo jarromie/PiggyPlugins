@@ -51,12 +51,12 @@ import net.runelite.client.ui.ColorScheme;
 import net.runelite.client.util.ImageUtil;
 
 @Slf4j
-class BetterProfilePanel extends JPanel {
+class PiggyProfilePanel extends JPanel {
     private static final ImageIcon DELETE_ICON;
     private static final ImageIcon DELETE_HOVER_ICON;
 
     static {
-        final BufferedImage deleteImg = ImageUtil.getResourceStreamFromClass(BetterProfilesPlugin.class, "delete_icon.png");
+        final BufferedImage deleteImg = ImageUtil.getResourceStreamFromClass(PiggyProfilesPlugin.class, "delete_icon.png");
         DELETE_ICON = new ImageIcon(deleteImg);
         DELETE_HOVER_ICON = new ImageIcon(ImageUtil.alphaOffset(deleteImg, -100));
     }
@@ -64,14 +64,14 @@ class BetterProfilePanel extends JPanel {
     private final String loginText;
     private String password = null;
 
-    BetterProfilePanel(final Client client, final String data, final BetterProfilesConfig config, final BetterProfilesPanel parent) {
+    PiggyProfilePanel(final Client client, final String data, final PiggyProfilesConfig config, final PiggyProfilesPanel parent) {
         String[] parts = data.split(":", 4);
         this.loginText = parts[1];
         if (parts.length == 4) {
             this.password = parts[2];
         }
 
-        final BetterProfilePanel panel = this;
+        final PiggyProfilePanel panel = this;
 
         setLayout(new BorderLayout());
         setBackground(ColorScheme.DARKER_GRAY_COLOR);

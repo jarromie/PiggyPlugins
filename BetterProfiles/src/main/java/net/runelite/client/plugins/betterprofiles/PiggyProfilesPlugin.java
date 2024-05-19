@@ -30,10 +30,8 @@ import java.awt.image.BufferedImage;
 import java.util.concurrent.ScheduledExecutorService;
 import java.security.GeneralSecurityException;
 import javax.inject.Inject;
-import javax.swing.*;
 
 import lombok.extern.slf4j.Slf4j;
-import net.runelite.api.GameState;
 import net.runelite.api.events.GameStateChanged;
 import net.runelite.client.callback.ClientThread;
 import net.runelite.client.config.ConfigManager;
@@ -47,17 +45,18 @@ import net.runelite.client.util.ImageUtil;
 
 @PluginDescriptor(
         name = "<html><font color=\"#FF9DF9\">[PP]</font> Better Profiles</html>",
+        configName = "piggyProfiles",
         enabledByDefault = false,
         description = "Allow for a allows you to easily switch between multiple OSRS Accounts - Ported by Piggy",
         tags = {"profile", "account", "login", "log in", "pklite"}
 )
 @Slf4j
-public class BetterProfilesPlugin extends Plugin {
+public class PiggyProfilesPlugin extends Plugin {
     @Inject
     private ClientToolbar clientToolbar;
 
     @Inject
-    private BetterProfilesConfig config;
+    private PiggyProfilesConfig config;
 
     @Inject
     private ClientThread clientThread;
@@ -65,17 +64,17 @@ public class BetterProfilesPlugin extends Plugin {
     @Inject
     private ScheduledExecutorService executorService;
 
-    private BetterProfilesPanel panel;
+    private PiggyProfilesPanel panel;
     private NavigationButton navButton;
 
     @Provides
-    BetterProfilesConfig getConfig(ConfigManager configManager) {
-        return configManager.getConfig(BetterProfilesConfig.class);
+    PiggyProfilesConfig getConfig(ConfigManager configManager) {
+        return configManager.getConfig(PiggyProfilesConfig.class);
     }
 
     @Override
     protected void startUp() {
-        panel = injector.getInstance(BetterProfilesPanel.class);
+        panel = injector.getInstance(PiggyProfilesPanel.class);
         panel.init();
 
         final BufferedImage icon = ImageUtil.loadImageResource(getClass(), "profiles_icon.png");
@@ -104,12 +103,12 @@ public class BetterProfilesPlugin extends Plugin {
     private void onConfigChanged(ConfigChanged event) {
         if (event.getGroup().equals("piggyProfiles")) {
             if (event.getKey().equals("rememberPassword")) {
-                panel = injector.getInstance(BetterProfilesPanel.class);
+                panel = injector.getInstance(PiggyProfilesPanel.class);
                 this.shutDown();
                 this.startUp();
             }
             if (!event.getKey().equals("rememberPassword")) {
-                panel = injector.getInstance(BetterProfilesPanel.class);
+                panel = injector.getInstance(PiggyProfilesPanel.class);
                 try {
                     panel.redrawProfiles();
                 } catch (GeneralSecurityException gse) {

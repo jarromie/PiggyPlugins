@@ -55,7 +55,6 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
-import javax.swing.SwingUtilities;
 import javax.swing.border.EmptyBorder;
 import javax.swing.text.AttributeSet;
 import javax.swing.text.BadLocationException;
@@ -64,14 +63,13 @@ import javax.swing.text.PlainDocument;
 
 import lombok.extern.slf4j.Slf4j;
 import net.runelite.api.Client;
-import net.runelite.client.ui.ClientUI;
 import net.runelite.client.ui.ColorScheme;
 import net.runelite.client.ui.DynamicGridLayout;
 import net.runelite.client.ui.FontManager;
 import net.runelite.client.ui.PluginPanel;
 
 @Slf4j
-class BetterProfilesPanel extends PluginPanel {
+class PiggyProfilesPanel extends PluginPanel {
     private static final int iterations = 100000;
     private static final String UNLOCK_PASSWORD = "Encryption Password";
     private static final String ACCOUNT_USERNAME = "Account Username";
@@ -87,7 +85,7 @@ class BetterProfilesPanel extends PluginPanel {
     private Client client;
 
     @Inject
-    private BetterProfilesConfig betterProfilesConfig;
+    private PiggyProfilesConfig piggyProfilesConfig;
 
     private final JPasswordField txtDecryptPassword = new JPasswordField(UNLOCK_PASSWORD);
     private final JTextField txtAccountLabel = new JTextField(ACCOUNT_LABEL);
@@ -99,7 +97,7 @@ class BetterProfilesPanel extends PluginPanel {
     private final JPanel loginPanel = new JPanel();
 
     void init() {
-        final String LOAD_ACCOUNTS = betterProfilesConfig.salt().length() == 0 ? "Save" : "Unlock";
+        final String LOAD_ACCOUNTS = piggyProfilesConfig.salt().length() == 0 ? "Save" : "Unlock";
 
         setLayout(new BorderLayout(0, 10));
         setBackground(ColorScheme.DARK_GRAY_COLOR);
@@ -112,7 +110,7 @@ class BetterProfilesPanel extends PluginPanel {
         helpPanel.setBorder(new EmptyBorder(10, 10, 10, 10));
         helpPanel.setLayout(new DynamicGridLayout(1, 1));
 
-        JLabel helpLabel = new JLabel(htmlLabel(String.format(HELP, betterProfilesConfig.salt().length() == 0 ? "save" : "unlock")));
+        JLabel helpLabel = new JLabel(htmlLabel(String.format(HELP, piggyProfilesConfig.salt().length() == 0 ? "save" : "unlock")));
         helpLabel.setFont(smallFont);
 
         helpPanel.add(helpLabel);
@@ -206,7 +204,7 @@ class BetterProfilesPanel extends PluginPanel {
             public void focusGained(FocusEvent e) {
                 if (ACCOUNT_USERNAME.equals(String.valueOf(txtAccountLogin.getPassword()))) {
                     txtAccountLogin.setText("");
-                    if (betterProfilesConfig.streamerMode()) {
+                    if (piggyProfilesConfig.streamerMode()) {
                         txtAccountLogin.setEchoChar('*');
                     }
                 }
@@ -281,7 +279,7 @@ class BetterProfilesPanel extends PluginPanel {
             }
             String data;
 
-            if (betterProfilesConfig.rememberPassword() && txtPasswordLogin.getPassword() != null) {
+            if (piggyProfilesConfig.rememberPassword() && txtPasswordLogin.getPassword() != null) {
                 data = labelText + ":" + loginText + ":" + passwordText + ":" + pinText;
             } else {
                 data = labelText + ":" + loginText + ":" + pinText;
@@ -358,7 +356,7 @@ class BetterProfilesPanel extends PluginPanel {
 
         accountPanel.add(txtAccountLabel);
         accountPanel.add(txtAccountLogin);
-        if (betterProfilesConfig.rememberPassword()) {
+        if (piggyProfilesConfig.rememberPassword()) {
             accountPanel.add(txtPasswordLogin);
         }
         accountPanel.add(pinLogin);
@@ -406,7 +404,7 @@ class BetterProfilesPanel extends PluginPanel {
     }
 
     private void addAccount(String data) {
-        BetterProfilePanel profile = new BetterProfilePanel(client, data, betterProfilesConfig, this);
+        PiggyProfilePanel profile = new PiggyProfilePanel(client, data, piggyProfilesConfig, this);
         profilesPanel.add(profile);
 
         revalidate();
@@ -436,14 +434,14 @@ class BetterProfilesPanel extends PluginPanel {
     }
 
     private void setSalt(byte[] bytes) {
-        betterProfilesConfig.salt(base64Encode(bytes));
+        piggyProfilesConfig.salt(base64Encode(bytes));
     }
 
     private byte[] getSalt() {
-        if (betterProfilesConfig.salt().length() == 0) {
+        if (piggyProfilesConfig.salt().length() == 0) {
             return new byte[0];
         }
-        return base64Decode(betterProfilesConfig.salt());
+        return base64Decode(piggyProfilesConfig.salt());
     }
 
     private SecretKey getAesKey() throws NoSuchAlgorithmException, InvalidKeySpecException {
@@ -458,7 +456,7 @@ class BetterProfilesPanel extends PluginPanel {
     }
 
     private String getProfileData() throws InvalidKeySpecException, NoSuchAlgorithmException, IllegalBlockSizeException, InvalidKeyException, BadPaddingException, NoSuchPaddingException {
-        String tmp = betterProfilesConfig.profilesData();
+        String tmp = piggyProfilesConfig.profilesData();
         if (tmp.startsWith("¬")) {
             tmp = tmp.substring(2);
             return decryptText(base64Decode(tmp), getAesKey());
@@ -476,7 +474,7 @@ class BetterProfilesPanel extends PluginPanel {
             return false;
         }
         String s = "¬" + base64Encode(enc);
-        betterProfilesConfig.profilesData(s);
+        piggyProfilesConfig.profilesData(s);
         return true;
     }
 

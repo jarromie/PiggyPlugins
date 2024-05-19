@@ -29,7 +29,7 @@ import net.runelite.client.config.ConfigGroup;
 import net.runelite.client.config.ConfigItem;
 
 @ConfigGroup("piggyProfiles")
-public interface BetterProfilesConfig extends Config
+public interface PiggyProfilesConfig extends Config
 {
 	@ConfigItem(
 		keyName = "profilesData",
