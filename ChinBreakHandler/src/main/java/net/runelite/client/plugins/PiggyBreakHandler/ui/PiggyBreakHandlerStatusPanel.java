@@ -1,13 +1,13 @@
-package net.runelite.client.plugins.ChinBreakHandler.ui;
+package net.runelite.client.plugins.PiggyBreakHandler.ui;
 
 import io.reactivex.rxjava3.core.Observable;
 import io.reactivex.rxjava3.disposables.Disposable;
 import lombok.extern.slf4j.Slf4j;
 import net.runelite.client.config.ConfigManager;
 import net.runelite.client.events.ConfigChanged;
-import net.runelite.client.plugins.ChinBreakHandler.PiggyBreakHandler;
-import net.runelite.client.plugins.ChinBreakHandler.PiggyBreakHandlerPlugin;
-import net.runelite.client.plugins.ChinBreakHandler.util.SwingUtilExtended;
+import net.runelite.client.plugins.PiggyBreakHandler.PiggyBreakHandler;
+import net.runelite.client.plugins.PiggyBreakHandler.PiggyBreakHandlerPlugin;
+import net.runelite.client.plugins.PiggyBreakHandler.util.SwingUtilExtended;
 import net.runelite.client.plugins.Plugin;
 import net.runelite.client.ui.PluginPanel;
 

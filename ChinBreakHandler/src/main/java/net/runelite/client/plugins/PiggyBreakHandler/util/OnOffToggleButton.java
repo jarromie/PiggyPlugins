@@ -1,6 +1,6 @@
-package net.runelite.client.plugins.ChinBreakHandler.util;
+package net.runelite.client.plugins.PiggyBreakHandler.util;
 
-import net.runelite.client.plugins.ChinBreakHandler.PiggyBreakHandlerPlugin;
+import net.runelite.client.plugins.PiggyBreakHandler.PiggyBreakHandlerPlugin;
 import net.runelite.client.ui.ColorScheme;
 import net.runelite.client.util.ImageUtil;
 import net.runelite.client.util.SwingUtil;

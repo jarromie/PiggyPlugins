@@ -1,4 +1,4 @@
-package net.runelite.client.plugins.ChinBreakHandler.util;
+package net.runelite.client.plugins.PiggyBreakHandler.util;
 
 import com.google.common.collect.ComparisonChain;
 import com.google.common.primitives.Ints;
@@ -17,8 +17,8 @@ import net.runelite.client.config.ConfigSection;
 import net.runelite.client.config.ConfigSectionDescriptor;
 import net.runelite.client.config.Range;
 import net.runelite.client.config.Units;
-import net.runelite.client.plugins.ChinBreakHandler.PiggyBreakHandlerPlugin;
-import net.runelite.client.plugins.ChinBreakHandler.ui.PiggyBreakHandlerPanel;
+import net.runelite.client.plugins.PiggyBreakHandler.PiggyBreakHandlerPlugin;
+import net.runelite.client.plugins.PiggyBreakHandler.ui.PiggyBreakHandlerPanel;
 import net.runelite.client.ui.ColorScheme;
 import net.runelite.client.ui.DynamicGridLayout;
 import net.runelite.client.ui.FontManager;

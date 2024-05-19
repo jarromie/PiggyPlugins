@@ -1,4 +1,4 @@
-package net.runelite.client.plugins.ChinBreakHandler.util;
+package net.runelite.client.plugins.PiggyBreakHandler.util;
 
 import lombok.extern.slf4j.Slf4j;
 import net.runelite.client.ui.ColorScheme;

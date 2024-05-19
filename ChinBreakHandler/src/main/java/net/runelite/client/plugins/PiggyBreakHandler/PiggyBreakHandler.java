@@ -1,4 +1,4 @@
-package net.runelite.client.plugins.ChinBreakHandler;
+package net.runelite.client.plugins.PiggyBreakHandler;
 
 import io.reactivex.rxjava3.annotations.NonNull;
 import io.reactivex.rxjava3.core.Observable;
@@ -8,8 +8,8 @@ import net.runelite.api.widgets.Widget;
 import net.runelite.api.widgets.WidgetInfo;
 import net.runelite.client.config.ConfigManager;
 import net.runelite.client.events.ConfigChanged;
-import net.runelite.client.plugins.ChinBreakHandler.ui.LoginMode;
-import net.runelite.client.plugins.ChinBreakHandler.util.IntRandomNumberGenerator;
+import net.runelite.client.plugins.PiggyBreakHandler.ui.LoginMode;
+import net.runelite.client.plugins.PiggyBreakHandler.util.IntRandomNumberGenerator;
 import net.runelite.client.plugins.Plugin;
 import org.apache.commons.lang3.tuple.Pair;
 

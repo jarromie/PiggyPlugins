@@ -1,12 +1,12 @@
-package net.runelite.client.plugins.ChinBreakHandler.ui;
+package net.runelite.client.plugins.PiggyBreakHandler.ui;
 
 import com.google.inject.Inject;
 import net.runelite.client.config.ConfigManager;
 import net.runelite.client.events.ConfigChanged;
-import net.runelite.client.plugins.ChinBreakHandler.PiggyBreakHandler;
-import net.runelite.client.plugins.ChinBreakHandler.PiggyBreakHandlerPlugin;
-import net.runelite.client.plugins.ChinBreakHandler.util.DeferredDocumentChangedListener;
-import net.runelite.client.plugins.ChinBreakHandler.util.ProfilesData;
+import net.runelite.client.plugins.PiggyBreakHandler.PiggyBreakHandler;
+import net.runelite.client.plugins.PiggyBreakHandler.PiggyBreakHandlerPlugin;
+import net.runelite.client.plugins.PiggyBreakHandler.util.DeferredDocumentChangedListener;
+import net.runelite.client.plugins.PiggyBreakHandler.util.ProfilesData;
 import net.runelite.client.ui.PluginPanel;
 
 import javax.crypto.BadPaddingException;

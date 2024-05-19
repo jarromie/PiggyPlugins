@@ -1,4 +1,4 @@
-package net.runelite.client.plugins.ChinBreakHandler;
+package net.runelite.client.plugins.PiggyBreakHandler;
 
 import com.example.EthanApiPlugin.Collections.Widgets;
 import com.example.PacketUtils.WidgetID;
@@ -30,9 +30,9 @@ import net.runelite.client.config.ConfigManager;
 import net.runelite.client.eventbus.Subscribe;
 import net.runelite.client.events.ConfigChanged;
 import net.runelite.client.game.WorldService;
-import net.runelite.client.plugins.ChinBreakHandler.util.IntRandomNumberGenerator;
-import net.runelite.client.plugins.ChinBreakHandler.ui.PiggyBreakHandlerPanel;
-import net.runelite.client.plugins.ChinBreakHandler.ui.LoginMode;
+import net.runelite.client.plugins.PiggyBreakHandler.util.IntRandomNumberGenerator;
+import net.runelite.client.plugins.PiggyBreakHandler.ui.PiggyBreakHandlerPanel;
+import net.runelite.client.plugins.PiggyBreakHandler.ui.LoginMode;
 import net.runelite.client.plugins.Plugin;
 import net.runelite.client.plugins.PluginDescriptor;
 import net.runelite.client.ui.ClientToolbar;
@@ -65,7 +65,7 @@ import java.util.concurrent.TimeUnit;
 
 
 @PluginDescriptor(
-        name = "<html><font color=\"#FF9DF9\">[PP]</font> Piggy Break Handler</html>",
+        name = "<html><font color=\"#FF9DF9\">[PP]</font> Break Handler</html>",
         description = "Owain's Chin Break Handler ported to RuneLite & Extended",
         tags = {"ethan", "piggy", "break", "chin"}
 )

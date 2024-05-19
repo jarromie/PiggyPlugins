@@ -1,4 +1,4 @@
-package net.runelite.client.plugins.ChinBreakHandler.util;
+package net.runelite.client.plugins.PiggyBreakHandler.util;
 
 import java.util.PrimitiveIterator;
 import java.util.Random;

@@ -1,4 +1,4 @@
-package net.runelite.client.plugins.ChinBreakHandler.ui;
+package net.runelite.client.plugins.PiggyBreakHandler.ui;
 
 public enum LoginMode {
     MANUAL,
