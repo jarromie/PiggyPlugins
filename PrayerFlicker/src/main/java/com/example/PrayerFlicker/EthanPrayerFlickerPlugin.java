@@ -1,6 +1,6 @@
 package com.example.PrayerFlicker;
 
-import com.example.PacketUtils.PacketUtilsPlugin;
+import com.example.PacketUtils.PacketApiPlugin;
 import com.example.Packets.MousePackets;
 import com.example.Packets.WidgetPackets;
 import com.google.inject.Inject;
@@ -61,7 +61,7 @@ public class EthanPrayerFlickerPlugin extends Plugin {
     @Override
     @SneakyThrows
     public void startUp() {
-        if (client.getRevision() != PacketUtilsPlugin.CLIENT_REV) {
+        if (client.getRevision() != PacketApiPlugin.CLIENT_REV) {
             SwingUtilities.invokeLater(() ->
             {
                 try {

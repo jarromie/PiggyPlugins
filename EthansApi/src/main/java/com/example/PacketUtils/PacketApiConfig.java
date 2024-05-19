@@ -5,7 +5,7 @@ import net.runelite.client.config.ConfigGroup;
 import net.runelite.client.config.ConfigItem;
 
 @ConfigGroup("PacketUtils")
-public interface PacketUtilsConfig extends Config {
+public interface PacketApiConfig extends Config {
     @ConfigItem(
             keyName = "debug",
             name = "debug",

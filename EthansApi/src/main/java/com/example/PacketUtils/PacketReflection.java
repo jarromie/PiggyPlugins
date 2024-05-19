@@ -159,7 +159,7 @@ public class PacketReflection {
     }
 
     public static void addNode(Object packetWriter, Object packetBufferNode) {
-        if (PacketUtilsPlugin.usingClientAddNode) {
+        if (PacketApiPlugin.usingClientAddNode) {
             try {
                 Method addNode = null;
                 long garbageValue = Math.abs(Long.parseLong(ObfuscatedNames.addNodeGarbageValue));
@@ -185,7 +185,7 @@ public class PacketReflection {
             }
         } else {
             try {
-                Method addNode = PacketUtilsPlugin.addNodeMethod;
+                Method addNode = PacketApiPlugin.addNodeMethod;
                 addNode.setAccessible(true);
                 if (addNode.getParameterCount() == 2) {
                     addNode.invoke(null, packetWriter, packetBufferNode);

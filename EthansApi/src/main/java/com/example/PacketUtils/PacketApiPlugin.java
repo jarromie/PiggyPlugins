@@ -45,9 +45,9 @@ import java.util.stream.Collectors;
         enabledByDefault = true,
         tags = {"ethan"}
 )
-public class PacketUtilsPlugin extends Plugin {
+public class PacketApiPlugin extends Plugin {
     @Inject
-    PacketUtilsConfig config;
+    PacketApiConfig config;
     @Inject
     Client client;
     static Client staticClient;
@@ -75,8 +75,8 @@ public class PacketUtilsPlugin extends Plugin {
     }
 
     @Provides
-    public PacketUtilsConfig getConfig(ConfigManager configManager) {
-        return configManager.getConfig(PacketUtilsConfig.class);
+    public PacketApiConfig getConfig(ConfigManager configManager) {
+        return configManager.getConfig(PacketApiConfig.class);
     }
 
     @Subscribe
