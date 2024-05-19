@@ -112,9 +112,9 @@ public class ReflectBreakHandler {
 
         chinMethods = new HashMap<>();
         for (Plugin p : pluginManager.getPlugins()) {
-            if (p.getClass().getSimpleName().toLowerCase().equals("chinbreakhandlerplugin")) {
+            if (p.getClass().getSimpleName().toLowerCase().equals("piggybreakhandlerplugin")) {
                 for (Field f : p.getClass().getDeclaredFields()) {
-                    if (f.getName().toLowerCase().equals("chinbreakhandler")) {
+                    if (f.getName().toLowerCase().equals("piggybreakhandler")) {
                         f.setAccessible(true);
                         try {
                             instance = f.get(p);
