@@ -1,35 +1,19 @@
-Fork of EthanVann's EthanApiPlugin
+# PiggyPlugins
 
-Automation plugins for runelite
+This fork is a modification of [0Hutch/PiggyPlugins](https://github.com/0Hutch/PiggyPlugins). It has modifications included that prevent interference or conflicts when running alongside [KALE1111/RuneBotEVP] and [KALE1111/rblaunch].
 
-# Discord
-https://discord.gg/kwYBYEg4uu
+## About
+This plugin aims to prevent RuneLite refusing to load plugins with the same names from `PiggyPlugins`, `RuneBot`, and `jampack`. 
+It also has some bug fixes and minor modifications to the `PiggyPlugins` repository; these modifications are submitted to the 
+base repository, `0Hutch/PiggyPlugins` for review, and may be merged into the base repository if accepted. Changes from the 
+base repository are automatically pulled using [GitHub Actions](https://github.com/jarromie/PiggyPlugins/actions).
 
-# Release 1.0
-*Updated 8/18/2023 7:32 AM EST*
+## Changes
+* renamed `EthanApiPlugin` -> `PiggyApiPlugin`
+* renamed `PacketUtilsPlugin` -> `PacketApiPlugin`
+* renamed `BetterProfilesPlugin` -> `PiggyProfilesPlugin`
+* renamed `ChinBreakHandlerPlugin` -> `PiggyBreakHandlerPlugin`
+* added gradle build config for `AutoCombatv2`
 
-**Plugins**:
-- ChinBreakHandler *(made by Owain - modified to work with runelite)*
-- SpeedDartMaker
-- RooftopAgility *(iRooftops by illumine partially ported & modified by piggyplugins)*
-- PrayAgainstPlayer *(PrayAgainstPlayer by xKylee ported & modified by piggyplugins)*
-- OneTickSwitcher
-- JadAutoPrayers
-- ItemCombiner
-- HerbCleaner
-- AutoRifts *(Beta / WIP, expect bugs / no pouches atm)*
-- aoewarnings *(OPRS base plugin ported by kotori)*
-- Auto Jug Humidify
-- Cannon Reloader
-- PowerSkiller *Intended to serve as a tutorial plugin for the discord server*
-- Vardorvis Helper
-
-# Instructions
-Simply drag and drop `piggy-loader` into your `sideloaded-plugins` folder.
-
-If you already have EthanApiPlugin on your runelite already, open loader config & disable the option to download EthanApi.
-
-If you don't have a `sideloaded-plugins` folder, you'll want to grab `ethan-api-standalone` from the releases and follow the more detailed instructions in our discord.
-
-
-[![Donate at ko-fi](https://www.ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/0hutch)
+## Support
+If you need help, feel free to add me on Discord (`jarromie`).
