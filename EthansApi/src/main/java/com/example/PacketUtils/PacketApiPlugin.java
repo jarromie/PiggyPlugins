@@ -40,7 +40,7 @@ import java.util.stream.Collectors;
 @Slf4j
 @Singleton
 @PluginDescriptor(
-        name = "Packet Utils",
+        name = "<html><font color=\"#FF9DF9\">[PP]</font> [API] PacketApiPlugin",
         description = "Packet Utils for Plugins",
         enabledByDefault = true,
         tags = {"ethan"}
