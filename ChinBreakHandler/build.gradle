@@ -29,7 +29,7 @@ test {
 task PiggyJar(type: Jar) {
     manifest {
     }
-    baseName = 'chin-break-handler'
+    baseName = 'piggy-break-handler'
     duplicatesStrategy = DuplicatesStrategy.EXCLUDE
     from { configurations.runtimeClasspath.collect { it.isDirectory() ? it : zipTree(it) } }
     with jar
