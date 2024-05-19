@@ -1,28 +1,22 @@
 package com.piggyplugins.AutoAerial;
 
 import com.example.EthanApiPlugin.Collections.*;
-import com.example.EthanApiPlugin.Collections.query.NPCQuery;
-import com.example.EthanApiPlugin.EthanApiPlugin;
-import com.example.PacketUtils.PacketUtilsPlugin;
+import com.example.EthanApiPlugin.EthansApiPlugin;
 import com.example.Packets.MousePackets;
 import com.example.Packets.NPCPackets;
 import com.example.Packets.WidgetPackets;
 import com.google.inject.Inject;
 import com.google.inject.Provides;
-import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 import net.runelite.api.*;
 import net.runelite.api.events.GameTick;
 import net.runelite.api.widgets.Widget;
-import net.runelite.api.widgets.WidgetInfo;
 import net.runelite.client.config.ConfigManager;
 import net.runelite.client.eventbus.Subscribe;
 import net.runelite.client.input.KeyManager;
 import net.runelite.client.plugins.Plugin;
-import net.runelite.client.plugins.PluginDependency;
 import net.runelite.client.plugins.PluginDescriptor;
 import net.runelite.client.util.HotkeyListener;
-import net.runelite.client.util.Text;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -69,7 +63,7 @@ public class AutoAerialPlugin extends Plugin {
     public void onGameTick(GameTick event) {
         Player player = client.getLocalPlayer();
 
-        if (!started || EthanApiPlugin.isMoving()) return;
+        if (!started || EthansApiPlugin.isMoving()) return;
 
 
         if (timeout > 0) {
@@ -134,7 +128,7 @@ public class AutoAerialPlugin extends Plugin {
     }
 
     private boolean runIsOff() {
-        return EthanApiPlugin.getClient().getVarpValue(173) == 0;
+        return EthansApiPlugin.getClient().getVarpValue(173) == 0;
     }
 
     private void checkRunEnergy() {

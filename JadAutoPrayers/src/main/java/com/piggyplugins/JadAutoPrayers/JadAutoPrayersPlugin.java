@@ -1,6 +1,6 @@
 package com.piggyplugins.JadAutoPrayers;
 
-import com.example.EthanApiPlugin.EthanApiPlugin;
+import com.example.EthanApiPlugin.EthansApiPlugin;
 import com.google.inject.Inject;
 import com.google.inject.Provides;
 import com.piggyplugins.PiggyUtils.API.NpcUtil;
@@ -101,7 +101,7 @@ public class JadAutoPrayersPlugin extends Plugin {
     }
 
     private void setupJadPrayers(NPC npc) {
-        int animationID = EthanApiPlugin.getAnimation(npc);
+        int animationID = EthansApiPlugin.getAnimation(npc);
         if (animationID == 2656 || animationID == 7592) {
             prayerMap.put(client.getTickCount() + 2, Prayer.PROTECT_FROM_MAGIC);
         } else if (animationID == 2652 || animationID == 7593) {

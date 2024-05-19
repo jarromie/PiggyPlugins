@@ -1,21 +1,15 @@
 package com.piggyplugins.strategyexample.tasks;
 
 import com.example.EthanApiPlugin.Collections.Bank;
-import com.example.EthanApiPlugin.Collections.Inventory;
 import com.example.EthanApiPlugin.Collections.NPCs;
 import com.example.EthanApiPlugin.Collections.TileObjects;
-import com.example.EthanApiPlugin.EthanApiPlugin;
-import com.example.InteractionApi.NPCInteraction;
-import com.example.InteractionApi.TileObjectInteraction;
+import com.example.EthanApiPlugin.EthansApiPlugin;
 import com.piggyplugins.PiggyUtils.strategy.AbstractTask;
 import com.piggyplugins.strategyexample.StrategySmithConfig;
 import com.piggyplugins.strategyexample.StrategySmithPlugin;
 import lombok.extern.slf4j.Slf4j;
-import net.runelite.api.ChatMessageType;
 import net.runelite.api.NPC;
 import net.runelite.api.TileObject;
-import net.runelite.client.config.Config;
-import net.runelite.client.plugins.Plugin;
 
 import java.util.Optional;
 
@@ -50,8 +44,8 @@ public class OpenBank extends AbstractTask<StrategySmithPlugin, StrategySmithCon
                 interactObject(bank.get(), "Bank");
                 plugin.timeout = config.tickDelay() == 0 ? 1 : config.tickDelay();
             } else {
-                EthanApiPlugin.sendClientMessage("Couldn't find bank or banker");
-                EthanApiPlugin.stopPlugin(plugin);
+                EthansApiPlugin.sendClientMessage("Couldn't find bank or banker");
+                EthansApiPlugin.stopPlugin(plugin);
             }
         }
     }

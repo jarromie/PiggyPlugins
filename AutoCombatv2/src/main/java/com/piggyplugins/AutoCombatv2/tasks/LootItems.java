@@ -1,7 +1,6 @@
 package com.piggyplugins.AutoCombatv2.tasks;
 
 import com.example.EthanApiPlugin.Collections.*;
-import com.example.EthanApiPlugin.EthanApiPlugin;
 import com.example.Packets.MousePackets;
 import com.example.Packets.TileItemPackets;
 import com.piggyplugins.AutoCombatv2.AutoCombatv2Config;
@@ -9,14 +8,7 @@ import com.piggyplugins.PiggyUtils.strategy.AbstractTask;
 import com.piggyplugins.AutoCombatv2.AutoCombatv2Plugin;
 import lombok.extern.slf4j.Slf4j;
 import net.runelite.api.*;
-import net.runelite.client.game.ItemManager;
-import net.runelite.client.game.ItemStack;
 import org.apache.commons.lang3.tuple.Pair;
-
-import java.util.Queue;
-import java.util.concurrent.ConcurrentLinkedQueue;
-
-import java.util.Optional;
 
 @Slf4j
 public class LootItems extends AbstractTask<AutoCombatv2Plugin, AutoCombatv2Config> {

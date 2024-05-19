@@ -2,7 +2,7 @@ package com.piggyplugins.strategyexample;
 
 
 import com.example.EthanApiPlugin.Collections.Inventory;
-import com.example.EthanApiPlugin.EthanApiPlugin;
+import com.example.EthanApiPlugin.EthansApiPlugin;
 import com.example.Packets.*;
 import com.google.inject.Inject;
 import com.google.inject.Provides;
@@ -18,7 +18,6 @@ import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
 import net.runelite.api.*;
 import net.runelite.api.events.GameTick;
-import net.runelite.api.widgets.WidgetInfo;
 import net.runelite.client.callback.ClientThread;
 import net.runelite.client.config.ConfigManager;
 import net.runelite.client.eventbus.Subscribe;
@@ -145,7 +144,7 @@ public class StrategySmithPlugin extends Plugin {
     }
 
     private boolean runIsOff() {
-        return EthanApiPlugin.getClient().getVarpValue(173) == 0;
+        return EthansApiPlugin.getClient().getVarpValue(173) == 0;
     }
 
     private final HotkeyListener toggle = new HotkeyListener(() -> config.toggle()) {

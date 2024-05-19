@@ -1,6 +1,5 @@
 package com.example.EthanApiPlugin.Collections.query;
 
-import com.example.EthanApiPlugin.EthanApiPlugin;
 import com.example.EthanApiPlugin.PathFinding.GlobalCollisionMap;
 import com.example.EthanApiPlugin.Utility.WorldAreaUtility;
 import net.runelite.api.Client;
@@ -9,7 +8,6 @@ import net.runelite.api.TileObject;
 import net.runelite.api.coords.WorldPoint;
 import net.runelite.client.RuneLite;
 
-import javax.swing.text.html.Option;
 import java.util.*;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;

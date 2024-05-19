@@ -1,7 +1,7 @@
 package com.example.PathingTesting;
 
 import com.example.EthanApiPlugin.Collections.TileObjects;
-import com.example.EthanApiPlugin.EthanApiPlugin;
+import com.example.EthanApiPlugin.EthansApiPlugin;
 import com.example.EthanApiPlugin.PathFinding.GlobalCollisionMap;
 import com.example.Packets.MousePackets;
 import com.example.Packets.MovementPackets;
@@ -52,7 +52,7 @@ public class PathingTesting extends Plugin {
         path = null;
         goal = null;
         fullPath = null;
-        overlay = new PathingTestingOverlay(EthanApiPlugin.getClient(), this,config);
+        overlay = new PathingTestingOverlay(EthansApiPlugin.getClient(), this,config);
         overlayManager.add(overlay);
     }
     @Override
@@ -84,9 +84,9 @@ public class PathingTesting extends Plugin {
     private void onConfigChanged(ConfigChanged e) {
         if (e.getGroup().equals("PathingTesting") && e.getKey().equals("run")) {
             currentPathDestination = null;
-            path = GlobalCollisionMap.findPath(new WorldPoint(config.x(), config.y(), EthanApiPlugin.getClient().getPlane()));
+            path = GlobalCollisionMap.findPath(new WorldPoint(config.x(), config.y(), EthansApiPlugin.getClient().getPlane()));
             fullPath = new ArrayList<>(path);
-            goal = new WorldPoint(config.x(), config.y(), EthanApiPlugin.getClient().getPlane());
+            goal = new WorldPoint(config.x(), config.y(), EthansApiPlugin.getClient().getPlane());
         }
         if (e.getGroup().equals("PathingTesting") && e.getKey().equals("stop")) {
             currentPathDestination = null;
@@ -107,14 +107,14 @@ public class PathingTesting extends Plugin {
 //                            System.out.println("Close A: " + x.getOrientationA());
 //                            System.out.println("Close B: " + x.getOrientationB());
                         });
-                System.out.println(getTile(EthanApiPlugin.playerPosition()).getWallObject() == null);
+                System.out.println(getTile(EthansApiPlugin.playerPosition()).getWallObject() == null);
             });
         }
     }
 
     @Subscribe
     private void onGameTick(GameTick e) {
-        if(goal!=null&&goal.equals(EthanApiPlugin.playerPosition())){
+        if(goal!=null&&goal.equals(EthansApiPlugin.playerPosition())){
             System.out.println("reached goal");
             goal = null;
             path = null;
@@ -122,12 +122,12 @@ public class PathingTesting extends Plugin {
             return;
         }
         if (path != null && path.size() >= 1) {
-            if(currentPathDestination !=null&&!currentPathDestination.equals(EthanApiPlugin.playerPosition())&&!EthanApiPlugin.isMoving()){
+            if(currentPathDestination !=null&&!currentPathDestination.equals(EthansApiPlugin.playerPosition())&&!EthansApiPlugin.isMoving()){
                 System.out.println("stopped walking. clicking destination again");
                 MousePackets.queueClickPacket();
                 MovementPackets.queueMovement(currentPathDestination);
             }
-            if (currentPathDestination == null || currentPathDestination.equals(EthanApiPlugin.playerPosition()) || !EthanApiPlugin.isMoving()) {
+            if (currentPathDestination == null || currentPathDestination.equals(EthansApiPlugin.playerPosition()) || !EthansApiPlugin.isMoving()) {
                 int step = rand.nextInt((35 - 10) + 1) + 10;
                 int max = step;
                 for (int i = 0; i < step; i++) {
@@ -138,9 +138,9 @@ public class PathingTesting extends Plugin {
                         }
                     }
                 }
-                if(isDoored(EthanApiPlugin.playerPosition(), path.get(0))){
+                if(isDoored(EthansApiPlugin.playerPosition(), path.get(0))){
                     System.out.println("doored");
-                    WallObject wallObject = getTile(EthanApiPlugin.playerPosition()).getWallObject();
+                    WallObject wallObject = getTile(EthansApiPlugin.playerPosition()).getWallObject();
                     if(wallObject == null){
                         wallObject = getTile(path.get(0)).getWallObject();
                     }
@@ -154,7 +154,7 @@ public class PathingTesting extends Plugin {
                 } else {
                     path = path.subList(step + 1, path.size());
                 }
-                if (currentPathDestination.equals(EthanApiPlugin.playerPosition())) {
+                if (currentPathDestination.equals(EthansApiPlugin.playerPosition())) {
                     return;
                 }
                 System.out.println("taking a step");
@@ -176,7 +176,7 @@ public class PathingTesting extends Plugin {
     private boolean isDoored(Tile a, Tile b) {
         WallObject wallObject = a.getWallObject();
         if (wallObject != null) {
-            ObjectComposition objectComposition = EthanApiPlugin.getClient().getObjectDefinition(wallObject.getId());
+            ObjectComposition objectComposition = EthansApiPlugin.getClient().getObjectDefinition(wallObject.getId());
             if (objectComposition == null) {
                 return false;
             }
@@ -218,7 +218,7 @@ public class PathingTesting extends Plugin {
         if (wallObjectb == null) {
             return false;
         }
-        ObjectComposition objectCompositionb = EthanApiPlugin.getClient().getObjectDefinition(wallObjectb.getId());
+        ObjectComposition objectCompositionb = EthansApiPlugin.getClient().getObjectDefinition(wallObjectb.getId());
         if (objectCompositionb == null) {
             return false;
         }
@@ -259,10 +259,10 @@ public class PathingTesting extends Plugin {
     }
 
     private Tile getTile(WorldPoint point) {
-        LocalPoint a = LocalPoint.fromWorld(EthanApiPlugin.getClient(), point);
+        LocalPoint a = LocalPoint.fromWorld(EthansApiPlugin.getClient(), point);
         if (a == null) {
             return null;
         }
-        return EthanApiPlugin.getClient().getScene().getTiles()[point.getPlane()][a.getSceneX()][a.getSceneY()];
+        return EthansApiPlugin.getClient().getScene().getTiles()[point.getPlane()][a.getSceneX()][a.getSceneY()];
     }
 }

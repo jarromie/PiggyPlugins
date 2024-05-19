@@ -3,7 +3,7 @@ package com.piggyplugins.PiggyUtils.API;
 import com.example.EthanApiPlugin.Collections.Bank;
 import com.example.EthanApiPlugin.Collections.BankInventory;
 import com.example.EthanApiPlugin.Collections.query.ItemQuery;
-import com.example.EthanApiPlugin.EthanApiPlugin;
+import com.example.EthanApiPlugin.EthansApiPlugin;
 import com.example.Packets.MousePackets;
 import com.example.Packets.WidgetPackets;
 import net.runelite.api.widgets.Widget;
@@ -14,7 +14,7 @@ import java.util.Collection;
 public class BankUtil {
 
     public static void depositAll(){
-        Widget depositInventory = EthanApiPlugin.getClient().getWidget(WidgetInfo.BANK_DEPOSIT_INVENTORY);
+        Widget depositInventory = EthansApiPlugin.getClient().getWidget(WidgetInfo.BANK_DEPOSIT_INVENTORY);
         if (depositInventory != null) {
             MousePackets.queueClickPacket();
             WidgetPackets.queueWidgetAction(depositInventory, "Deposit inventory");

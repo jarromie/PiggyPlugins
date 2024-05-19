@@ -1,19 +1,13 @@
 package com.piggyplugins.CannonReloader;
 
-import com.example.EthanApiPlugin.Collections.Bank;
 import com.example.EthanApiPlugin.Collections.Inventory;
-import com.example.EthanApiPlugin.Collections.NPCs;
 import com.example.EthanApiPlugin.Collections.TileObjects;
-import com.example.EthanApiPlugin.EthanApiPlugin;
-import com.example.InteractionApi.BankInteraction;
+import com.example.EthanApiPlugin.EthansApiPlugin;
 import com.example.InteractionApi.InventoryInteraction;
-import com.example.InteractionApi.NPCInteraction;
 import com.example.InteractionApi.TileObjectInteraction;
 import com.example.Packets.MousePackets;
 import com.example.Packets.MovementPackets;
-import com.example.Packets.WidgetPackets;
 import com.google.inject.Provides;
-import com.piggyplugins.PiggyUtils.API.InventoryUtil;
 import com.piggyplugins.PiggyUtils.API.MathUtil;
 import lombok.extern.slf4j.Slf4j;
 import net.runelite.api.*;
@@ -21,8 +15,6 @@ import net.runelite.api.coords.WorldPoint;
 import net.runelite.api.events.GameTick;
 import net.runelite.api.events.MenuEntryAdded;
 import net.runelite.api.events.VarbitChanged;
-import net.runelite.api.widgets.Widget;
-import net.runelite.api.widgets.WidgetInfo;
 import net.runelite.client.callback.ClientThread;
 import net.runelite.client.config.ConfigManager;
 import net.runelite.client.eventbus.Subscribe;
@@ -34,10 +26,6 @@ import net.runelite.client.plugins.PluginDescriptor;
 import com.google.inject.Inject;
 import net.runelite.client.ui.overlay.OverlayManager;
 import net.runelite.client.util.HotkeyListener;
-
-import java.util.Arrays;
-import java.util.List;
-import java.util.stream.Collectors;
 
 @PluginDescriptor(
         name = "<html><font color=\"#FF9DF9\">[PP]</font> Cannon Reloader</html>",
@@ -81,7 +69,7 @@ public class CannonReloaderPlugin extends Plugin {
     protected void startUp() throws Exception {
         if (client.getGameState() != GameState.LOGGED_IN) {
             clientThread.invoke(() -> {
-                EthanApiPlugin.stopPlugin(this);
+                EthansApiPlugin.stopPlugin(this);
             });
             return;
         }
@@ -90,8 +78,8 @@ public class CannonReloaderPlugin extends Plugin {
         remainingCannonballs = 0;
         timeout = 0;
         clientThread.invokeLater(() -> {
-            EthanApiPlugin.sendClientMessage("[Cannon Reloader] Make sure you set your cannon and safespot locations!");
-            EthanApiPlugin.sendClientMessage("[Cannon Reloader] Right click the cannon and the safe spot to set your desired locations.");
+            EthansApiPlugin.sendClientMessage("[Cannon Reloader] Make sure you set your cannon and safespot locations!");
+            EthansApiPlugin.sendClientMessage("[Cannon Reloader] Right click the cannon and the safe spot to set your desired locations.");
         });
     }
 
@@ -174,7 +162,7 @@ public class CannonReloaderPlugin extends Plugin {
     }
 
     private void handleSafespot() {
-        if (safespotTile != null && !EthanApiPlugin.isMoving()) {
+        if (safespotTile != null && !EthansApiPlugin.isMoving()) {
             MousePackets.queueClickPacket();
             MovementPackets.queueMovement(safespotTile);
             timeout = 3;

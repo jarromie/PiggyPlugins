@@ -5,10 +5,9 @@ import com.example.EthanApiPlugin.Collections.Equipment;
 import com.example.EthanApiPlugin.Collections.Inventory;
 import com.example.EthanApiPlugin.Collections.NPCs;
 import com.example.EthanApiPlugin.Collections.TileObjects;
-import com.example.EthanApiPlugin.Collections.query.EquipmentItemQuery;
 import com.example.EthanApiPlugin.Collections.query.ItemQuery;
 import com.example.EthanApiPlugin.Collections.query.NPCQuery;
-import com.example.EthanApiPlugin.EthanApiPlugin;
+import com.example.EthanApiPlugin.EthansApiPlugin;
 import com.example.InteractionApi.TileObjectInteraction;
 import com.example.Packets.*;
 import com.google.inject.Inject;
@@ -17,7 +16,6 @@ import lombok.extern.slf4j.Slf4j;
 import net.runelite.api.*;
 import net.runelite.api.coords.WorldPoint;
 import net.runelite.api.events.GameTick;
-import net.runelite.api.widgets.WidgetInfo;
 import net.runelite.client.callback.ClientThread;
 import net.runelite.client.config.ConfigManager;
 import net.runelite.client.eventbus.Subscribe;
@@ -115,8 +113,8 @@ public class AutoChompyPlugin extends Plugin {
             }).first().ifPresentOrElse(item -> {
                 ammoId = item.getEquipmentItemId();
             }, () -> {
-                EthanApiPlugin.sendClientMessage("No Ogre arrows or Brutal arrows found");
-                EthanApiPlugin.stopPlugin(this);
+                EthansApiPlugin.sendClientMessage("No Ogre arrows or Brutal arrows found");
+                EthansApiPlugin.stopPlugin(this);
             });
         }
         swampToads = NPCs.search().nameContains("wamp toad").withAction("Inflate");
@@ -131,8 +129,8 @@ public class AutoChompyPlugin extends Plugin {
         log.info("Ammo id: " + ammoId);
 //        log.info(getNearestFreeTile().toString());
         if (Equipment.search().withId(ammoId).empty()) {
-            EthanApiPlugin.sendClientMessage("No Ogre arrows or Brutal arrows left");
-            EthanApiPlugin.stopPlugin(this);
+            EthansApiPlugin.sendClientMessage("No Ogre arrows or Brutal arrows left");
+            EthansApiPlugin.stopPlugin(this);
         }
         switch (state) {
             case KILL_BIRD:
@@ -239,12 +237,12 @@ public class AutoChompyPlugin extends Plugin {
     }
 
     private boolean runIsOff() {
-        return EthanApiPlugin.getClient().getVarpValue(173) == 0;
+        return EthansApiPlugin.getClient().getVarpValue(173) == 0;
     }
 
     private boolean isMovingOrInteracting() {
         //a-1026 fill toad & bellow
-        return EthanApiPlugin.isMoving() || client.getLocalPlayer().getAnimation() == 1026 || client.getLocalPlayer().getInteracting() != null;
+        return EthansApiPlugin.isMoving() || client.getLocalPlayer().getAnimation() == 1026 || client.getLocalPlayer().getInteracting() != null;
     }
 
     private final HotkeyListener toggle = new HotkeyListener(() -> config.toggle()) {

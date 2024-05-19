@@ -1,6 +1,6 @@
 package com.example.RunEnabler;
 
-import com.example.EthanApiPlugin.EthanApiPlugin;
+import com.example.EthanApiPlugin.EthansApiPlugin;
 import com.example.Packets.MousePackets;
 import com.example.Packets.WidgetPackets;
 import net.runelite.api.events.GameTick;
@@ -13,7 +13,7 @@ import net.runelite.client.plugins.PluginDescriptor;
 public class RunEnabler extends Plugin {
     @Subscribe
     public void onGameTick(GameTick e) {
-        if (!EthanApiPlugin.loggedIn()) {
+        if (!EthansApiPlugin.loggedIn()) {
             return;
         }
         if (runIsOff() && hasMoreThanZeroEnergy()) {
@@ -22,11 +22,11 @@ public class RunEnabler extends Plugin {
     }
 
     boolean runIsOff() {
-        return EthanApiPlugin.getClient().getVarpValue(173) == 0;
+        return EthansApiPlugin.getClient().getVarpValue(173) == 0;
     }
 
     boolean hasMoreThanZeroEnergy() {
-        return EthanApiPlugin.getClient().getEnergy() > 100;
+        return EthansApiPlugin.getClient().getEnergy() > 100;
     }
 
     void enableRun() {

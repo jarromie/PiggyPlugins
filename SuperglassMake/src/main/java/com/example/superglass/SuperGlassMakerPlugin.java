@@ -4,11 +4,10 @@ import com.example.EthanApiPlugin.Collections.Bank;
 import com.example.EthanApiPlugin.Collections.BankInventory;
 import com.example.EthanApiPlugin.Collections.NPCs;
 import com.example.EthanApiPlugin.Collections.TileObjects;
-import com.example.EthanApiPlugin.EthanApiPlugin;
+import com.example.EthanApiPlugin.EthansApiPlugin;
 import com.example.InteractionApi.BankInteraction;
 import com.example.InteractionApi.NPCInteraction;
 import com.example.InteractionApi.TileObjectInteraction;
-import com.example.PacketUtils.PacketUtilsPlugin;
 import com.example.Packets.MousePackets;
 import com.example.Packets.WidgetPackets;
 import com.google.inject.Inject;
@@ -26,7 +25,6 @@ import net.runelite.api.widgets.WidgetInfo;
 import net.runelite.client.config.ConfigManager;
 import net.runelite.client.eventbus.Subscribe;
 import net.runelite.client.plugins.Plugin;
-import net.runelite.client.plugins.PluginDependency;
 import net.runelite.client.plugins.PluginDescriptor;
 
 import java.lang.reflect.InvocationTargetException;
@@ -76,7 +74,7 @@ public class SuperGlassMakerPlugin extends Plugin {
                 return;
             } else {
                 client.addChatMessage(ChatMessageType.GAMEMESSAGE, "", "couldn't find bank or banker", null);
-                EthanApiPlugin.stopPlugin(this);
+                EthansApiPlugin.stopPlugin(this);
                 return;
             }
         }
@@ -100,7 +98,7 @@ public class SuperGlassMakerPlugin extends Plugin {
             }
             timesFailed++;
             if (timesFailed > 2) {
-                EthanApiPlugin.stopPlugin(this);
+                EthansApiPlugin.stopPlugin(this);
             } else {
                 if (banker.isPresent()) {
                     NPCInteraction.interact(banker.get(), "Bank");
@@ -108,7 +106,7 @@ public class SuperGlassMakerPlugin extends Plugin {
                     TileObjectInteraction.interact(bank.get(), "Bank");
                 } else {
                     client.addChatMessage(ChatMessageType.GAMEMESSAGE, "", "couldn't find bank or banker", null);
-                    EthanApiPlugin.stopPlugin(this);
+                    EthansApiPlugin.stopPlugin(this);
                     return;
                 }
             }
@@ -125,7 +123,7 @@ public class SuperGlassMakerPlugin extends Plugin {
         boolean secondaryWithdrawn = handleSecondary();
         if (!secondaryWithdrawn) {
             client.addChatMessage(ChatMessageType.GAMEMESSAGE, "", "no secondary stop plugin", null);
-            EthanApiPlugin.stopPlugin(this);
+            EthansApiPlugin.stopPlugin(this);
             return;
         }
         if (banker.isPresent()) {
@@ -134,7 +132,7 @@ public class SuperGlassMakerPlugin extends Plugin {
             TileObjectInteraction.interact(bank.get(), "Bank");
         } else {
             client.addChatMessage(ChatMessageType.GAMEMESSAGE, "", "couldn't find bank or banker try 2", null);
-            EthanApiPlugin.stopPlugin(this);
+            EthansApiPlugin.stopPlugin(this);
             return;
         }
         MousePackets.queueClickPacket();

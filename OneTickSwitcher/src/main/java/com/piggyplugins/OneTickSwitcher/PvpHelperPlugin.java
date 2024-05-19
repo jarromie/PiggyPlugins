@@ -2,7 +2,7 @@ package com.piggyplugins.OneTickSwitcher;
 
 import com.example.EthanApiPlugin.Collections.Inventory;
 import com.example.EthanApiPlugin.Collections.Players;
-import com.example.EthanApiPlugin.EthanApiPlugin;
+import com.example.EthanApiPlugin.EthansApiPlugin;
 import com.example.InteractionApi.InventoryInteraction;
 import com.example.Packets.PlayerPackets;
 import com.google.inject.Inject;
@@ -234,7 +234,7 @@ public class PvpHelperPlugin extends Plugin {
         }
 
         target = player;
-        EthanApiPlugin.sendClientMessage("[PVP Helper] "  + target.getName() + " focused.");
+        EthansApiPlugin.sendClientMessage("[PVP Helper] "  + target.getName() + " focused.");
         if (config.showOverlay()) {
             // This might need to be done on the client thread, but unsure.
             // come back to it later I guess.
@@ -264,14 +264,14 @@ public class PvpHelperPlugin extends Plugin {
                     valueOverlay.setItemValue(0);
                     valueOverlay.setHidden(true);
                 }
-                EthanApiPlugin.sendClientMessage("[PVP Helper] Unable to focus target player");
+                EthansApiPlugin.sendClientMessage("[PVP Helper] Unable to focus target player");
                 return;
             }
 
             focusTarget(targetPlayer.get());
         } else if (entry.getOption().equals("Reset Target")) {
             target = null;
-            EthanApiPlugin.sendClientMessage("[PVP Helper] Target unfocused.");
+            EthansApiPlugin.sendClientMessage("[PVP Helper] Target unfocused.");
             if (config.showOverlay()) {
                 valueOverlay.setItemValue(0);
                 valueOverlay.setHidden(true);
@@ -400,7 +400,7 @@ public class PvpHelperPlugin extends Plugin {
         public void hotkeyPressed() {
             if (target == null) {
                 clientThread.invoke(() -> {
-                    EthanApiPlugin.sendClientMessage("[PVP Helper] Focus a target before casting a spell.");
+                    EthansApiPlugin.sendClientMessage("[PVP Helper] Focus a target before casting a spell.");
                 });
             }
 
@@ -413,7 +413,7 @@ public class PvpHelperPlugin extends Plugin {
         public void hotkeyPressed() {
             if (target == null) {
                 clientThread.invoke(() -> {
-                    EthanApiPlugin.sendClientMessage("[PVP Helper] Focus a target before casting a spell.");
+                    EthansApiPlugin.sendClientMessage("[PVP Helper] Focus a target before casting a spell.");
                 });
             }
 
@@ -426,7 +426,7 @@ public class PvpHelperPlugin extends Plugin {
         public void hotkeyPressed() {
             if (target == null) {
                 clientThread.invoke(() -> {
-                    EthanApiPlugin.sendClientMessage("[PVP Helper] Focus a target before casting a spell.");
+                    EthansApiPlugin.sendClientMessage("[PVP Helper] Focus a target before casting a spell.");
                 });
             }
 

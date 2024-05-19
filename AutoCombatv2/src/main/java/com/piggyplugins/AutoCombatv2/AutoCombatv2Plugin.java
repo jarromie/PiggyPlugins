@@ -1,7 +1,7 @@
 package com.piggyplugins.AutoCombatv2;
 
 
-import com.example.EthanApiPlugin.EthanApiPlugin;
+import com.example.EthanApiPlugin.EthansApiPlugin;
 import com.example.Packets.*;
 import com.google.inject.Inject;
 import com.google.inject.Provides;
@@ -151,7 +151,7 @@ public class AutoCombatv2Plugin extends Plugin {
     }
 
     private boolean runIsOff() {
-        return EthanApiPlugin.getClient().getVarpValue(173) == 0;
+        return EthansApiPlugin.getClient().getVarpValue(173) == 0;
     }
 
     private final HotkeyListener toggle = new HotkeyListener(() -> config.toggle()) {

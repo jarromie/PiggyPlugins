@@ -2,8 +2,7 @@ package com.example.harpoon2ticker;
 
 import com.example.EthanApiPlugin.Collections.Inventory;
 import com.example.EthanApiPlugin.Collections.NPCs;
-import com.example.EthanApiPlugin.EthanApiPlugin;
-import com.example.PacketUtils.PacketUtilsPlugin;
+import com.example.EthanApiPlugin.EthansApiPlugin;
 import com.example.Packets.MousePackets;
 import com.example.Packets.MovementPackets;
 import com.example.Packets.NPCPackets;
@@ -19,7 +18,6 @@ import net.runelite.api.widgets.Widget;
 import net.runelite.client.Notifier;
 import net.runelite.client.eventbus.Subscribe;
 import net.runelite.client.plugins.Plugin;
-import net.runelite.client.plugins.PluginDependency;
 import net.runelite.client.plugins.PluginDescriptor;
 
 import java.util.ArrayList;
@@ -87,7 +85,7 @@ public class SwordFish2Tick extends Plugin {
         } else {
             if (client.getTickCount() - lastHitsplat != 2) {
                 notifier.notify("2 tick fisher failed somehow");
-                EthanApiPlugin.stopPlugin(this);
+                EthansApiPlugin.stopPlugin(this);
                 return;
             }
             lastHitsplat = client.getTickCount();

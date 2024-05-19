@@ -1,7 +1,7 @@
 package com.example.InteractionApi;
 
 import com.example.EthanApiPlugin.Collections.Bank;
-import com.example.EthanApiPlugin.EthanApiPlugin;
+import com.example.EthanApiPlugin.EthansApiPlugin;
 import com.example.Packets.MousePackets;
 import com.example.Packets.WidgetPackets;
 import net.runelite.api.widgets.Widget;
@@ -38,16 +38,16 @@ public class BankInteraction {
         }).orElse(false);
     }
     public static void withdrawX(Widget item, int amount){
-        if(EthanApiPlugin.getClient().getVarbitValue(WITHDRAW_QUANTITY)==amount){
+        if(EthansApiPlugin.getClient().getVarbitValue(WITHDRAW_QUANTITY)==amount){
             MousePackets.queueClickPacket();
             WidgetPackets.queueWidgetActionPacket(5,item.getId(),item.getItemId(), item.getIndex());
             return;
         }
         BankInteraction.useItem(item,"Withdraw-X");
-        EthanApiPlugin.getClient().setVarcStrValue(359,Integer.toString(amount));
-        EthanApiPlugin.getClient().setVarcIntValue(5,7);
-        EthanApiPlugin.getClient().runScript(681);
-        EthanApiPlugin.getClient().setVarbit(WITHDRAW_QUANTITY,amount);
+        EthansApiPlugin.getClient().setVarcStrValue(359,Integer.toString(amount));
+        EthansApiPlugin.getClient().setVarcIntValue(5,7);
+        EthansApiPlugin.getClient().runScript(681);
+        EthansApiPlugin.getClient().setVarbit(WITHDRAW_QUANTITY,amount);
     }
 
     public static boolean useItemIndex(int index, String... actions) {

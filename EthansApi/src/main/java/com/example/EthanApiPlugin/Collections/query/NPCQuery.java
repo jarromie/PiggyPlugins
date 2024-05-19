@@ -1,9 +1,8 @@
 package com.example.EthanApiPlugin.Collections.query;
 
 import com.example.EthanApiPlugin.Collections.Players;
-import com.example.EthanApiPlugin.EthanApiPlugin;
+import com.example.EthanApiPlugin.EthansApiPlugin;
 import com.example.EthanApiPlugin.PathFinding.GlobalCollisionMap;
-import com.example.EthanApiPlugin.Utility.WorldAreaUtility;
 import net.runelite.api.*;
 import net.runelite.api.coords.WorldArea;
 import net.runelite.api.coords.WorldPoint;
@@ -130,7 +129,7 @@ public class NPCQuery {
     }
 
     public NPCQuery walkable() {
-        npcs = npcs.stream().filter(npc -> EthanApiPlugin.canPathToTile(npc.getWorldLocation()).isReachable()).collect(Collectors.toList());
+        npcs = npcs.stream().filter(npc -> EthansApiPlugin.canPathToTile(npc.getWorldLocation()).isReachable()).collect(Collectors.toList());
         return this;
     }
 

@@ -1,9 +1,8 @@
 package com.example.NightmareHelper;
 
 import com.example.EthanApiPlugin.Collections.query.QuickPrayer;
-import com.example.EthanApiPlugin.EthanApiPlugin;
+import com.example.EthanApiPlugin.EthansApiPlugin;
 import com.example.InteractionApi.InteractionHelper;
-import com.example.PacketUtils.PacketUtilsPlugin;
 import com.example.Packets.MousePackets;
 import com.example.Packets.WidgetPackets;
 import com.google.inject.Inject;
@@ -16,7 +15,6 @@ import net.runelite.api.events.NpcSpawned;
 import net.runelite.api.widgets.WidgetInfo;
 import net.runelite.client.eventbus.Subscribe;
 import net.runelite.client.plugins.Plugin;
-import net.runelite.client.plugins.PluginDependency;
 import net.runelite.client.plugins.PluginDescriptor;
 
 import java.util.Arrays;
@@ -56,7 +54,7 @@ public class NightmareHelperPlugin extends Plugin {
             forceTab = true;
         }
         handlePrayer();
-        if (EthanApiPlugin.isQuickPrayerEnabled()) {
+        if (EthansApiPlugin.isQuickPrayerEnabled()) {
             InteractionHelper.togglePrayer();
         }
         InteractionHelper.togglePrayer();
@@ -91,13 +89,13 @@ public class NightmareHelperPlugin extends Plugin {
         }
         if (shouldPray == PROTECT_FROM_MAGIC) {
             if (!cursed) {
-                if (!EthanApiPlugin.isQuickPrayerActive(PROTECT_FROM_MAGIC)) {
+                if (!EthansApiPlugin.isQuickPrayerActive(PROTECT_FROM_MAGIC)) {
                     MousePackets.queueClickPacket();
                     WidgetPackets.queueWidgetActionPacket(1, 5046276, -1, 12); //quickPrayer magic
                 }
                 return;
             }
-            if (!EthanApiPlugin.isQuickPrayerActive(PROTECT_FROM_MELEE)) {
+            if (!EthansApiPlugin.isQuickPrayerActive(PROTECT_FROM_MELEE)) {
                 MousePackets.queueClickPacket();
                 WidgetPackets.queueWidgetActionPacket(1, 5046276, -1, 14); //quickPrayer melee
             }
@@ -105,13 +103,13 @@ public class NightmareHelperPlugin extends Plugin {
         }
         if (shouldPray == PROTECT_FROM_MELEE) {
             if (!cursed) {
-                if (!EthanApiPlugin.isQuickPrayerActive(PROTECT_FROM_MELEE)) {
+                if (!EthansApiPlugin.isQuickPrayerActive(PROTECT_FROM_MELEE)) {
                     MousePackets.queueClickPacket();
                     WidgetPackets.queueWidgetActionPacket(1, 5046276, -1, 14); //quickPrayer melee
                 }
                 return;
             }
-            if (!EthanApiPlugin.isQuickPrayerActive(PROTECT_FROM_MISSILES)) {
+            if (!EthansApiPlugin.isQuickPrayerActive(PROTECT_FROM_MISSILES)) {
                 MousePackets.queueClickPacket();
                 WidgetPackets.queueWidgetActionPacket(1, 5046276, -1, 13); //quickPrayer range
             }
@@ -119,13 +117,13 @@ public class NightmareHelperPlugin extends Plugin {
         }
         if (shouldPray == PROTECT_FROM_MISSILES) {
             if (!cursed) {
-                if (!EthanApiPlugin.isQuickPrayerActive(PROTECT_FROM_MISSILES)) {
+                if (!EthansApiPlugin.isQuickPrayerActive(PROTECT_FROM_MISSILES)) {
                     MousePackets.queueClickPacket();
                     WidgetPackets.queueWidgetActionPacket(1, 5046276, -1, 13); //quickPrayer range
                 }
                 return;
             }
-            if (!EthanApiPlugin.isQuickPrayerActive(PROTECT_FROM_MAGIC)) {
+            if (!EthansApiPlugin.isQuickPrayerActive(PROTECT_FROM_MAGIC)) {
                 MousePackets.queueClickPacket();
                 WidgetPackets.queueWidgetActionPacket(1, 5046276, -1, 12); //quickPrayer magic
             }

@@ -1,13 +1,9 @@
 package com.piggyplugins.AutoSmith;
 
 import com.example.EthanApiPlugin.Collections.*;
-import com.example.EthanApiPlugin.Collections.query.ItemQuery;
-import com.example.EthanApiPlugin.EthanApiPlugin;
-import com.example.InteractionApi.BankInteraction;
+import com.example.EthanApiPlugin.EthansApiPlugin;
 import com.example.InteractionApi.NPCInteraction;
 import com.example.InteractionApi.TileObjectInteraction;
-import com.example.PacketUtils.PacketUtilsPlugin;
-import com.example.PacketUtils.WidgetInfoExtended;
 import com.example.Packets.MousePackets;
 import com.example.Packets.WidgetPackets;
 import com.google.inject.Inject;
@@ -17,7 +13,6 @@ import com.piggyplugins.PiggyUtils.API.PlayerUtil;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 import net.runelite.api.*;
-import net.runelite.api.coords.LocalPoint;
 import net.runelite.api.events.GameTick;
 import net.runelite.api.widgets.Widget;
 import net.runelite.api.widgets.WidgetInfo;
@@ -25,14 +20,11 @@ import net.runelite.client.config.ConfigManager;
 import net.runelite.client.eventbus.Subscribe;
 import net.runelite.client.input.KeyManager;
 import net.runelite.client.plugins.Plugin;
-import net.runelite.client.plugins.PluginDependency;
 import net.runelite.client.plugins.PluginDescriptor;
 import net.runelite.client.ui.overlay.OverlayManager;
 import net.runelite.client.util.HotkeyListener;
 
-import java.lang.reflect.InvocationTargetException;
 import java.util.Optional;
-import java.util.function.Predicate;
 
 @PluginDescriptor(name = "<html><font color=\"#7ecbf2\">[PJ]</font>AutoSmith</html>",
         description = "",
@@ -161,7 +153,7 @@ public class AutoSmith extends Plugin {
                 timeout = config.tickDelay() == 0 ? 1 : config.tickDelay();
             } else {
                 client.addChatMessage(ChatMessageType.GAMEMESSAGE, "", "Couldn't find bank or banker", null);
-                EthanApiPlugin.stopPlugin(this);
+                EthansApiPlugin.stopPlugin(this);
             }
         }
     }
@@ -181,22 +173,22 @@ public class AutoSmith extends Plugin {
 //            BankInteraction.withdrawX(hammer, 1);
         }, () -> {
             if (Inventory.getItemAmount("Hammer") > 0) return;
-            EthanApiPlugin.sendClientMessage("No hammer in bank or inventory");
-            EthanApiPlugin.stopPlugin(this);
+            EthansApiPlugin.sendClientMessage("No hammer in bank or inventory");
+            EthansApiPlugin.stopPlugin(this);
         });
         Bank.search().withName(config.bar().getName()).first().ifPresentOrElse(bar -> {
 //            BankInteraction.withdrawX(bar, 27);
             MousePackets.queueClickPacket();
             WidgetPackets.queueWidgetAction(bar, "Withdraw-All");
         }, () -> {
-            EthanApiPlugin.sendClientMessage("No bars left");
-            EthanApiPlugin.stopPlugin(this);
+            EthansApiPlugin.sendClientMessage("No bars left");
+            EthansApiPlugin.stopPlugin(this);
         });
         timeout = config.tickDelay();
     }
 
     private boolean runIsOff() {
-        return EthanApiPlugin.getClient().getVarpValue(173) == 0;
+        return EthansApiPlugin.getClient().getVarpValue(173) == 0;
     }
 
     private void checkRunEnergy() {

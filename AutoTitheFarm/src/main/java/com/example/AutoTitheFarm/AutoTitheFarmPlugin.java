@@ -4,10 +4,9 @@ import com.example.EthanApiPlugin.Collections.Inventory;
 import com.example.EthanApiPlugin.Collections.TileObjects;
 import com.example.EthanApiPlugin.Collections.Widgets;
 import com.example.EthanApiPlugin.Collections.query.ItemQuery;
-import com.example.EthanApiPlugin.EthanApiPlugin;
+import com.example.EthanApiPlugin.EthansApiPlugin;
 import com.example.InteractionApi.InventoryInteraction;
 import com.example.InteractionApi.TileObjectInteraction;
-import com.example.PacketUtils.PacketUtilsPlugin;
 import com.example.Packets.MousePackets;
 import com.example.Packets.MovementPackets;
 import com.example.Packets.ObjectPackets;
@@ -25,7 +24,6 @@ import net.runelite.client.callback.ClientThread;
 import net.runelite.client.config.ConfigManager;
 import net.runelite.client.eventbus.Subscribe;
 import net.runelite.client.plugins.Plugin;
-import net.runelite.client.plugins.PluginDependency;
 import net.runelite.client.plugins.PluginDescriptor;
 import net.runelite.client.ui.overlay.OverlayManager;
 
@@ -37,8 +35,8 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import static com.example.EthanApiPlugin.Collections.query.TileObjectQuery.getObjectComposition;
-import static com.example.EthanApiPlugin.EthanApiPlugin.sendClientMessage;
-import static com.example.EthanApiPlugin.EthanApiPlugin.stopPlugin;
+import static com.example.EthanApiPlugin.EthansApiPlugin.sendClientMessage;
+import static com.example.EthanApiPlugin.EthansApiPlugin.stopPlugin;
 import static com.example.PacketUtils.PacketReflection.client;
 
 @Slf4j
@@ -385,7 +383,7 @@ public class AutoTitheFarmPlugin extends Plugin {
         dePopulateList(fourthPhaseObjectsToFocus);
 
         // if 5 ticks have passed and no any actions have been made within time limit then something went horribly wrong.
-        final boolean isPlayerMoving = EthanApiPlugin.isMoving() || client.getLocalPlayer().getAnimation() != -1;
+        final boolean isPlayerMoving = EthansApiPlugin.isMoving() || client.getLocalPlayer().getAnimation() != -1;
         if (actionDelayHandler.getLastActionTimer() > (startingNewRun() ? 2 : 5) && !isPlayerMoving && actionDelayHandler.isWaitForAction()) {
             actionDelayHandler.setWaitForAction(false);
             log.info("Setting action delay to false");
@@ -438,7 +436,7 @@ public class AutoTitheFarmPlugin extends Plugin {
             }
 
             // whether to trigger earlier if running.
-            int runEnergyExtraDeviation = EthanApiPlugin.isMoving() ? runEnergyDeviation + 5 : runEnergyDeviation;
+            int runEnergyExtraDeviation = EthansApiPlugin.isMoving() ? runEnergyDeviation + 5 : runEnergyDeviation;
             if (runEnergy <= runEnergyExtraDeviation) {
                 needToRestoreRunEnergy = true;
             }
@@ -448,7 +446,7 @@ public class AutoTitheFarmPlugin extends Plugin {
             }
 
             if (defaultStartingPos != null && !client.getLocalPlayer().getWorldLocation().equals(defaultStartingPos)) {
-                if (!EthanApiPlugin.isMoving()) {
+                if (!EthansApiPlugin.isMoving()) {
                     MousePackets.queueClickPacket();
                     MovementPackets.queueMovement(defaultStartingPos);
                     log.info("Moving to starting position");

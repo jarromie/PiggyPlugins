@@ -1,9 +1,7 @@
 package com.example.UpkeepPlugin;
 
 import com.example.EthanApiPlugin.Collections.Inventory;
-import com.example.EthanApiPlugin.EthanApiPlugin;
 import com.example.InteractionApi.InventoryInteraction;
-import com.example.PacketUtils.PacketUtilsPlugin;
 import com.google.inject.Inject;
 import com.google.inject.Provides;
 import lombok.SneakyThrows;
@@ -17,7 +15,6 @@ import net.runelite.api.widgets.Widget;
 import net.runelite.client.config.ConfigManager;
 import net.runelite.client.eventbus.Subscribe;
 import net.runelite.client.plugins.Plugin;
-import net.runelite.client.plugins.PluginDependency;
 import net.runelite.client.plugins.PluginDescriptor;
 import org.apache.commons.lang3.StringUtils;
 

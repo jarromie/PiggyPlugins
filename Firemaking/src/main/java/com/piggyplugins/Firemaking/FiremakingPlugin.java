@@ -2,12 +2,11 @@ package com.piggyplugins.Firemaking;
 
 import com.example.EthanApiPlugin.Collections.*;
 import com.example.EthanApiPlugin.Collections.query.TileObjectQuery;
-import com.example.EthanApiPlugin.EthanApiPlugin;
+import com.example.EthanApiPlugin.EthansApiPlugin;
 import com.example.InteractionApi.BankInteraction;
 import com.example.Packets.*;
 import com.google.inject.Inject;
 import com.google.inject.Provides;
-import com.piggyplugins.PiggyUtils.API.InventoryUtil;
 import com.piggyplugins.PiggyUtils.API.MathUtil;
 import lombok.extern.slf4j.Slf4j;
 import net.runelite.api.*;
@@ -101,7 +100,7 @@ public class FiremakingPlugin extends Plugin {
 
     @Subscribe
     private void onGameTick(GameTick event) {
-        if (client.getGameState() != GameState.LOGGED_IN || !started || EthanApiPlugin.isMoving() || client.getLocalPlayer().getAnimation() != -1) {
+        if (client.getGameState() != GameState.LOGGED_IN || !started || EthansApiPlugin.isMoving() || client.getLocalPlayer().getAnimation() != -1) {
             return;
         }
 

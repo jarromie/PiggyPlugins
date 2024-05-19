@@ -4,8 +4,7 @@ import com.example.EthanApiPlugin.Collections.Bank;
 import com.example.EthanApiPlugin.Collections.Inventory;
 import com.example.EthanApiPlugin.Collections.NPCs;
 import com.example.EthanApiPlugin.Collections.TileObjects;
-import com.example.EthanApiPlugin.Collections.query.TileObjectQuery;
-import com.example.EthanApiPlugin.EthanApiPlugin;
+import com.example.EthanApiPlugin.EthansApiPlugin;
 import com.example.InteractionApi.BankInteraction;
 import com.example.InteractionApi.InventoryInteraction;
 import com.example.InteractionApi.NPCInteraction;
@@ -30,7 +29,6 @@ import net.runelite.client.plugins.PluginDescriptor;
 import net.runelite.client.ui.overlay.OverlayManager;
 import net.runelite.client.util.HotkeyListener;
 
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -152,7 +150,7 @@ public class HerbCleanerPlugin extends Plugin {
         }
         if (!chest.isPresent() && !booth.isPresent() && !banker.isPresent()){
             client.addChatMessage(ChatMessageType.GAMEMESSAGE, "", "couldn't find bank or banker", null);
-            EthanApiPlugin.stopPlugin(this);
+            EthansApiPlugin.stopPlugin(this);
         }
     }
 

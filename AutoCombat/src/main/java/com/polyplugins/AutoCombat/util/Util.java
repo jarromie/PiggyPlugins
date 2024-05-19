@@ -1,17 +1,12 @@
 package com.polyplugins.AutoCombat.util;
 
-import com.example.EthanApiPlugin.Collections.Inventory;
 import com.example.EthanApiPlugin.Collections.NPCs;
 import com.example.EthanApiPlugin.Collections.query.NPCQuery;
-import com.example.EthanApiPlugin.EthanApiPlugin;
-import com.example.Packets.MovementPackets;
 import com.google.inject.Inject;
 import com.polyplugins.AutoCombat.AutoCombatConfig;
 import lombok.extern.slf4j.Slf4j;
 import net.runelite.api.*;
-import net.runelite.api.widgets.Widget;
 import net.runelite.client.callback.ClientThread;
-import net.runelite.client.game.ItemManager;
 
 import java.util.Arrays;
 import java.util.List;

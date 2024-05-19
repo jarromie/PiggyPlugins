@@ -1,6 +1,6 @@
 package com.example.InteractionApi;
 
-import com.example.EthanApiPlugin.EthanApiPlugin;
+import com.example.EthanApiPlugin.EthansApiPlugin;
 import com.example.PacketUtils.WidgetInfoExtended;
 import com.example.Packets.MousePackets;
 import com.example.Packets.WidgetPackets;
@@ -42,17 +42,17 @@ public class PrayerInteraction {
         prayerMap.put(Prayer.MYSTIC_WILL,WidgetInfoExtended.PRAYER_MYSTIC_WILL);
     }
     public static void togglePrayer(Prayer a){
-        if(EthanApiPlugin.getClient().getVarbitValue(a.getVarbit())==0){
-            EthanApiPlugin.getClient().setVarbit(a.getVarbit(),1);
+        if(EthansApiPlugin.getClient().getVarbitValue(a.getVarbit())==0){
+            EthansApiPlugin.getClient().setVarbit(a.getVarbit(),1);
         }else{
-            EthanApiPlugin.getClient().setVarbit(a.getVarbit(),0);
+            EthansApiPlugin.getClient().setVarbit(a.getVarbit(),0);
         }
         MousePackets.queueClickPacket();
         WidgetInfoExtended prayerWidgetExtended = prayerMap.get(a);
         WidgetPackets.queueWidgetActionPacket(1, prayerWidgetExtended.getPackedId(), -1,-1);
     }
     public static void setPrayerState(Prayer prayer,boolean on){
-        if(EthanApiPlugin.getClient().isPrayerActive(prayer) != on){
+        if(EthansApiPlugin.getClient().isPrayerActive(prayer) != on){
             togglePrayer(prayer);
         }
     }

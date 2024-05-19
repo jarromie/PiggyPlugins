@@ -39,7 +39,7 @@ import static net.runelite.api.Varbits.QUICK_PRAYER;
         tags = {"ethan"},
         hidden = false
 )
-public class EthanApiPlugin extends Plugin {
+public class EthansApiPlugin extends Plugin {
 
     static ClientUI clientUI = RuneLite.getInjector().getInstance(ClientUI.class);
     static Client client = RuneLite.getInjector().getInstance(Client.class);
@@ -674,7 +674,7 @@ public class EthanApiPlugin extends Plugin {
         ArrayList<List<WorldPoint>> paths = new ArrayList<>();
         paths.add(List.of(client.getLocalPlayer().getWorldLocation()));
         HashSet<WorldPoint> walkableTiles = new HashSet<>(reachableTiles());
-        HashSet<WorldPoint> impassibleTiles = new HashSet<>(EthanApiPlugin.sceneWorldPoints());
+        HashSet<WorldPoint> impassibleTiles = new HashSet<>(EthansApiPlugin.sceneWorldPoints());
         impassibleTiles.removeIf(walkableTiles::contains);
         HashSet<WorldPoint> goalSet = new HashSet<>();
         goalSet.add(goal);
@@ -685,7 +685,7 @@ public class EthanApiPlugin extends Plugin {
         ArrayList<List<WorldPoint>> paths = new ArrayList<>();
         paths.add(List.of(client.getLocalPlayer().getWorldLocation()));
         HashSet<WorldPoint> walkableTiles = new HashSet<>(reachableTiles());
-        HashSet<WorldPoint> impassibleTiles = new HashSet<>(EthanApiPlugin.sceneWorldPoints());
+        HashSet<WorldPoint> impassibleTiles = new HashSet<>(EthansApiPlugin.sceneWorldPoints());
         impassibleTiles.removeIf(walkableTiles::contains);
         return pathToGoal(goalSet, paths, impassibleTiles, dangerous, new HashSet<>(reachableTiles()), new HashSet<>());
     }

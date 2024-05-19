@@ -5,7 +5,7 @@ import com.example.EthanApiPlugin.Collections.ETileItem;
 import com.example.EthanApiPlugin.Collections.Inventory;
 import com.example.EthanApiPlugin.Collections.NPCs;
 import com.example.EthanApiPlugin.Collections.TileItems;
-import com.example.EthanApiPlugin.EthanApiPlugin;
+import com.example.EthanApiPlugin.EthansApiPlugin;
 import com.example.InteractionApi.InventoryInteraction;
 import com.example.Packets.*;
 import com.google.inject.Inject;
@@ -146,7 +146,7 @@ public class AutoCombatPlugin extends Plugin {
             timeout--;
             return;
         }
-        if (client.getGameState() != GameState.LOGGED_IN || EthanApiPlugin.isMoving() || !started) {
+        if (client.getGameState() != GameState.LOGGED_IN || EthansApiPlugin.isMoving() || !started) {
             return;
         }
 
@@ -235,8 +235,8 @@ public class AutoCombatPlugin extends Plugin {
                 if (!Inventory.full()) {
                     item.interact(false);
                 } else {
-                    EthanApiPlugin.sendClientMessage("Inventory full, stopping. May handle in future update");
-                    EthanApiPlugin.stopPlugin(this);
+                    EthansApiPlugin.sendClientMessage("Inventory full, stopping. May handle in future update");
+                    EthansApiPlugin.stopPlugin(this);
                 }
             });
             timeout = 3;
@@ -357,7 +357,7 @@ public class AutoCombatPlugin extends Plugin {
                     InventoryInteraction.useItem(supplies.findTeleport(), "Break");
                 }
                 if (config.shutdownOnTaskDone()) {
-                    EthanApiPlugin.sendClientMessage("Task done, stopping");
+                    EthansApiPlugin.sendClientMessage("Task done, stopping");
                     resetEverything();
                 }
             }
@@ -385,7 +385,7 @@ public class AutoCombatPlugin extends Plugin {
     public void onGameStateChanged(GameStateChanged event) {
         GameState state = event.getGameState();
         if (state == GameState.HOPPING || state == GameState.LOGGED_IN) return;
-        EthanApiPlugin.stopPlugin(this);
+        EthansApiPlugin.stopPlugin(this);
     }
 
     private void checkRunEnergy() {
@@ -396,7 +396,7 @@ public class AutoCombatPlugin extends Plugin {
     }
 
     private boolean runIsOff() {
-        return EthanApiPlugin.getClient().getVarpValue(173) == 0;
+        return EthansApiPlugin.getClient().getVarpValue(173) == 0;
     }
 
 //    private void reloadCannon() {

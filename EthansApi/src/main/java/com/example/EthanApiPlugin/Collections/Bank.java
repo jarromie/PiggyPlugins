@@ -1,7 +1,7 @@
 package com.example.EthanApiPlugin.Collections;
 
 import com.example.EthanApiPlugin.Collections.query.ItemQuery;
-import com.example.EthanApiPlugin.EthanApiPlugin;
+import com.example.EthanApiPlugin.EthansApiPlugin;
 import net.runelite.api.Client;
 import net.runelite.api.GameState;
 import net.runelite.api.InventoryID;
@@ -37,11 +37,11 @@ public class Bank {
                         i++;
                         continue;
                     }
-                    if (EthanApiPlugin.itemDefs.get(item.getId()).getPlaceholderTemplateId() == 14401) {
+                    if (EthansApiPlugin.itemDefs.get(item.getId()).getPlaceholderTemplateId() == 14401) {
                         i++;
                         continue;
                     }
-                    Bank.bankItems.add(new BankItemWidget(EthanApiPlugin.itemDefs.get(item.getId()).getName(), item.getId(), item.getQuantity(), i));
+                    Bank.bankItems.add(new BankItemWidget(EthansApiPlugin.itemDefs.get(item.getId()).getName(), item.getId(), item.getQuantity(), i));
                 } catch (NullPointerException | ExecutionException ex) {
                     //todo fix this
                 }

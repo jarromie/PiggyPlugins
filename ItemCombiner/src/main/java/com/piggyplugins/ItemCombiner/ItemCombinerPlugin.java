@@ -5,8 +5,7 @@ import com.example.EthanApiPlugin.Collections.BankInventory;
 import com.example.EthanApiPlugin.Collections.Inventory;
 import com.example.EthanApiPlugin.Collections.NPCs;
 import com.example.EthanApiPlugin.Collections.TileObjects;
-import com.example.EthanApiPlugin.Collections.query.TileObjectQuery;
-import com.example.EthanApiPlugin.EthanApiPlugin;
+import com.example.EthanApiPlugin.EthansApiPlugin;
 import com.example.InteractionApi.BankInteraction;
 import com.example.InteractionApi.NPCInteraction;
 import com.example.InteractionApi.TileObjectInteraction;
@@ -22,10 +21,7 @@ import net.runelite.api.ChatMessageType;
 import net.runelite.api.Client;
 import net.runelite.api.GameState;
 import net.runelite.api.NPC;
-import net.runelite.api.ObjectComposition;
-import net.runelite.api.Player;
 import net.runelite.api.TileObject;
-import net.runelite.api.events.AnimationChanged;
 import net.runelite.api.events.GameTick;
 import net.runelite.api.widgets.Widget;
 import net.runelite.api.widgets.WidgetInfo;
@@ -37,7 +33,6 @@ import net.runelite.client.plugins.PluginDescriptor;
 import net.runelite.client.ui.overlay.OverlayManager;
 import net.runelite.client.util.HotkeyListener;
 
-import java.util.Arrays;
 import java.util.Optional;
 
 @PluginDescriptor(
@@ -93,7 +88,7 @@ public class ItemCombinerPlugin extends Plugin {
     private void onGameTick(GameTick event) {
         if (client.getGameState() != GameState.LOGGED_IN
                 || !started
-                || EthanApiPlugin.isMoving()
+                || EthansApiPlugin.isMoving()
                 || client.getLocalPlayer().getAnimation() != -1
                 || breakHandler.isBreakActive(this)) {
             afkTicks = 0;
@@ -146,7 +141,7 @@ public class ItemCombinerPlugin extends Plugin {
         }
         if (!chest.isPresent() && !booth.isPresent() && !banker.isPresent()){
             client.addChatMessage(ChatMessageType.GAMEMESSAGE, "", "couldn't find bank or banker", null);
-            EthanApiPlugin.stopPlugin(this);
+            EthansApiPlugin.stopPlugin(this);
         }
 
         if (!deposit) {
@@ -176,13 +171,13 @@ public class ItemCombinerPlugin extends Plugin {
         Bank.search().withName(config.itemOneName()).first().ifPresentOrElse(item -> {
             BankInteraction.withdrawX(item, config.itemOneAmt());
         }, () -> {
-            EthanApiPlugin.stopPlugin(this);
+            EthansApiPlugin.stopPlugin(this);
         });
 
         Bank.search().withName(config.itemTwoName()).first().ifPresentOrElse(item -> {
             BankInteraction.withdrawX(item, config.itemTwoAmt());
         }, () -> {
-            EthanApiPlugin.stopPlugin(this);
+            EthansApiPlugin.stopPlugin(this);
         });
     }
 

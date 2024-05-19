@@ -1,9 +1,8 @@
 package com.example.AutoTele;
 
 import com.example.EthanApiPlugin.Collections.Inventory;
-import com.example.EthanApiPlugin.EthanApiPlugin;
+import com.example.EthanApiPlugin.EthansApiPlugin;
 import com.example.InteractionApi.InventoryInteraction;
-import com.example.PacketUtils.PacketUtilsPlugin;
 import com.example.Packets.MousePackets;
 import com.example.Packets.WidgetPackets;
 import com.google.inject.Inject;
@@ -53,7 +52,7 @@ public class AutoTele extends Plugin {
 
     @Subscribe
     public void onGameTick(GameTick event) {
-        if(!EthanApiPlugin.loggedIn()){
+        if(!EthansApiPlugin.loggedIn()){
             return;
         }
         if (timeout > 0) {
@@ -184,7 +183,7 @@ public class AutoTele extends Plugin {
                     WidgetPackets.queueWidgetActionPacket(3, 25362456, -1, -1);
                 }
                 if (teleported) {
-                    teleportedFromSkulledPlayer = EthanApiPlugin.getSkullIcon(player) != null;
+                    teleportedFromSkulledPlayer = EthansApiPlugin.getSkullIcon(player) != null;
                     if (teleportedFromSkulledPlayer) {
                         client.addChatMessage(ChatMessageType.GAMEMESSAGE, "", "Teleported from skulled player", null);
                     } else {

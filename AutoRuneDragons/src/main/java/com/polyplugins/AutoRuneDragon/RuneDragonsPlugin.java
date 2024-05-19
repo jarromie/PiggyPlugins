@@ -1,7 +1,7 @@
 package com.polyplugins.AutoRuneDragon;
 
 import com.example.EthanApiPlugin.Collections.*;
-import com.example.EthanApiPlugin.EthanApiPlugin;
+import com.example.EthanApiPlugin.EthansApiPlugin;
 import com.example.InteractionApi.BankInteraction;
 import com.example.InteractionApi.InventoryInteraction;
 import com.example.InteractionApi.NPCInteraction;
@@ -51,7 +51,6 @@ import net.runelite.api.events.GameTick;
 import net.runelite.api.events.HitsplatApplied;
 import net.runelite.api.events.ItemDespawned;
 import net.runelite.api.events.ItemSpawned;
-import net.runelite.api.vars.AccountType;
 import net.runelite.api.widgets.Widget;
 import net.runelite.api.widgets.WidgetInfo;
 import net.runelite.client.callback.ClientThread;
@@ -61,13 +60,10 @@ import net.runelite.client.events.ConfigChanged;
 import net.runelite.client.game.ItemManager;
 import net.runelite.client.input.KeyManager;
 import net.runelite.client.plugins.Plugin;
-import net.runelite.client.plugins.PluginDependency;
 import net.runelite.client.plugins.PluginDescriptor;
 import net.runelite.client.ui.overlay.OverlayManager;
 
 import static com.polyplugins.AutoRuneDragon.data.Constants.*;
-import static com.polyplugins.AutoRuneDragon.data.SubState.*;
-import static com.polyplugins.AutoRuneDragon.data.State.*;
 
 @PluginDescriptor(name = "<html><font color=\"#7ecbf2\">[PJ]</font>Rune Dragons</html>",
         description = "AIO Rune dragons - Originally by marcojacobsNL, ported by PolyJ",
@@ -125,8 +121,8 @@ public class RuneDragonsPlugin extends Plugin {
     @Override
     protected void startUp() throws Exception {
         clientThread.invoke(() -> {
-            EthanApiPlugin.sendClientMessage("[RuneDragons] THIS PLUGIN IS QUIRKY!");
-            EthanApiPlugin.sendClientMessage("[RuneDragons] VISIT THE PIGGY GITHUB PAGE FOR THIS PLUGIN FOR THE README");
+            EthansApiPlugin.sendClientMessage("[RuneDragons] THIS PLUGIN IS QUIRKY!");
+            EthansApiPlugin.sendClientMessage("[RuneDragons] VISIT THE PIGGY GITHUB PAGE FOR THIS PLUGIN FOR THE README");
         });
     }
 
@@ -144,13 +140,13 @@ public class RuneDragonsPlugin extends Plugin {
     // Subscribes
     @Subscribe
     private void onGameTick(GameTick event) {
-        if (!EthanApiPlugin.loggedIn() || !started) {
+        if (!EthansApiPlugin.loggedIn() || !started) {
             // We do an early return if the user isn't logged in\
             return;
         }
         if (!playerUtil.isAutoRetaliating()) {
-            EthanApiPlugin.sendClientMessage("[RuneDragons]TURN ON AUTO RETALIATE");
-            EthanApiPlugin.stopPlugin(this);
+            EthansApiPlugin.sendClientMessage("[RuneDragons]TURN ON AUTO RETALIATE");
+            EthansApiPlugin.stopPlugin(this);
             return;
         }
         player = client.getLocalPlayer();
@@ -158,7 +154,7 @@ public class RuneDragonsPlugin extends Plugin {
             return;
         }
         if (!client.isResized()) {
-            EthanApiPlugin.sendClientMessage("You must be set to resizable mode to use RuneDragons.");
+            EthansApiPlugin.sendClientMessage("You must be set to resizable mode to use RuneDragons.");
             return;
         }
         if (client.getWidget(WidgetInfo.BANK_PIN_CONTAINER) != null) {
@@ -173,7 +169,7 @@ public class RuneDragonsPlugin extends Plugin {
                 timeout--;
                 return;
             case LOGOUT:
-                EthanApiPlugin.sendClientMessage("We are missing a teleport to house tab, stopping plugin.");
+                EthansApiPlugin.sendClientMessage("We are missing a teleport to house tab, stopping plugin.");
                 resetPlugin();
                 return;
             case ANIMATING:
@@ -303,7 +299,7 @@ public class RuneDragonsPlugin extends Plugin {
             return State.TIMEOUT;
         }
 
-        if (EthanApiPlugin.isMoving()) {
+        if (EthansApiPlugin.isMoving()) {
             timeout = tickDelay();
             return State.ANIMATING;
         }
@@ -430,11 +426,11 @@ public class RuneDragonsPlugin extends Plugin {
             Item mainWeapon = getWeapon(EquipmentInventorySlot.WEAPON.getSlotIdx());
             if (mainWeapon != null) {
                 if (config.debugMode()) {
-                    EthanApiPlugin.sendClientMessage("Main weapon is not null!");
-                    EthanApiPlugin.sendClientMessage("Spec is " + (client.getVarpValue(VarPlayer.SPECIAL_ATTACK_PERCENT)));
-                    EthanApiPlugin.sendClientMessage("Main weapon is " + mainWeapon.getId());
-                    EthanApiPlugin.sendClientMessage("HP is " + getNpcHealth(currentNPC, 330));
-                    EthanApiPlugin.sendClientMessage("Empty slots is " + InventoryUtil.emptySlots());
+                    EthansApiPlugin.sendClientMessage("Main weapon is not null!");
+                    EthansApiPlugin.sendClientMessage("Spec is " + (client.getVarpValue(VarPlayer.SPECIAL_ATTACK_PERCENT)));
+                    EthansApiPlugin.sendClientMessage("Main weapon is " + mainWeapon.getId());
+                    EthansApiPlugin.sendClientMessage("HP is " + getNpcHealth(currentNPC, 330));
+                    EthansApiPlugin.sendClientMessage("Empty slots is " + InventoryUtil.emptySlots());
                 }
                 if (currentNPC == player.getInteracting() &&
                         (client.getVarpValue(VarPlayer.SPECIAL_ATTACK_PERCENT) >= config.specTreshhold() * 10) &&
@@ -447,13 +443,13 @@ public class RuneDragonsPlugin extends Plugin {
                     return SubState.EQUP_GEAR;
                 }
                 if (mainWeapon.getId() == config.specId() && client.getVarpValue(VarPlayer.SPECIAL_ATTACK_PERCENT) >= config.specTreshhold() * 10) {
-                    if (currentNPC == player.getInteracting() && getNpcHealth(currentNPC, 330) >= config.specHp() && EthanApiPlugin.getClient().getVarpValue(VarPlayer.SPECIAL_ATTACK_ENABLED) == 0) {
+                    if (currentNPC == player.getInteracting() && getNpcHealth(currentNPC, 330) >= config.specHp() && EthansApiPlugin.getClient().getVarpValue(VarPlayer.SPECIAL_ATTACK_ENABLED) == 0) {
                         return SubState.USE_SPECIAL;
                     }
                 }
             } else {
                 if (config.debugMode()) {
-                    EthanApiPlugin.sendClientMessage("Main weapon is null");
+                    EthansApiPlugin.sendClientMessage("Main weapon is null");
                 }
             }
         } else if (state == State.TRAVEL) {
@@ -494,22 +490,22 @@ public class RuneDragonsPlugin extends Plugin {
                 if (player.getWorldArea().intersectsWith(LITH_TELE)) {
                     return SubState.MOVE_DOWNSTAIRS;
                 } else if (config.debugMode()) {
-                    EthanApiPlugin.sendClientMessage("We are not at the LITH tele");
+                    EthansApiPlugin.sendClientMessage("We are not at the LITH tele");
                 }
                 if (player.getWorldArea().intersectsWith(LITH_TELE_DOWNSTAIRS)) {
                     return SubState.OPEN_DOOR;
                 } else if (config.debugMode()) {
-                    EthanApiPlugin.sendClientMessage("We are not at the LITH downstairs");
+                    EthansApiPlugin.sendClientMessage("We are not at the LITH downstairs");
                 }
                 if (player.getWorldArea().intersectsWith(RUNE_DRAGONS_DOOR_ENTER)) {
                     return SubState.ENTER_LAIR;
                 } else if (config.debugMode()) {
-                    EthanApiPlugin.sendClientMessage("We are not at the dragon's lair");
+                    EthansApiPlugin.sendClientMessage("We are not at the dragon's lair");
                 }
                 if (player.getWorldArea().intersectsWith(RUNE_DRAGONS_DOOR)) {
                     return SubState.WALK_DOOR;
                 } else if (config.debugMode()) {
-                    EthanApiPlugin.sendClientMessage("We are not at the LITH walk to door");
+                    EthansApiPlugin.sendClientMessage("We are not at the LITH walk to door");
                 }
             }
         } else if (state == State.BANKING) {
@@ -635,7 +631,7 @@ public class RuneDragonsPlugin extends Plugin {
         }
         log.info(logMessage);
         if (config.debugMode()) {
-            EthanApiPlugin.sendClientMessage("We are in POH - " + status);
+            EthansApiPlugin.sendClientMessage("We are in POH - " + status);
         }
         return status;
     }
@@ -643,7 +639,7 @@ public class RuneDragonsPlugin extends Plugin {
     protected boolean inDragons() {
         boolean status = client.getLocalPlayer().getWorldArea().intersectsWith(RUNE_DRAGONS);
         if (config.debugMode()) {
-            EthanApiPlugin.sendClientMessage("We are in dragons - " + status);
+            EthansApiPlugin.sendClientMessage("We are in dragons - " + status);
         }
         return status;
     }
@@ -651,7 +647,7 @@ public class RuneDragonsPlugin extends Plugin {
     protected boolean inLithkren() {
         boolean status = Arrays.stream(client.getMapRegions()).anyMatch(LITH_REGIONS::contains);
         if (config.debugMode()) {
-            EthanApiPlugin.sendClientMessage("We are in lithkren - " + status);
+            EthansApiPlugin.sendClientMessage("We are in lithkren - " + status);
         }
         return status;
     }
@@ -659,7 +655,7 @@ public class RuneDragonsPlugin extends Plugin {
     protected boolean inEdgeville() {
         boolean status = client.getLocalPlayer().getWorldArea().intersectsWith(EDGEVILLE_TELE);
         if (config.debugMode()) {
-            EthanApiPlugin.sendClientMessage("We are in edgevile - " + status);
+            EthansApiPlugin.sendClientMessage("We are in edgevile - " + status);
         }
         return status;
     }
@@ -667,7 +663,7 @@ public class RuneDragonsPlugin extends Plugin {
     public boolean shouldRestock() {
         if (!InventoryUtil.hasItem(config.foodID())) {
             if (config.debugMode()) {
-                EthanApiPlugin.sendClientMessage("We are missing food");
+                EthansApiPlugin.sendClientMessage("We are missing food");
             }
             if (inDragons()) {
                 return client.getBoostedSkillLevel(Skill.HITPOINTS) <= config.eatMin();
@@ -677,13 +673,13 @@ public class RuneDragonsPlugin extends Plugin {
         }
         if (config.useSpec() && !InventoryUtil.hasItem(config.specId())) {
             if (config.debugMode()) {
-                EthanApiPlugin.sendClientMessage("We are missing spec weapon");
+                EthansApiPlugin.sendClientMessage("We are missing spec weapon");
             }
             return true;
         }
         if (config.superantifire() && !InventoryUtil.hasAnyItems(SUPER_EXTENDED_ANTIFIRE_POTS)) {
             if (config.debugMode()) {
-                EthanApiPlugin.sendClientMessage("We are missing super extended antifire");
+                EthansApiPlugin.sendClientMessage("We are missing super extended antifire");
             }
             if (inDragons() || inLithkren()) {
                 return client.getVarbitValue(Varbits.SUPER_ANTIFIRE) == 0;
@@ -693,7 +689,7 @@ public class RuneDragonsPlugin extends Plugin {
         }
         if (!config.superantifire() && !InventoryUtil.hasAnyItems(EXTENDED_ANTIFIRE_POTS)) {
             if (config.debugMode()) {
-                EthanApiPlugin.sendClientMessage("We are missing extended antifire");
+                EthansApiPlugin.sendClientMessage("We are missing extended antifire");
             }
             if (inDragons() || inLithkren()) {
                 return client.getVarbitValue(3981) == 0;
@@ -703,7 +699,7 @@ public class RuneDragonsPlugin extends Plugin {
         }
         if (config.supercombats() && !InventoryUtil.hasAnyItems(DIVINE_SUPER_COMBAT_POTS)) {
             if (config.debugMode()) {
-                EthanApiPlugin.sendClientMessage("We are missing divine super combat");
+                EthansApiPlugin.sendClientMessage("We are missing divine super combat");
             }
             if (inDragons() || inLithkren()) {
                 return client.getBoostedSkillLevel(Skill.STRENGTH) <= config.combatMin();
@@ -713,7 +709,7 @@ public class RuneDragonsPlugin extends Plugin {
         }
         if (!config.supercombats() && !InventoryUtil.hasAnyItems(SUPER_COMBAT_POTS)) {
             if (config.debugMode()) {
-                EthanApiPlugin.sendClientMessage("We are missing super combat");
+                EthansApiPlugin.sendClientMessage("We are missing super combat");
             }
             if (inDragons() || inLithkren()) {
                 return client.getBoostedSkillLevel(Skill.STRENGTH) <= config.combatMin();
@@ -757,14 +753,14 @@ public class RuneDragonsPlugin extends Plugin {
         } else if (bank.isPresent()) {
             TileObjectInteraction.interact(bank.get(), "Bank");
         } else {
-            EthanApiPlugin.sendClientMessage("Couldn't find bank or banker. Stopping.");
+            EthansApiPlugin.sendClientMessage("Couldn't find bank or banker. Stopping.");
             resetPlugin();
         }
     }
 
     protected void depositItems() {
         if (config.debugMode()) {
-            EthanApiPlugin.sendClientMessage("We are depositing our items");
+            EthansApiPlugin.sendClientMessage("We are depositing our items");
         }
         BankUtil.depositAll();
         if (!BankUtil.containsExcept(inventorySetup) || Inventory.getEmptySlots() == 28) {
@@ -775,7 +771,7 @@ public class RuneDragonsPlugin extends Plugin {
 
     protected void withdrawItems() {
         if (config.debugMode()) {
-            EthanApiPlugin.sendClientMessage("We are withdrawing our items");
+            EthansApiPlugin.sendClientMessage("We are withdrawing our items");
         }
         Optional<Widget> house = Bank.search().withId(ItemID.TELEPORT_TO_HOUSE).first();
         Optional<Widget> superCombat = Bank.search().withId(ItemID.SUPER_COMBAT_POTION4).first();
@@ -791,28 +787,28 @@ public class RuneDragonsPlugin extends Plugin {
         if (house.isEmpty() || food.isEmpty() || prayerPot.isEmpty() || superCombat.isEmpty() && !config.supercombats() || divineSuperCombat.isEmpty() && config.supercombats() || extended.isEmpty() && !config.superantifire() || superExtended.isEmpty() && config.superantifire()) {
             if (config.debugMode()) {
                 if (house.isEmpty()) {
-                    EthanApiPlugin.sendClientMessage("Missing house tab");
+                    EthansApiPlugin.sendClientMessage("Missing house tab");
                 }
                 if (food.isEmpty()) {
-                    EthanApiPlugin.sendClientMessage("Missing food");
+                    EthansApiPlugin.sendClientMessage("Missing food");
                 }
                 if (prayerPot.isEmpty()) {
-                    EthanApiPlugin.sendClientMessage("Missing prayer pot");
+                    EthansApiPlugin.sendClientMessage("Missing prayer pot");
                 }
                 if (superCombat.isEmpty() && !config.supercombats()) {
-                    EthanApiPlugin.sendClientMessage("Missing super combat");
+                    EthansApiPlugin.sendClientMessage("Missing super combat");
                 }
                 if (divineSuperCombat.isEmpty() && config.supercombats()) {
-                    EthanApiPlugin.sendClientMessage("Missing divine super combat");
+                    EthansApiPlugin.sendClientMessage("Missing divine super combat");
                 }
                 if (extended.isEmpty() && !config.superantifire()) {
-                    EthanApiPlugin.sendClientMessage("Missing extended antifire");
+                    EthansApiPlugin.sendClientMessage("Missing extended antifire");
                 }
                 if (superExtended.isEmpty() && config.superantifire()) {
-                    EthanApiPlugin.sendClientMessage("Missing super extended antifire");
+                    EthansApiPlugin.sendClientMessage("Missing super extended antifire");
                 }
             }
-            EthanApiPlugin.sendClientMessage("Missing required items. Stopping.");
+            EthansApiPlugin.sendClientMessage("Missing required items. Stopping.");
             resetPlugin();
             return;
         }
@@ -857,7 +853,7 @@ public class RuneDragonsPlugin extends Plugin {
             BankInteraction.useItem(specWeapon.get(), "Withdraw-1");
             return;
         } else if (config.useSpec() && specWeapon.isEmpty() && !InventoryUtil.hasItem(config.specId())) {
-            EthanApiPlugin.sendClientMessage("Missing spec weapon. Stopping.");
+            EthansApiPlugin.sendClientMessage("Missing spec weapon. Stopping.");
             resetPlugin();
             return;
         }
@@ -976,7 +972,7 @@ public class RuneDragonsPlugin extends Plugin {
         ItemSpawned item = itemsToLoot.get(0);
         if (item != null) {
             if (config.debugMode()) {
-                EthanApiPlugin.sendClientMessage("Looting item: " + client.getItemDefinition(item.getItem().getId()).getName());
+                EthansApiPlugin.sendClientMessage("Looting item: " + client.getItemDefinition(item.getItem().getId()).getName());
             }
             Tile lootTile = item.getTile();
             TileItem lootItem = item.getItem();
