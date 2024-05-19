@@ -18,7 +18,7 @@ import net.runelite.client.config.ConfigSectionDescriptor;
 import net.runelite.client.config.Range;
 import net.runelite.client.config.Units;
 import net.runelite.client.plugins.ChinBreakHandler.PiggyBreakHandlerPlugin;
-import net.runelite.client.plugins.ChinBreakHandler.ui.ChinBreakHandlerPanel;
+import net.runelite.client.plugins.ChinBreakHandler.ui.PiggyBreakHandlerPanel;
 import net.runelite.client.ui.ColorScheme;
 import net.runelite.client.ui.DynamicGridLayout;
 import net.runelite.client.ui.FontManager;
@@ -69,7 +69,7 @@ public class ConfigPanel extends FixedWidthPanel
     {
         this.configManager = piggyBreakHandlerPlugin.getConfigManager();
 
-        setBackground(ChinBreakHandlerPanel.PANEL_BACKGROUND_COLOR);
+        setBackground(PiggyBreakHandlerPanel.PANEL_BACKGROUND_COLOR);
         setBorder(new EmptyBorder(5, 10, 0, 10));
         setLayout(new DynamicGridLayout(0, 1, 0, 5));
     }
