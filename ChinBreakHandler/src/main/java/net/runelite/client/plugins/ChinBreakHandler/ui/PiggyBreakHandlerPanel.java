@@ -27,7 +27,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-public class ChinBreakHandlerPanel extends PluginPanel {
+public class PiggyBreakHandlerPanel extends PluginPanel {
     public final static Color PANEL_BACKGROUND_COLOR = ColorScheme.DARK_GRAY_COLOR;
     final static Color BACKGROUND_COLOR = ColorScheme.DARKER_GRAY_COLOR;
 
@@ -61,7 +61,7 @@ public class ChinBreakHandlerPanel extends PluginPanel {
     private final JPanel breakTimingsPanel = new JPanel(new GridLayout(0, 1));
 
     @Inject
-    private ChinBreakHandlerPanel(PiggyBreakHandlerPlugin piggyBreakHandlerPluginPlugin, PiggyBreakHandler piggyBreakHandler, ConfigPanel configPanel)
+    private PiggyBreakHandlerPanel(PiggyBreakHandlerPlugin piggyBreakHandlerPluginPlugin, PiggyBreakHandler piggyBreakHandler, ConfigPanel configPanel)
     {
         super(false);
 
@@ -176,7 +176,7 @@ public class ChinBreakHandlerPanel extends PluginPanel {
                                 "when to start the break. A plugin would finish your current task before logging out and beginning your break, <br>" +
                                 "as opposed to interrupting your current task. For help implementing Open Break Handler into your plugins,<br>" +
                                 "check out the jampack Discord server or look at examples in the GitHub repository. Happy cheating!<br><br></center></html>",
-                        "Chin break handler",
+                        "Piggy break handler",
                         JOptionPane.QUESTION_MESSAGE
                 );
             }
@@ -303,7 +303,7 @@ public class ChinBreakHandlerPanel extends PluginPanel {
 
         for (Plugin plugin : activePlugins)
         {
-            ChinBreakHandlerStatusPanel statusPanel = new ChinBreakHandlerStatusPanel(piggyBreakHandlerPluginPlugin, piggyBreakHandler, plugin);
+            PiggyBreakHandlerStatusPanel statusPanel = new PiggyBreakHandlerStatusPanel(piggyBreakHandlerPluginPlugin, piggyBreakHandler, plugin);
 
             c.fill = GridBagConstraints.HORIZONTAL;
             c.weightx = 1.0;
@@ -340,7 +340,7 @@ public class ChinBreakHandlerPanel extends PluginPanel {
         JTabbedPane mainTabPane = new JTabbedPane();
 
         JScrollPane pluginPanel = wrapContainer(contentPane(plugins));
-        JScrollPane repositoryPanel = wrapContainer(new ChinBreakHandlerAccountPanel(piggyBreakHandlerPluginPlugin, piggyBreakHandler));
+        JScrollPane repositoryPanel = wrapContainer(new PiggyBreakHandlerAccountPanel(piggyBreakHandlerPluginPlugin, piggyBreakHandler));
         JScrollPane optionsPanel = wrapContainer(configPanel);
 
         mainTabPane.add("Plugins", pluginPanel);
@@ -362,7 +362,7 @@ public class ChinBreakHandlerPanel extends PluginPanel {
 
         for (Map.Entry<Plugin, Boolean> plugin : plugins.entrySet())
         {
-            ChinBreakHandlerPluginPanel panel = new ChinBreakHandlerPluginPanel(piggyBreakHandlerPluginPlugin, plugin.getKey(), plugin.getValue());
+            PiggyBreakHandlerPluginPanel panel = new PiggyBreakHandlerPluginPanel(piggyBreakHandlerPluginPlugin, plugin.getKey(), plugin.getValue());
 
             c.fill = GridBagConstraints.HORIZONTAL;
             c.weightx = 1.0;

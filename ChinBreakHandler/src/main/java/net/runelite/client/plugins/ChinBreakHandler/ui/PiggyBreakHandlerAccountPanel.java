@@ -26,7 +26,7 @@ import java.util.Arrays;
 
 import static net.runelite.client.ui.PluginPanel.PANEL_WIDTH;
 
-public class ChinBreakHandlerAccountPanel extends JPanel
+public class PiggyBreakHandlerAccountPanel extends JPanel
 {
     @Override
     public Dimension getPreferredSize()
@@ -39,7 +39,7 @@ public class ChinBreakHandlerAccountPanel extends JPanel
     private final JPanel contentPanel = new JPanel(new GridLayout(0, 1));
 
     @Inject
-    ChinBreakHandlerAccountPanel(PiggyBreakHandlerPlugin piggyBreakHandlerPluginPlugin, PiggyBreakHandler piggyBreakHandler)
+    PiggyBreakHandlerAccountPanel(PiggyBreakHandlerPlugin piggyBreakHandlerPluginPlugin, PiggyBreakHandler piggyBreakHandler)
     {
         this.configManager = piggyBreakHandlerPluginPlugin.getConfigManager();
         this.piggyBreakHandler = piggyBreakHandler;
@@ -47,7 +47,7 @@ public class ChinBreakHandlerAccountPanel extends JPanel
         setupDefaults();
 
         setLayout(new BorderLayout());
-        setBackground(ChinBreakHandlerPanel.PANEL_BACKGROUND_COLOR);
+        setBackground(PiggyBreakHandlerPanel.PANEL_BACKGROUND_COLOR);
 
         init();
     }

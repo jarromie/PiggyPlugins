@@ -21,7 +21,7 @@ import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
 @Slf4j
-public class ChinBreakHandlerStatusPanel extends JPanel
+public class PiggyBreakHandlerStatusPanel extends JPanel
 {
     private final ConfigManager configManager;
     private final PiggyBreakHandlerPlugin piggyBreakHandlerPluginPlugin;
@@ -43,7 +43,7 @@ public class ChinBreakHandlerStatusPanel extends JPanel
     }
 
     @SuppressWarnings("ResultOfMethodCallIgnored")
-    ChinBreakHandlerStatusPanel(PiggyBreakHandlerPlugin piggyBreakHandlerPlugin, PiggyBreakHandler piggyBreakHandler, Plugin plugin)
+    PiggyBreakHandlerStatusPanel(PiggyBreakHandlerPlugin piggyBreakHandlerPlugin, PiggyBreakHandler piggyBreakHandler, Plugin plugin)
     {
         this.configManager = piggyBreakHandlerPlugin.getConfigManager();
         this.piggyBreakHandlerPluginPlugin = piggyBreakHandlerPlugin;
@@ -51,7 +51,7 @@ public class ChinBreakHandlerStatusPanel extends JPanel
         this.plugin = plugin;
 
         setLayout(new BorderLayout());
-        setBackground(ChinBreakHandlerPanel.BACKGROUND_COLOR);
+        setBackground(PiggyBreakHandlerPanel.BACKGROUND_COLOR);
 
         piggyBreakHandler
                 .configChanged
@@ -169,11 +169,11 @@ public class ChinBreakHandlerStatusPanel extends JPanel
             return;
         }
 
-        extraDataPanel.setBackground(ChinBreakHandlerPanel.BACKGROUND_COLOR);
+        extraDataPanel.setBackground(PiggyBreakHandlerPanel.BACKGROUND_COLOR);
         extraDataPanel.setBorder(new CompoundBorder(
                 new CompoundBorder(
-                        BorderFactory.createMatteBorder(0, 0, 1, 0, ChinBreakHandlerPanel.PANEL_BACKGROUND_COLOR),
-                        BorderFactory.createLineBorder(ChinBreakHandlerPanel.BACKGROUND_COLOR)
+                        BorderFactory.createMatteBorder(0, 0, 1, 0, PiggyBreakHandlerPanel.PANEL_BACKGROUND_COLOR),
+                        BorderFactory.createLineBorder(PiggyBreakHandlerPanel.BACKGROUND_COLOR)
                 ), BorderFactory.createEmptyBorder(5, 5, 5, 5)));
 
         extraDataPanel.removeAll();
@@ -267,26 +267,26 @@ public class ChinBreakHandlerStatusPanel extends JPanel
         timeLabel.setFont(new Font("", Font.PLAIN, 20));
 
         JPanel titleWrapper = new JPanel(new BorderLayout());
-        titleWrapper.setBackground(ChinBreakHandlerPanel.BACKGROUND_COLOR);
+        titleWrapper.setBackground(PiggyBreakHandlerPanel.BACKGROUND_COLOR);
         titleWrapper.setBorder(new CompoundBorder(
-                BorderFactory.createMatteBorder(0, 0, 1, 0, ChinBreakHandlerPanel.PANEL_BACKGROUND_COLOR),
-                BorderFactory.createLineBorder(ChinBreakHandlerPanel.BACKGROUND_COLOR)
+                BorderFactory.createMatteBorder(0, 0, 1, 0, PiggyBreakHandlerPanel.PANEL_BACKGROUND_COLOR),
+                BorderFactory.createLineBorder(PiggyBreakHandlerPanel.BACKGROUND_COLOR)
         ));
 
         JLabel title = new JLabel();
         title.setText(plugin.getName());
-        title.setFont(ChinBreakHandlerPanel.NORMAL_FONT);
+        title.setFont(PiggyBreakHandlerPanel.NORMAL_FONT);
         title.setPreferredSize(new Dimension(0, 24));
         title.setForeground(Color.WHITE);
         title.setBorder(new EmptyBorder(0, 8, 0, 0));
 
         JPanel titleActions = new JPanel(new BorderLayout(3, 0));
-        titleActions.setBackground(ChinBreakHandlerPanel.BACKGROUND_COLOR);
+        titleActions.setBackground(PiggyBreakHandlerPanel.BACKGROUND_COLOR);
         titleActions.setBorder(new EmptyBorder(0, 0, 0, 8));
 
         JLabel status = new JLabel();
         status.setText("running");
-        status.setFont(ChinBreakHandlerPanel.SMALL_FONT.deriveFont(16f));
+        status.setFont(PiggyBreakHandlerPanel.SMALL_FONT.deriveFont(16f));
         status.setForeground(Color.GREEN);
 
         titleActions.add(status, BorderLayout.EAST);
@@ -309,11 +309,11 @@ public class ChinBreakHandlerStatusPanel extends JPanel
     {
         contentPanel.removeAll();
 
-        contentPanel.setBackground(ChinBreakHandlerPanel.BACKGROUND_COLOR);
+        contentPanel.setBackground(PiggyBreakHandlerPanel.BACKGROUND_COLOR);
         contentPanel.setBorder(new CompoundBorder(
                 new CompoundBorder(
-                        BorderFactory.createMatteBorder(0, 0, 1, 0, ChinBreakHandlerPanel.PANEL_BACKGROUND_COLOR),
-                        BorderFactory.createLineBorder(ChinBreakHandlerPanel.BACKGROUND_COLOR)
+                        BorderFactory.createMatteBorder(0, 0, 1, 0, PiggyBreakHandlerPanel.PANEL_BACKGROUND_COLOR),
+                        BorderFactory.createLineBorder(PiggyBreakHandlerPanel.BACKGROUND_COLOR)
                 ), BorderFactory.createEmptyBorder(5, 5, 5, 5)));
 
         GridBagConstraints c = new GridBagConstraints();
@@ -378,11 +378,11 @@ public class ChinBreakHandlerStatusPanel extends JPanel
     {
         infoPanel.removeAll();
 
-        infoPanel.setBackground(ChinBreakHandlerPanel.BACKGROUND_COLOR);
+        infoPanel.setBackground(PiggyBreakHandlerPanel.BACKGROUND_COLOR);
         infoPanel.setBorder(new CompoundBorder(
                 new CompoundBorder(
-                        BorderFactory.createMatteBorder(0, 0, 1, 0, ChinBreakHandlerPanel.PANEL_BACKGROUND_COLOR),
-                        BorderFactory.createLineBorder(ChinBreakHandlerPanel.BACKGROUND_COLOR)
+                        BorderFactory.createMatteBorder(0, 0, 1, 0, PiggyBreakHandlerPanel.PANEL_BACKGROUND_COLOR),
+                        BorderFactory.createLineBorder(PiggyBreakHandlerPanel.BACKGROUND_COLOR)
                 ), BorderFactory.createEmptyBorder(5, 5, 5, 5)));
 
         GridBagConstraints c = new GridBagConstraints();

@@ -14,7 +14,7 @@ import javax.swing.border.CompoundBorder;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
 
-public class ChinBreakHandlerPluginPanel extends JPanel
+public class PiggyBreakHandlerPluginPanel extends JPanel
 {
     private final ConfigManager configManager;
     private final Plugin plugin;
@@ -26,7 +26,7 @@ public class ChinBreakHandlerPluginPanel extends JPanel
         return new Dimension(PluginPanel.PANEL_WIDTH, super.getPreferredSize().height);
     }
 
-    ChinBreakHandlerPluginPanel(PiggyBreakHandlerPlugin piggyBreakHandlerPluginPlugin, Plugin plugin, boolean configurable)
+    PiggyBreakHandlerPluginPanel(PiggyBreakHandlerPlugin piggyBreakHandlerPluginPlugin, Plugin plugin, boolean configurable)
     {
         this.configManager = piggyBreakHandlerPluginPlugin.getConfigManager();
         this.plugin = plugin;
@@ -38,7 +38,7 @@ public class ChinBreakHandlerPluginPanel extends JPanel
         }
 
         setLayout(new BorderLayout());
-        setBackground(ChinBreakHandlerPanel.BACKGROUND_COLOR);
+        setBackground(PiggyBreakHandlerPanel.BACKGROUND_COLOR);
 
         init();
     }
@@ -46,21 +46,21 @@ public class ChinBreakHandlerPluginPanel extends JPanel
     private void init()
     {
         JPanel titleWrapper = new JPanel(new BorderLayout());
-        titleWrapper.setBackground(ChinBreakHandlerPanel.BACKGROUND_COLOR);
+        titleWrapper.setBackground(PiggyBreakHandlerPanel.BACKGROUND_COLOR);
         titleWrapper.setBorder(new CompoundBorder(
-                BorderFactory.createMatteBorder(0, 0, 1, 0, ChinBreakHandlerPanel.PANEL_BACKGROUND_COLOR),
-                BorderFactory.createLineBorder(ChinBreakHandlerPanel.BACKGROUND_COLOR)
+                BorderFactory.createMatteBorder(0, 0, 1, 0, PiggyBreakHandlerPanel.PANEL_BACKGROUND_COLOR),
+                BorderFactory.createLineBorder(PiggyBreakHandlerPanel.BACKGROUND_COLOR)
         ));
 
         JLabel title = new JLabel();
         title.setText(plugin.getName());
-        title.setFont(ChinBreakHandlerPanel.NORMAL_FONT);
+        title.setFont(PiggyBreakHandlerPanel.NORMAL_FONT);
         title.setPreferredSize(new Dimension(0, 24));
         title.setForeground(Color.WHITE);
         title.setBorder(new EmptyBorder(0, 8, 0, 0));
 
         JPanel titleActions = new JPanel(new BorderLayout(3, 0));
-        titleActions.setBackground(ChinBreakHandlerPanel.BACKGROUND_COLOR);
+        titleActions.setBackground(PiggyBreakHandlerPanel.BACKGROUND_COLOR);
         titleActions.setBorder(new EmptyBorder(0, 0, 0, 8));
 
         if (configurable)
@@ -107,13 +107,13 @@ public class ChinBreakHandlerPluginPanel extends JPanel
     private JPanel notConfigurable()
     {
         JPanel contentPanel = new JPanel(new BorderLayout());
-        contentPanel.setBackground(ChinBreakHandlerPanel.BACKGROUND_COLOR);
+        contentPanel.setBackground(PiggyBreakHandlerPanel.BACKGROUND_COLOR);
         JMultilineLabel description = new JMultilineLabel();
 
         description.setText("The break timings for this plugin are not configurable.");
-        description.setFont(ChinBreakHandlerPanel.SMALL_FONT);
+        description.setFont(PiggyBreakHandlerPanel.SMALL_FONT);
         description.setDisabledTextColor(Color.WHITE);
-        description.setBackground(ChinBreakHandlerPanel.BACKGROUND_COLOR);
+        description.setBackground(PiggyBreakHandlerPanel.BACKGROUND_COLOR);
 
         contentPanel.add(description, BorderLayout.CENTER);
 
@@ -125,11 +125,11 @@ public class ChinBreakHandlerPluginPanel extends JPanel
         String pluginName = PiggyBreakHandlerPlugin.sanitizedName(plugin);
 
         JPanel contentPanel = new JPanel(new GridBagLayout());
-        contentPanel.setBackground(ChinBreakHandlerPanel.BACKGROUND_COLOR);
+        contentPanel.setBackground(PiggyBreakHandlerPanel.BACKGROUND_COLOR);
         contentPanel.setBorder(new CompoundBorder(
                 new CompoundBorder(
-                        BorderFactory.createMatteBorder(0, 0, 1, 0, ChinBreakHandlerPanel.PANEL_BACKGROUND_COLOR),
-                        BorderFactory.createLineBorder(ChinBreakHandlerPanel.BACKGROUND_COLOR)
+                        BorderFactory.createMatteBorder(0, 0, 1, 0, PiggyBreakHandlerPanel.PANEL_BACKGROUND_COLOR),
+                        BorderFactory.createLineBorder(PiggyBreakHandlerPanel.BACKGROUND_COLOR)
                 ), BorderFactory.createEmptyBorder(5, 5, 5, 5)));
 
         JSpinner thresholdFrom = createSpinner(
@@ -230,7 +230,7 @@ public class ChinBreakHandlerPluginPanel extends JPanel
         String pluginName = PiggyBreakHandlerPlugin.sanitizedName(plugin);
 
         JPanel contentPanel = new JPanel(new GridLayout(0, 2));
-        contentPanel.setBackground(ChinBreakHandlerPanel.BACKGROUND_COLOR);
+        contentPanel.setBackground(PiggyBreakHandlerPanel.BACKGROUND_COLOR);
         contentPanel.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));
 
         ButtonGroup buttonGroup = new ButtonGroup();
