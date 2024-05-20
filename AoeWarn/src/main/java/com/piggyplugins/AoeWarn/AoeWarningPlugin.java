@@ -34,7 +34,6 @@ import java.util.List;
 import java.util.Set;
 import com.google.inject.Inject;
 
-import com.piggyplugins.PiggyUtils.PiggyUtilsPlugin;
 import com.piggyplugins.PiggyUtils.RLApi.GraphicIDExtended;
 import lombok.AccessLevel;
 import lombok.Getter;
@@ -59,7 +58,7 @@ import net.runelite.client.ui.overlay.OverlayManager;
 import org.apache.commons.lang3.ArrayUtils;
 
 @PluginDescriptor(
-	name = "AoE Warnings",
+	name = "<html><font color=\"#FF9DF9\">[PP]</font> AoE Warnings",
 	enabledByDefault = false,
 	description = "Shows the final destination for AoE Attack projectiles",
 	tags = {"bosses", "combat", "pve", "overlay"}
