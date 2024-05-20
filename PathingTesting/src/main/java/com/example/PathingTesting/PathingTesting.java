@@ -26,7 +26,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-@PluginDescriptor(name = "<html><font color=\"#FF9DF9\">[PP]</font> PathingTesting", description = "", enabledByDefault = false, tags = {"Testing"})
+@PluginDescriptor(name = "<html><font color=\"#FF9DF9\">[PP]</font> [API] PathingApi", description = "", enabledByDefault = false, tags = {"Testing"})
 public class PathingTesting extends Plugin {
     static List<WorldPoint> path = new ArrayList<>();
     static List<WorldPoint> fullPath = new ArrayList<>();
