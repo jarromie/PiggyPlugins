@@ -2,7 +2,7 @@ package com.polyplugins.spines;
 
 
 import com.example.EthanApiPlugin.Collections.*;
-import com.example.EthanApiPlugin.EthanApiPlugin;
+import com.example.EthanApiPlugin.PiggyApiPlugin;
 import com.example.InteractionApi.BankInteraction;
 import com.example.InteractionApi.InventoryInteraction;
 import com.example.InteractionApi.NPCInteraction;
@@ -171,7 +171,7 @@ public class ScurriusSpinesPlugin extends Plugin {
     public void handleBanking() {
         if (!Bank.isOpen()) return;
         if (Bank.search().withId(ItemID.SCURRIUS_SPINE).empty()) {
-            EthanApiPlugin.sendClientMessage("No spines left in bank");
+            PiggyApiPlugin.sendClientMessage("No spines left in bank");
             started = false;
             return;
         }
@@ -227,7 +227,7 @@ public class ScurriusSpinesPlugin extends Plugin {
     }
 
     private boolean runIsOff() {
-        return EthanApiPlugin.getClient().getVarpValue(173) == 0;
+        return PiggyApiPlugin.getClient().getVarpValue(173) == 0;
     }
 
     private final HotkeyListener toggle = new HotkeyListener(() -> config.toggle()) {
