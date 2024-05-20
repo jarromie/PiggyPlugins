@@ -9,7 +9,7 @@ import net.runelite.client.plugins.Plugin;
 import net.runelite.client.plugins.PluginDescriptor;
 
 
-@PluginDescriptor(name = "RunEnabler", description = "", enabledByDefault = false, tags = {"ethan"})
+@PluginDescriptor(name = "<html><font color=\"#FF9DF9\">[PP]</font> RunEnabler", description = "", enabledByDefault = false, tags = {"ethan"})
 public class RunEnabler extends Plugin {
     @Subscribe
     public void onGameTick(GameTick e) {
