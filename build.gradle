@@ -74,7 +74,6 @@ dependencies {
     implementation project(path: ':DropParty')
     implementation project(path: ':BetterProfiles')
     implementation project(path: ':PathingTesting')
-    implementation project(path: ':AoeWarn')
     implementation project(path: ':ScurriusSpines')
     implementation project(path: ':PiggyAutoCombat')
     implementation project(path: ':CluePuzzleSolver')

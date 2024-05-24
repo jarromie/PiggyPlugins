@@ -1,5 +1,4 @@
 rootProject.name = 'example'
-include 'AoeWarn'
 include 'AutoJugHumidifier'
 include 'AutoRifts'
 include 'CannonReloader'
@@ -47,4 +46,4 @@ include 'StrategyExample'
 include 'BetterProfiles'
 include 'PiggyAutoCombat'
 include 'CluePuzzleSolver'
-
+include 'ScurriusSpines'
