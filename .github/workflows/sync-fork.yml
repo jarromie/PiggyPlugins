@@ -1,9 +1,9 @@
-name: Sync fork branch with upstream (OHutch/PiggyPlugins)
+name: Sync fork branch with upstream (0Hutch/PiggyPlugins)
 on:
   schedule:
      # actually, ~5 minutes is the highest
      # effective frequency you will get
-    - cron:  '* * * * *'
+    - cron:  '0 0 * * *'
 jobs:
   sync:
     runs-on: ubuntu-latest
