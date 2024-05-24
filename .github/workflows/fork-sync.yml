@@ -1,4 +1,4 @@
-name: Sync fork with upstream (`0Hutch/PiggyPlugins`)
+name: Sync fork with upstream (0Hutch/PiggyPlugins)
 on:
   schedule:
      # actually, ~5 minutes is the highest
