@@ -65,7 +65,7 @@ import net.runelite.client.ui.overlay.OverlayManager;
 
 import static com.polyplugins.AutoRuneDragon.data.Constants.*;
 
-@PluginDescriptor(name = "<html><font color=\"#7ecbf2\">[PJ]</font>Rune Dragons</html>",
+@PluginDescriptor(name = "<html><font color=\"#FF9DF9\">[PP]</font> Rune Dragons</html>",
         description = "AIO Rune dragons - Originally by marcojacobsNL, ported by PolyJ",
         tags = {"koffee", "ethan"})
 @Slf4j

@@ -19,7 +19,7 @@ sourceSets {
 }
 
 group 'com.piggyplugins'
-version '1.0.0'
+version '0.0.2'
 
 test {
     useJUnitPlatform()
@@ -28,7 +28,7 @@ test {
 task PiggyJar(type: Jar) {
     manifest {
     }
-    baseName = 'auto-combatv2'
+    baseName = 'AutoCombatv2'
     duplicatesStrategy = DuplicatesStrategy.EXCLUDE
     from { configurations.runtimeClasspath.collect { it.isDirectory() ? it : zipTree(it) } }
     with jar

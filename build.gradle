@@ -74,9 +74,10 @@ dependencies {
     implementation project(path: ':DropParty')
     implementation project(path: ':BetterProfiles')
     implementation project(path: ':PathingTesting')
-    implementation project(path: ':AutoCombatv2')
     implementation project(path: ':AoeWarn')
     implementation project(path: ':ScurriusSpines')
+    implementation project(path: ':PiggyAutoCombat')
+    implementation project(path: ':CluePuzzleSolver')
     implementation 'io.reactivex.rxjava3:rxjava:3.1.6'
 }
 
@@ -92,7 +93,7 @@ sourceSets {
 }
 
 group = 'com.piggyplugins'
-version = '1.1.8-patch'
+version = '1.2.4-patch'
 sourceCompatibility = "11"
 
 task FatJar(type: Jar) {

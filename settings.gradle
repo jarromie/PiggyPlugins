@@ -45,5 +45,6 @@ include 'AutoRuneDragons'
 include 'AutoTitheFarm'
 include 'StrategyExample'
 include 'BetterProfiles'
-include 'AutoCombatv2'
-include 'ScurriusSpines'
+include 'PiggyAutoCombat'
+include 'CluePuzzleSolver'
+

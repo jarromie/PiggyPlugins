@@ -26,7 +26,7 @@ import net.runelite.client.util.HotkeyListener;
 
 import java.util.Optional;
 
-@PluginDescriptor(name = "<html><font color=\"#7ecbf2\">[PJ]</font>AutoSmith</html>",
+@PluginDescriptor(name = "<html><font color=\"#FF9DF9\">[PP]</font> AutoSmith</html>",
         description = "",
         enabledByDefault = false,
         tags = {"poly", "plugin"})
