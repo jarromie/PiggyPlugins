@@ -1,0 +1,17 @@
+name: Sync fork with upstream (`0Hutch/PiggyPlugins`)
+on:
+  schedule:
+     # actually, ~5 minutes is the highest
+     # effective frequency you will get
+    - cron:  '0 0 * * *'
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: tgymnich/fork-sync@v1.2.1
+        with:
+          github_token: ${{ github.token }}
+          owner: 0Hutch
+          base: master
+          head: master
+          pr_title: Merge changes from upstream (`0Hutch/PiggyPlugins`)
