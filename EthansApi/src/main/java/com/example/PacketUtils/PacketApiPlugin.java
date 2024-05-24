@@ -131,7 +131,7 @@ public class PacketApiPlugin extends Plugin {
         SwingUtilities.invokeLater(() ->
         {
             for (Plugin plugin : pluginManager.getPlugins()) {
-                if (plugin.getName().equals("EthanApiPlugin")) {
+                if (plugin.getName().equals("PiggyApiPlugin")) {
                     if (pluginManager.isPluginEnabled(plugin)) {
                         continue;
                     }
