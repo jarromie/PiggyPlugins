@@ -149,7 +149,7 @@ public class ItemCombinerPlugin extends Plugin {
             return;
         }
         client.addChatMessage(ChatMessageType.GAMEMESSAGE, "", "couldn't find bank or banker", null);
-        EthanApiPlugin.stopPlugin(this);
+        PiggyApiPlugin.stopPlugin(this);
     }
 
     private boolean hasItems(boolean bank) {

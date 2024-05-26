@@ -7,6 +7,7 @@ import com.example.EthanApiPlugin.Collections.query.ItemQuery;
 import com.example.EthanApiPlugin.PiggyApiPlugin;
 import com.example.InteractionApi.InventoryInteraction;
 import com.example.InteractionApi.TileObjectInteraction;
+import com.example.PacketUtils.PacketApiPlugin;
 import com.example.Packets.MousePackets;
 import com.example.Packets.MovementPackets;
 import com.example.Packets.ObjectPackets;
@@ -24,6 +25,7 @@ import net.runelite.client.callback.ClientThread;
 import net.runelite.client.config.ConfigManager;
 import net.runelite.client.eventbus.Subscribe;
 import net.runelite.client.plugins.Plugin;
+import net.runelite.client.plugins.PluginDependency;
 import net.runelite.client.plugins.PluginDescriptor;
 import net.runelite.client.ui.overlay.OverlayManager;
 
@@ -39,8 +41,8 @@ import static com.example.EthanApiPlugin.PiggyApiPlugin.sendClientMessage;
 import static com.example.EthanApiPlugin.PiggyApiPlugin.stopPlugin;
 
 @Slf4j
-@PluginDependency(PacketUtilsPlugin.class)
-@PluginDependency(EthanApiPlugin.class)
+@PluginDependency(PacketApiPlugin.class)
+@PluginDependency(PiggyApiPlugin.class)
 @PluginDescriptor(
         name = "<html><font color=\"#00cbf2\">[L]</font> AutoTitheFarm<html>",
         description = "Will do Tithe Farm for you",

@@ -4,7 +4,7 @@ package com.example.AutoTitheFarm;
 import lombok.Getter;
 import net.runelite.api.coords.WorldPoint;
 
-import static com.example.EthanApiPlugin.EthanApiPlugin.getClient;
+import static com.example.EthanApiPlugin.PiggyApiPlugin.getClient;
 
 @Getter
 public enum PatchLayout {
